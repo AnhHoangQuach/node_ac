@@ -1,0 +1,204 @@
+﻿.radio + .radio, .checkbox + .checkbox {
+    margin-top: 6px;
+}
+
+.radio,
+.checkbox {
+    min-height: 1rem;
+    padding-left: 0px;
+    transition: all 0.2s ease-in-out;
+}
+.yes-no-box-tab.active .yes-no-box-tab-content .form-group .radio,
+.yes-no-box-tab.active .yes-no-box-tab-content .form-group .checkbox {
+    margin-bottom: 1rem;
+}
+.yes-no-box-tab.active .yes-no-box-tab-content .form-group:last-child .radio,
+.yes-no-box-tab.active .yes-no-box-tab-content .form-group:last-child .checkbox {
+    margin-bottom: 0rem;
+}
+
+.radio-inline,
+.checkbox-inline {
+    margin-top: 0px !important;
+}
+
+.radio > label,
+.checkbox > label {
+    padding-left: 1.8rem;
+    min-height: 1.135rem;
+    line-height: 1rem;
+    display: block;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+    position: absolute;
+    cursor: pointer;
+    max-width: none;
+    width: auto;
+    height: auto;
+}
+
+.radio > input[type="radio"]:first-child:not(:checked) + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked) + label::before,
+.radio > input[type="radio"]:first-child:not(:checked) + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 1.135rem;
+    height: 1.135rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.15rem;
+    margin-left: -1.8rem;
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    font-size: 0.75rem;
+}
+
+.radio > input[type="radio"]:first-child:not(:checked) + label::before,
+.radio > input[type="radio"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    border-radius: 50%;
+    color: #fff;
+}
+.radio.radio-textbox > input[type="radio"]:first-child:not(:checked) + label::before,
+.radio.radio-textbox > input[type="radio"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    margin-top: 0.85rem;
+    left: 2.8rem;
+}
+.yes-no-box-tab-content .radio.radio-textbox > input[type="radio"]:first-child:not(:checked) + label::before,
+.yes-no-box-tab-content .radio.radio-textbox > input[type="radio"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    margin-top: 0.85rem;
+    left: 1.8rem;
+}
+
+.radio.radio-textbox .form-control.form-control-lg {
+    margin-left: -1.85rem;
+    padding-left: 2.95rem;
+    width: calc(100% + 1.85rem);
+}
+
+.yes-no-box-tab-content .radio.radio-textbox .form-control.form-control-lg {
+    margin-left: 0;
+    padding-left: 1rem;
+    width: 100%;
+}
+.checkbox > input[type="checkbox"]:first-child:not(:checked) + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    color: #fff;
+}
+
+.radio > input[type="radio"]:first-child:checked + label::before,
+.checkbox > input[type="checkbox"]:first-child:checked + label::before,
+.radio > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    content: "✓";
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-weight: normal;
+    font-size: 0.75rem;
+    color: #fff;
+    position: absolute;
+    width: 1.135rem;
+    height: 1.135rem;
+    line-height: 1rem;
+    border: 1px solid #000;
+    border-radius: 0.15rem;
+    background-color: #000;
+    text-align: center;
+    margin-left: -1.8rem;
+    vertical-align: text-top;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio > input[type="radio"]:first-child:checked + label::before,
+.radio > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before {
+    border-radius: 50%;
+}
+
+.radio.radio-textbox > input[type="radio"]:first-child:checked + label::before,
+.radio.radio-textbox > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before {
+    margin-top: 0.85rem;
+    left: 2.8rem;
+}
+
+.yes-no-box-tab-content .radio.radio-textbox > input[type="radio"]:first-child:checked + label::before,
+.yes-no-box-tab-content .radio.radio-textbox > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before {
+    margin-top: 0.85rem;
+    left: 1.8rem;
+}
+
+.radio > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.radio > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border: 1px solid #000;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio > input[type="radio"]:first-child:disabled + label,
+.radio > input[type="radio"]:first-child:disabled + label::before,
+.checkbox > input[type="checkbox"]:first-child:disabled + label,
+.checkbox > input[type="checkbox"]:first-child:disabled + label::before,
+.radio > input[type="radio"]:first-child:disabled + input[type="hidden"] + label,
+.radio > input[type="radio"]:first-child:disabled + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:disabled + input[type="hidden"] + label,
+.checkbox > input[type="checkbox"]:first-child:disabled + input[type="hidden"] + label::before {
+    pointer-events: none;
+    cursor:not-allowed;
+    filter: alpha(opacity=55);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .55;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio > input[type="radio"]:first-child,
+.checkbox > input[type="checkbox"]:first-child {
+    opacity: 0;
+    margin-left: 0px;
+}
+
+    .radio > input[type="radio"]:first-child:disabled,
+    .checkbox > input[type="checkbox"]:first-child:disabled {
+        opacity: 0;
+        cursor: default;
+    }
+
+/* not checked hover style*/
+.icheck-alizarin > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-alizarin > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #1565c0;
+    transition: all 0.2s ease-in-out;
+}
+
+/*checked style*/
+.icheck-alizarin > input[type="radio"]:first-child:checked + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-alizarin > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #1565c0;
+    border-color: #1565c0;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.checkbox.chk-border,
+.radio.chk-border {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+    .radio.chk-border > label,
+    .checkbox.chk-border > label {
+        padding-left: 2.8rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-right: 1rem;
+    }
