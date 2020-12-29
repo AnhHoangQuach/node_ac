@@ -739,11 +739,13 @@ h2 {
     margin-left: -0.5rem;
 }
 
-.checkbox-tools:not(:checked)+label {
-    background-color: var(--dark-light);
-    background-color: #fff;
+.checkbox-tools:checked+label {
+    background-color: #e3eff9;
+    color: #0063c3;
     border-radius: 0.25rem;
+    border-color: #0063c3;
     height: 3.35rem;
+    padding: .375rem .75rem;
 }
 
 .checkbox-tools:checked+label,
@@ -755,11 +757,17 @@ h2 {
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
+    border-color: #0063c3;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     position: relative;
+}
+
+.checkbox-tools:checked+label::before {
+    background-color: #0063c3;
+    border-color: #0063c3;
 }
 
 .checkbox-tools+label::before {
@@ -780,7 +788,40 @@ h2 {
     font-size: 0.95rem !important;
 }
 
-//mobiles responsive
+.float-right {
+    float: right!important;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .5);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+}
+
+.checkbox-tools:checked+label::after {
+    color: #fff;
+}
+
+.checkbox-tools:checked+label::after {
+    content: '\f00c';
+    float: right;
+    font-weight: 900;
+    font-family: 'Line Awesome Free';
+    font-size: 14px;
+    line-height: 1;
+    background-color: #0063c3;
+    position: absolute;
+    right: 0.85rem;
+    top: 1.15rem;
+}
+
+Y //mobiles responsive
 //header
 #mobile-nav-toggle {
     position: absolute;
@@ -834,6 +875,15 @@ h2 {
 @media (min-width: 1024px) {
     #nav-menu-container {
         padding-right: 25px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
     }
 }
 
