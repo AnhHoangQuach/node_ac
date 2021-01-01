@@ -1,10 +1,10 @@
 class SiteController {
     index(req, res) {
-        res.render('home', {title: 'Trang chủ', link: 'home'})
+        res.render('home', { title: 'Trang chủ', link: 'home' })
     }
 
     showContact(req, res) {
-        res.render('contact', {title: 'Liên hệ', link: 'contact'})
+        res.render('contact', { title: 'Liên hệ', link: 'contact' })
     }
 }
 

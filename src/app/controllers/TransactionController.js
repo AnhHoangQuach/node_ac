@@ -1,6 +1,14 @@
+const fetch = require('node-fetch')
 class TransactionController {
-    index(req, res, next ) {
-        res.render('transaction', {title: 'Giao dịch', link: 'transaction'})
+    async index(req, res, next) {
+        const api_url = `https://login.acwallet.io/api/v1/rates`
+        const fetch_response = await fetch(api_url)
+        const data = await fetch_response.json()
+        res.render('transaction', {
+            title: 'Giao dịch',
+            link: 'transaction',
+            rates: data.rates,
+        })
     }
 
     buy(req, res, next) {

@@ -29,479 +29,465 @@
 
     </div>
 </section>
+<% Object.keys(rates).forEach(function( value) { %>
+    <%- rates[value] %>
+        <% }); %>
 
-<section id="buy-sell" class="pt-5">
-
-    <div class="container pb-4">
-
-        <div class="row">
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+            <section id="buy-sell" class="pt-5">
+                <div class="container pb-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card text-black border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3 d-inline-flex">
                                             <i class="cc VNDT" title="VNDT"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>VN Coin</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 VNDT/VND
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-danger d-flex align-items-center">
                                             <i class="las la-caret-down mr-1"></i>
                                             <span>0.1%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">1.08293993</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bold text-primary">1.08293993</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">1.09293996</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bold text-warning">1.09293996</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card text-black border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3 d-inline-flex">
                                             <i class="cc USDF" title="USDF"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Tether</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 USDF/VND
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-success d-flex align-items-center">
                                             <i class="las la-caret-up mr-1"></i>
                                             <span>1.104%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">22,890,000</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bold text-primary">22,890,000</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">23,190,000</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bold text-warning">23,190,000</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card text-black border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3 d-inline-flex">
                                             <i class="cc XENG" title="XENG"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Xeng Coin</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 XENG/VND
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-success d-flex align-items-center">
                                             <i class="las la-caret-up mr-1"></i>
                                             <span>0.134%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">1,000.01</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bold text-primary">1,000.01</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">1,000.56</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bold text-warning">1,000.56</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card text-black border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3">
                                             <i class="cc USDT" title="USDT"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Tether USD</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 USDT/VNDT
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-danger d-flex align-items-center">
                                             <i class="las la-caret-down mr-1"></i>
                                             <span>0.134%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">23,662</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bold text-primary">23,662</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">22,662</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bold text-warning">22,662</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card bg-white text-black shadow border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card bg-white text-black shadow border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3">
                                             <i class="cc BTC" title="BTC"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Bitcoin</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 BTC/VNDT
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-090">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-danger d-flex align-items-center">
                                             <i class="las la-caret-down mr-1"></i>
                                             <span>0.134%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bolder text-primary">420,273,014</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bolder text-primary">420,273,014</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bolder text-warning">419,273,014</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bolder text-warning">419,273,014</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card bg-white text-black shadow border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card bg-white text-black shadow border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3">
                                             <i class="cc ETH" title="ETH"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Etherium</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 ETH/VNDT
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-090">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-success d-flex align-items-center">
                                             <i class="las la-caret-up mr-1"></i>
                                             <span>0.134%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bolder text-primary">12,725,056</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bolder text-primary">12,725,056</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bolder text-warning">11,725,056</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bolder text-warning">11,725,056</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card bg-white text-black shadow border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card bg-white text-black shadow border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3">
                                             <i class="cc TRX" title="TRX"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Tron</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 TRX/VNDT
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-090">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-success d-flex align-items-center">
                                             <i class="las la-caret-up mr-1"></i>
                                             <span>0.134%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bolder text-primary">1,010</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bolder text-primary">1,010</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bolder text-warning">910</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bolder text-warning">910</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card bg-white text-black shadow border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
+                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                            <div class="card bg-white text-black shadow border-0 mb-4">
+                                <div class="card-body">
+                                    <div class="hl-coin-box">
+                                        <div class="coin-change mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fs-220 lh-1 mr-3">
                                             <i class="cc XRP" title="XRP"></i>
                                         </span>
-                                        <span>
+                                                    <span>
                                             <strong>Ripple</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 XRP/VND
                                             </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-090">
+                                                    </span>
+                                                </div>
+                                                <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-danger d-flex align-items-center">
                                             <i class="las la-caret-down mr-1"></i>
                                             <span>0.134%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
 
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bolder text-primary">23,662</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i>
-                                            Mua
-                                        </a>
-                                    </div>
-                                </div>
+                                        <div class="coin-buy-sell">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                                    <span class="font-weight-bolder text-primary">23,662</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                                        <i class="las la-file-import"></i> Mua
+                                                    </a>
+                                                </div>
+                                            </div>
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bolder text-warning">22,662</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i>
-                                            Bán
-                                        </a>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                                    <span class="font-weight-bolder text-warning">22,662</span>
+                                                </div>
+                                                <div>
+                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                                        <i class="las la-file-export"></i> Bán
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
+            </section>
+            </section>
