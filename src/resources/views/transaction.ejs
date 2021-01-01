@@ -1,9 +1,7 @@
 <section id="intro" class="intro-short">
     <div class="intro-container ">
         <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-
             <div class="carousel-inner" role="listbox">
-
                 <div class="carousel-item active">
                     <div class="carousel-background"><img src="img/pr.jpg" alt="" class="w-100"></div>
                     <div class="carousel-container">
@@ -14,480 +12,690 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white">Mua bán Coin với SA98</h3>
+                                        <h3 class="fs-150 mb-0 text-white">Mua bán Coin với <%= agency.name %></h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </section>
-<% Object.keys(rates).forEach(function( value) { %>
-    <%- rates[value] %>
-        <% }); %>
-
-            <section id="buy-sell" class="pt-5">
-                <div class="container pb-4">
-                    <div class="row">
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card text-black border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3 d-inline-flex">
+<section id="buy-sell" class="pt-5">
+    <div class="container pb-4">
+        <div class="row">
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card text-black border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
                                             <i class="cc VNDT" title="VNDT"></i>
                                         </span>
-                                                    <span>
-                                            <strong>VN Coin</strong>
-                                            <br>
+                                        <span>
+                                            <strong>VN Coin</strong><br>
                                             <span class="fs-090 text-secondary">
                                                 VNDT/VND
                                             </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-danger d-flex align-items-center">
-                                            <i class="las la-caret-down mr-1"></i>
-                                            <span>0.1%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-080">
+                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
 
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bold text-primary">1.08293993</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_vndt'] %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
 
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bold text-warning">1.09293996</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_vndt'] %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card text-black border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card text-black border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
                                             <i class="cc USDF" title="USDF"></i>
                                         </span>
-                                                    <span>
+                                        <span>
                                             <strong>Tether</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 USDF/VND
                                             </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-success d-flex align-items-center">
-                                            <i class="las la-caret-up mr-1"></i>
-                                            <span>1.104%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bold text-primary">22,890,000</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bold text-warning">23,190,000</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card text-black border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3 d-inline-flex">
-                                            <i class="cc XENG" title="XENG"></i>
                                         </span>
-                                                    <span>
-                                            <strong>Xeng Coin</strong>
-                                            <br>
-                                            <span class="fs-090 text-secondary">
-                                                XENG/VND
-                                            </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-success d-flex align-items-center">
-                                            <i class="las la-caret-up mr-1"></i>
-                                            <span>0.134%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bold text-primary">1,000.01</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bold text-warning">1,000.56</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card text-black border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3">
-                                            <i class="cc USDT" title="USDT"></i>
+                                    <span class="d-inline-block font-weight-500 fs-080">
+                                        <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %>%</span>
                                         </span>
-                                                    <span>
-                                            <strong>Tether USD</strong>
-                                            <br>
-                                            <span class="fs-090 text-secondary">
-                                                USDT/VNDT
-                                            </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-danger d-flex align-items-center">
-                                            <i class="las la-caret-down mr-1"></i>
-                                            <span>0.134%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                    </span>
+                                </div>
+                            </div>
 
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bold text-primary">23,662</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_usdf'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
 
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bold text-warning">22,662</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_usdf'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card text-black border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                                <i class="cc XENG" title="XENG"></i>
+                            </span>
+                                        <span>
+                                <strong>Xeng Coin</strong>
+                                <br>
+                                <span class="fs-090 text-secondary">
+                                    XENG/VND
+                                </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-080">
+                                        <span class="text-<%- 0.134 > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- 0.134 > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span>0.134%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
 
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card bg-white text-black shadow border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3">
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bold text-primary">1,000.01</span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bold text-warning">1,000.56</span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card text-black border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
+                                <i class="cc USDT" title="USDT"></i>
+                            </span>
+                                        <span>
+                                <strong>Tether USD</strong>
+                                <br>
+                                <span class="fs-090 text-secondary">
+                                    USDT/VNDT
+                                </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-080">
+                                        <span class="text-<%- rates['per_usdt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_usdt'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_usdt'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_usdt'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card text-black border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                                            <i class="cc WEX" title="WEX"></i>
+                                        </span>
+                                        <span>
+                                            <strong>WEXLocaly</strong><br>
+                                            <span class="fs-090 text-secondary">
+                                                WEX/VND
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-080">
+                                        <span class="text-<%- rates['per_wex'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_wex'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_wex'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_wex'] %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_wex'] %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
                                             <i class="cc BTC" title="BTC"></i>
                                         </span>
-                                                    <span>
+                                        <span>
                                             <strong>Bitcoin</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 BTC/VNDT
                                             </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-danger d-flex align-items-center">
-                                            <i class="las la-caret-down mr-1"></i>
-                                            <span>0.134%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bolder text-primary">420,273,014</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bolder text-warning">419,273,014</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card bg-white text-black shadow border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3">
-                                            <i class="cc ETH" title="ETH"></i>
                                         </span>
-                                                    <span>
-                                            <strong>Etherium</strong>
-                                            <br>
-                                            <span class="fs-090 text-secondary">
-                                                ETH/VNDT
-                                            </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-success d-flex align-items-center">
-                                            <i class="las la-caret-up mr-1"></i>
-                                            <span>0.134%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bolder text-primary">12,725,056</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bolder text-warning">11,725,056</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card bg-white text-black shadow border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3">
-                                            <i class="cc TRX" title="TRX"></i>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                                        <span class="text-<%- rates['per_btc'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_btc'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_btc'].toLocaleString()) %>%</span>
                                         </span>
-                                                    <span>
-                                            <strong>Tron</strong>
-                                            <br>
-                                            <span class="fs-090 text-secondary">
-                                                TRX/VNDT
-                                            </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-success d-flex align-items-center">
-                                            <i class="las la-caret-up mr-1"></i>
-                                            <span>0.134%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                    </span>
+                                </div>
+                            </div>
 
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bolder text-primary">1,010</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_btc'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
 
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bolder text-warning">910</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_btc'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                            <div class="card bg-white text-black shadow border-0 mb-4">
-                                <div class="card-body">
-                                    <div class="hl-coin-box">
-                                        <div class="coin-change mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fs-220 lh-1 mr-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
+                                <i class="cc ETH" title="ETH"></i>
+                            </span>
+                                        <span>
+                                <strong>Etherium</strong>
+                                <br>
+                                <span class="fs-090 text-secondary">
+                                    ETH/VNDT
+                                </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                            <span class="text-<%- rates['per_eth'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                <i class="las la-caret-<%- rates['per_eth'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                <span><%= Math.abs(rates['per_eth'].toLocaleString()) %>%</span>
+                                    </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_eth'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_eth'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
+                                <i class="cc TRX" title="TRX"></i>
+                            </span>
+                                        <span>
+                                <strong>Tron</strong>
+                                <br>
+                                <span class="fs-090 text-secondary">
+                                    TRX/VNDT
+                                </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                            <span class="text-<%- rates['per_trx'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                <i class="las la-caret-<%- rates['per_trx'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                <span><%= Math.abs(rates['per_trx'].toLocaleString()) %>%</span>
+                                    </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_trx'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_trx'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
                                             <i class="cc XRP" title="XRP"></i>
                                         </span>
-                                                    <span>
+                                        <span>
                                             <strong>Ripple</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
                                                 XRP/VND
                                             </span>
-                                                    </span>
-                                                </div>
-                                                <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-danger d-flex align-items-center">
-                                            <i class="las la-caret-down mr-1"></i>
-                                            <span>0.134%</span>
-                                                </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                                        <span class="text-<%- rates['per_xrp'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_xrp'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_xrp'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
 
-                                        <div class="coin-buy-sell">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                                    <span class="font-weight-bolder text-primary">23,662</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                                        <i class="las la-file-import"></i> Mua
-                                                    </a>
-                                                </div>
-                                            </div>
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_xrp'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
 
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div>
-                                                    <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                                    <span class="font-weight-bolder text-warning">22,662</span>
-                                                </div>
-                                                <div>
-                                                    <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                                        <i class="las la-file-export"></i> Bán
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_xrp'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-            </section>
-            </section>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
+                                            <i class="cc XLM" title="XLM"></i>
+                                        </span>
+                                        <span>
+                                            <strong>Stellar</strong>
+                                            <br>
+                                            <span class="fs-090 text-secondary">
+                                                XLM/VND
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                                        <span class="text-<%- rates['per_xlm'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_xlm'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_xlm'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_xlm'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_xlm'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
+                                            <i class="cc BCH" title="BCH"></i>
+                                        </span>
+                                        <span>
+                                            <strong>Bitcoin Cash</strong>
+                                            <br>
+                                            <span class="fs-090 text-secondary">
+                                                BCH/VND
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                                        <span class="text-<%- rates['per_bch'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_bch'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_bch'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_bch'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_bch'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card bg-white text-black shadow border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3">
+                                            <i class="cc LTC" title="LTC"></i>
+                                        </span>
+                                        <span>
+                                            <strong>!!ALTcoinsHOSTING!!</strong>
+                                            <br>
+                                            <span class="fs-090 text-secondary">
+                                                LTC/VND
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-090">
+                                        <span class="text-<%- rates['per_ltc'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_ltc'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_ltc'].toLocaleString()) %>%</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_ltc'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_ltc'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

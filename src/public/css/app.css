@@ -2012,3 +2012,6 @@ ul.pricing-table li.bullet-item:before {
     display: none; }
   #intro.intro-short {
     height: auto; } }
+
+.rate {
+  font-size: 12px; }

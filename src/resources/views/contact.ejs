@@ -14,7 +14,7 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-4 text-white">Liên hệ với SA98</h3>
+                                        <h3 class="fs-150 mb-4 text-white">Liên hệ với <%= agency.name %></h3>
                                         <p class="fs-090 mb-3">
                                             <span class=" font-weight-normal d-block mb-2">
                                                 <i class="las la-map-marker"></i>
@@ -23,16 +23,16 @@
                                             <span class=" font-weight-normal d-block mb-2">
                                                 <span class="mr-2 ml-2">
                                                     <i class="las la-phone-alt"></i>
-                                                    098.484.5848
+                                                    <%= JSON.parse(agency.contact).phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3") %>
                                                 </span>
                                                 <span class="mr-2 ml-2">
                                                     <i class="las la-envelope"></i>
-                                                    Biso.vn@gmail.com
+                                                    <%= JSON.parse(agency.contact).email %>
                                                 </span>
                                             </span>
                                             <span class=" font-weight-normal d-block mb-2">
                                                 <i class="las la-external-link-square-alt"></i>
-                                                Website: www.dailysa98.com
+                                                Website: www.daily<%= agency.name %>.com
                                             </span>
                                         </p>
                                         <p>

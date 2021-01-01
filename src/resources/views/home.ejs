@@ -14,7 +14,7 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (SA98)</h3>
+                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (<%= agency.name %>)</h3>
                                         <p class="mb-3" style="line-height:1">
                                             <span class="ml-1 fs-080 font-weight-normal mt-1">
                                                 Cấp đại lý: <span class="font-weight-bold">Supper Admin</span>
@@ -23,7 +23,11 @@
                                         <p class="mb-3">
                                             <span class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
                                                 <i class="las la-check-circle"></i>
-                                                Đã xác minh
+                                                <% if(agency.verification === "nonVerify") { %>
+                                                    Chưa xác minh    
+                                                <% } else { %>
+                                                    Đã xác minh
+                                                <% } %>
                                             </span>
                                             <!--<span class="badge badge-pill badge-secondary rounded d-inline-block ">
                                                 <i class="las la-ban"></i>
@@ -31,10 +35,10 @@
                                             </span>-->
                                             <div class="mb-2">
                                                 <span>Đã ký quỹ:</span><span class="font-weight-bold text-warning">
-                                                    345,078,000 VNDT
+                                                    <%- Intl.NumberFormat().format(agency.guaranteeAmount) %> VNDT
                                                 </span>
                                             </div>
-                                            <a href="chi-tiet-dai-ly" class="text-info fs-080">
+                                            <a href="/details" class="text-info fs-080">
                                                 Xem hồ sơ
                                                 <i class="la la-arrow-right"></i>
                                             </a>
@@ -56,11 +60,9 @@
 </section>
 
 <section id="buy-sell" class="pt-5">
-
     <div class="container pb-5">
-
         <header class="section-header">
-            <h3>Mua bán Coin với SA98</h3>
+            <h3>Mua bán Coin với <%= agency.name %></h3>
         </header>
         <div class="row">
             <div class="col-12 col-xl-3 col-lg-6 col-md-6">
@@ -82,9 +84,9 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-danger d-flex align-items-center">
-                                            <i class="las la-caret-down mr-1"></i>
-                                            <span>0.1%</span>
+                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
                                     </span>
                                     </span>
                                 </div>
@@ -94,7 +96,7 @@
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">1.08293993</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_vndt'].toLocaleString() %>%</span>
                                     </div>
                                     <div>
                                         <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
@@ -106,7 +108,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">1.09293996</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_vndt'].toLocaleString() %>%</span>
                                     </div>
                                     <div>
                                         <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
@@ -138,9 +140,9 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-success d-flex align-items-center">
-                                            <i class="las la-caret-up mr-1"></i>
-                                            <span>1.104%</span>
+                                        <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %>%</span>
                                     </span>
                                     </span>
                                 </div>
@@ -150,7 +152,7 @@
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">22,890,000</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_usdf'].toLocaleString() %>%</span>
                                     </div>
                                     <div>
                                         <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
@@ -162,7 +164,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">23,190,000</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_usdf'].toLocaleString() %>%</span>
                                     </div>
                                     <div>
                                         <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
@@ -194,8 +196,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-success d-flex align-items-center">
-                                            <i class="las la-caret-up mr-1"></i>
+                                        <span class="text-<%- 0.134 > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- 0.134 > 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span>0.134%</span>
                                     </span>
                                     </span>
@@ -250,9 +252,9 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-danger d-flex align-items-center">
-                                            <i class="las la-caret-down mr-1"></i>
-                                            <span>0.134%</span>
+                                        <span class="text-<%- rates['per_usdt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_usdt'].toLocaleString()) %>%</span>
                                     </span>
                                     </span>
                                 </div>
@@ -262,7 +264,7 @@
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary">23,662</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_usdt'].toLocaleString()%></span>
                                     </div>
                                     <div>
                                         <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
@@ -274,7 +276,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning">22,662</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_usdt'].toLocaleString() %></span>
                                     </div>
                                     <div>
                                         <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
