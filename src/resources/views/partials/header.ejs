@@ -1,7 +1,7 @@
 <header id="header">
     <div class="container-fluid">
         <div id="logo" class="pull-left">
-            <a href="index.html" class="scrollto">
+            <a href="/" class="scrollto">
                 <img src="img/logo-big.png" alt="" />
             </a>
         </div>
@@ -11,7 +11,7 @@
                     <a href="/">Trang chủ</a>
                 </li>
                 <li <% if (link === 'details') { %>class="menu-active" <% } %>>
-                    <a href="/details">Đại lý SA98</a>
+                    <a href="/details">Đại lý <%= agency.name %></a>
                 </li>
                 <li <% if (link === 'transaction') { %>class="menu-active" <% } %>>
                     <a href="/transaction">Giao dịch</a>

@@ -14,7 +14,7 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (SA98)</h3>
+                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (<%= agency.name %>)</h3>
                                         <p class="mb-3" style="line-height:1">
                                             <span class="ml-1 fs-080 font-weight-normal mt-1">
                                                 Cấp đại lý: <span class="font-weight-bold">Supper Admin</span>
@@ -23,7 +23,11 @@
                                         <p class="mb-3">
                                             <span class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
                                                 <i class="las la-check-circle"></i>
-                                                Đã xác minh
+                                                <% if(agency.verification === "nonVerify") { %>
+                                                    Chưa xác minh    
+                                                <% } else { %>
+                                                    Đã xác minh
+                                                <% } %>
                                             </span>
                                             <!--<span class="badge badge-pill badge-secondary rounded d-inline-block ">
                                                 <i class="las la-ban"></i>
@@ -31,10 +35,10 @@
                                             </span>-->
                                             <div class="mb-2">
                                                 <span>Đã ký quỹ:</span><span class="font-weight-bold text-warning">
-                                                    345,078,000 VNDT
+                                                    <%- Intl.NumberFormat().format(agency.guaranteeAmount) %> VNDT
                                                 </span>
                                             </div>
-                                            <a href="chi-tiet-dai-ly" class="text-info fs-080">
+                                            <a href="/details" class="text-info fs-080">
                                                 Xem hồ sơ
                                                 <i class="la la-arrow-right"></i>
                                             </a>
@@ -58,7 +62,7 @@
 <section id="buy-sell" class="pt-5">
     <div class="container pb-5">
         <header class="section-header">
-            <h3>Mua bán Coin với SA98</h3>
+            <h3>Mua bán Coin với <%= agency.name %></h3>
         </header>
         <div class="row">
             <div class="col-12 col-xl-3 col-lg-6 col-md-6">

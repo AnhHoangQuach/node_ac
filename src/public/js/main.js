@@ -135,4 +135,9 @@ $(".carousel").swipe({
 		container: "body"
 	});
 
+	//format number
+	function formatNumber(text) {
+        text = text.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3");
+		return text;
+	}
 });

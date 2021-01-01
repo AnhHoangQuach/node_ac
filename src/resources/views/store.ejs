@@ -1,9 +1,7 @@
 <section id="intro" class="intro-short">
     <div class="intro-container ">
         <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-
             <div class="carousel-inner" role="listbox">
-
                 <div class="carousel-item active">
                     <div class="carousel-background"><img src="img/pr.jpg" alt="" class="w-100"></div>
                     <div class="carousel-container">
@@ -14,7 +12,7 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (SA98)</h3>
+                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (<%- agency.name %>)</h3>
                                         <p class="mb-3" style="line-height:1">
                                             <span class="ml-1 fs-080 font-weight-normal mt-1">
                                                 Cấp đại lý: <span class="font-weight-bold">Supper Admin</span>
@@ -23,7 +21,11 @@
                                         <p class="mb-3">
                                             <span class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
                                                 <i class="las la-check-circle"></i>
-                                                Đã xác minh
+                                                <% if(agency.verification === "nonVerify") { %>
+                                                    Chưa xác minh    
+                                                <% } else { %>
+                                                    Đã xác minh
+                                                <% } %>
                                             </span>
                                         </p>
                                         <p class="fs-090 mb-3">
@@ -34,11 +36,11 @@
                                             <span class=" font-weight-normal d-block">
                                                 <span class="mr-2 ml-2">
                                                     <i class="las la-phone-alt"></i>
-                                                    098.484.5848
+                                                    <%= JSON.parse(agency.contact).phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3") %>
                                                 </span>
-                                                <span class="mr-2 ml-2">
+                                                <span class="mr-2 ml-2">    
                                                     <i class="las la-envelope"></i>
-                                                    Biso.vn@gmail.com
+                                                    <%= JSON.parse(agency.contact).email %>
                                                 </span>
                                             </span>
                                         </p>
@@ -65,18 +67,13 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </section>
 
 <section id="buy-sell" class="pt-5">
-
     <div class="container pb-5">
 
         <div class="row justify-content-center">
@@ -99,7 +96,7 @@
                                         </div>
                                         <div class="col-12 col-lg-8 col-md-8 text-left">
                                             <span class="font-weight-bold text-danger">
-                                                345,078,000 VNDT
+                                                <%- Intl.NumberFormat().format(agency.guaranteeAmount) %>
                                             </span>
                                         </div>
                                     </div>
@@ -109,7 +106,7 @@
                                         </div>
                                         <div class="col-12 col-lg-8 col-md-8 text-left">
                                             <span class="font-weight-bold">
-                                                PwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq
+                                                <%- agency.address %>
                                             </span>
                                         </div>
                                     </div>
@@ -144,63 +141,22 @@
                     </div>
                     <div class="card-body border-0 pt-3 pb-3 pr-4 pl-4 ml-1 mr-1">
                         <div class="row">
-
-                            <div class="col-12">
-                                <div class="form-group mini-col">
-                                    <label for="" class="font-weight-500">Địa chỉ ví VNDT</label>
-                                    <div class="input-group mb-0">
-                                        <input type="text" class="form-control" value="TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq" readonly="">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-light border" id="basic-addon2">
-                                                <i class="las la-copy mr-1"></i>
-                                                Sao chép
-                                            </button>
+                            <% wallet.forEach(value => { %>
+                                <div class="col-12">
+                                    <div class="form-group mini-col">
+                                        <label for="" class="font-weight-500">Địa chỉ ví <%= value.currency %></label>
+                                        <div class="input-group mb-0">
+                                            <input type="text" class="form-control" value="<%= value.address %>" readonly="">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-light border" id="basic-addon2">
+                                                    <i class="las la-copy mr-1"></i>
+                                                    Sao chép
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mini-col">
-                                    <label for="" class="font-weight-500">Địa chỉ ví USDF</label>
-                                    <div class="input-group mb-0">
-                                        <input type="text" class="form-control" value="TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq" readonly="">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-light border" id="basic-addon2">
-                                                <i class="las la-copy mr-1"></i>
-                                                Sao chép
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mini-col">
-                                    <label for="" class="font-weight-500">Địa chỉ ví XENG</label>
-                                    <div class="input-group mb-0">
-                                        <input type="text" class="form-control" value="TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq" readonly="">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-light border" id="basic-addon2">
-                                                <i class="las la-copy mr-1"></i>
-                                                Sao chép
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mini-col">
-                                    <label for="" class="font-weight-500">Địa chỉ ví USDT</label>
-                                    <div class="input-group mb-0">
-                                        <input type="text" class="form-control" value="0xd94b5edc5c695cc0f95253aaae9a5346ac0a9cbd" readonly="">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-light border" id="basic-addon2">
-                                                <i class="las la-copy mr-1"></i>
-                                                Sao chép
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <% }) %>;
                         </div>
                     </div>
                 </div>
