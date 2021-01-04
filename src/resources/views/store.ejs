@@ -12,10 +12,10 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (<%- agency.name %>)</h3>
+                                        <h3 class="fs-150 mb-0 text-white">(<%- agency.name %>)</h3>
                                         <p class="mb-3" style="line-height:1">
                                             <span class="ml-1 fs-080 font-weight-normal mt-1">
-                                                Cấp đại lý: <span class="font-weight-bold">Supper Admin</span>
+                                                Cấp đại lý: <span class="font-weight-bold"><%= type %></span>
                                             </span>
                                         </p>
                                         <p class="mb-3">
@@ -47,17 +47,33 @@
                                         <p>
                                             <span class="d-block">
                                                 <span class="col-12 col-lg-8 col-md-8 text-left">
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2">
+                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('facebook') == true ? '' : 'display:none' %>">
                                                         <img src="img/fb.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2">
+                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 zl"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('zalo') == true ? '' : 'display:none' %>">
                                                         <img src="img/zl.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2">
+                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 tl"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('telegram') == true ? '' : 'display:none' %>">
                                                         <img src="img/tl.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2">
+                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 vb"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('viber') == true ? '' : 'display:none' %>">
                                                         <img src="img/vb.png" width="32">
+                                                    </a>
+                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 messenger"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('messenger') == true ? '' : 'display:none' %>">
+                                                        <img src="img/messenger.png" width="32">
+                                                    </a>
+                                                    <a href="tel:<%= JSON.parse(agency.contact).phone %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 phone"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('phone') == true ? '' : 'display:none' %>">
+                                                        <img src="img/phone.jpg" width="32" style="border-radius: 16px">
+                                                    </a>
+                                                    <a href="mailto:<%= JSON.parse(agency.contact).email %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 gmail"
+                                                    style="<%= JSON.parse(agency.contact).hasOwnProperty('email') == true ? '' : 'display:none' %>">
+                                                        <img src="img/gmail.png" width="32">
                                                     </a>
                                                 </span>
                                             </span>
@@ -141,14 +157,14 @@
                     </div>
                     <div class="card-body border-0 pt-3 pb-3 pr-4 pl-4 ml-1 mr-1">
                         <div class="row">
-                            <% wallet.forEach(value => { %>
+                            <% wallet.forEach((value, index) => { %>
                                 <div class="col-12">
                                     <div class="form-group mini-col">
                                         <label for="" class="font-weight-500">Địa chỉ ví <%= value.currency %></label>
                                         <div class="input-group mb-0">
                                             <input type="text" class="form-control" value="<%= value.address %>" readonly="">
                                             <div class="input-group-append">
-                                                <button class="btn btn-light border" id="basic-addon2">
+                                                <button class="btn btn-light border" id="basic-addon2" onclick="copyCode(this)">
                                                     <i class="las la-copy mr-1"></i>
                                                     Sao chép
                                                 </button>
@@ -156,7 +172,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <% }) %>;
+                            <% }) %>
                         </div>
                     </div>
                 </div>

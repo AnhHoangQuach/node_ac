@@ -134,9 +134,19 @@ jQuery(document).ready(function( $ ) {
 		size: '6',
 		container: "body"
 	});
+
 });
 
 //format number
 function formatNumber(text) {
 	return text.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3");
+}
+
+function copyCode(elem) {
+	var $this = $(elem); //< -- wrap the element in a jQuery wrapper
+	var copyText = $this.parent().siblings('input[type=text]');
+	copyText.select();
+
+	/* Copy the text inside the text field */
+	document.execCommand("copy");
 }

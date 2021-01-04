@@ -14,10 +14,10 @@
                                         <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white">ilovoyou (<%= agency.name %>)</h3>
+                                        <h3 class="fs-150 mb-0 text-white">(<%= agency.name %>)</h3>
                                         <p class="mb-3" style="line-height:1">
                                             <span class="ml-1 fs-080 font-weight-normal mt-1">
-                                                Cấp đại lý: <span class="font-weight-bold">Supper Admin</span>
+                                                Cấp đại lý: <span class="font-weight-bold"><%= type %></span>
                                             </span>
                                         </p>
                                         <p class="mb-3">
@@ -65,7 +65,7 @@
             <h3>Mua bán Coin với <%= agency.name %></h3>
         </header>
         <div class="row">
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
@@ -135,14 +135,14 @@
                                             <strong>USDF</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
-                                                USDF/VND
+                                                USDF/VNDT
                                             </span>
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                        <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %>%</span>
+                                        <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %></span>
                                     </span>
                                     </span>
                                 </div>
@@ -152,7 +152,7 @@
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary"><%= rates['ask_usdf'].toLocaleString() %>%</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_usdf'].toLocaleString() %></span>
                                     </div>
                                     <div>
                                         <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
@@ -164,7 +164,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning"><%= rates['bid_usdf'].toLocaleString() %>%</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_usdf'].toLocaleString() %></span>
                                     </div>
                                     <div>
                                         <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
@@ -191,7 +191,7 @@
                                             <strong>Xeng</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
-                                                XENG/VND
+                                                XENG/VNDT
                                             </span>
                                         </span>
                                     </div>
