@@ -67,11 +67,11 @@
                                                     style="<%= JSON.parse(agency.contact).hasOwnProperty('messenger') == true ? '' : 'display:none' %>">
                                                         <img src="img/messenger.png" width="32">
                                                     </a>
-                                                    <a href="tel:0988888888" class="w-25 text-decoration-none text-secondary mr-2 ml-2 phone"
+                                                    <a href="tel:<%= JSON.parse(agency.contact).phone %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 phone"
                                                     style="<%= JSON.parse(agency.contact).hasOwnProperty('phone') == true ? '' : 'display:none' %>">
                                                         <img src="img/phone.jpg" width="32" style="border-radius: 16px">
                                                     </a>
-                                                    <a href="mailto:anhcq68@gmail.com" class="w-25 text-decoration-none text-secondary mr-2 ml-2 gmail"
+                                                    <a href="mailto:<%= JSON.parse(agency.contact).email %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 gmail"
                                                     style="<%= JSON.parse(agency.contact).hasOwnProperty('email') == true ? '' : 'display:none' %>">
                                                         <img src="img/gmail.png" width="32">
                                                     </a>
