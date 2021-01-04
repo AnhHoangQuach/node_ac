@@ -26,7 +26,7 @@
 <section id="buy-sell" class="pt-5">
     <div class="container pb-4">
         <div class="row">
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -39,7 +39,7 @@
                                         <span>
                                             <strong>VN Coin</strong><br>
                                             <span class="fs-090 text-secondary">
-                                                VNDT/VND
+                                                VNDT/VNDT
                                             </span>
                                         </span>
                                     </div>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
@@ -95,14 +95,14 @@
                                             <strong>Tether</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
-                                                USDF/VND
+                                                USDF/VNDT
                                             </span>
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %>%</span>
+                                            <span><%= Math.abs(rates['per_usdf'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
                                 </div>
@@ -151,7 +151,7 @@
                                 <strong>Xeng Coin</strong>
                                 <br>
                                 <span class="fs-090 text-secondary">
-                                    XENG/VND
+                                    XENG/VNDT
                                 </span>
                                         </span>
                                     </div>
@@ -214,7 +214,7 @@
                                     <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-<%- rates['per_usdt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_usdt'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_usdt'].toLocaleString()) %>%</span>
+                                            <span><%= Math.abs(rates['per_usdt'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
                                 </div>
@@ -249,7 +249,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -262,7 +262,7 @@
                                         <span>
                                             <strong>WEXLocaly</strong><br>
                                             <span class="fs-090 text-secondary">
-                                                WEX/VND
+                                                WEX/VNDT
                                             </span>
                                         </span>
                                     </div>
@@ -303,7 +303,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
@@ -325,7 +325,7 @@
                                     <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-<%- rates['per_btc'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_btc'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_btc'].toLocaleString()) %>%</span>
+                                            <span><%= Math.abs(rates['per_btc'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
                                 </div>
@@ -381,7 +381,7 @@
                                     <span class="d-inline-block font-weight-500 fs-090">
                             <span class="text-<%- rates['per_eth'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                 <i class="las la-caret-<%- rates['per_eth'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                <span><%= Math.abs(rates['per_eth'].toLocaleString()) %>%</span>
+                                <span><%= Math.abs(rates['per_eth'].toLocaleString() / 100) %>%</span>
                                     </span>
                                     </span>
                                 </div>
@@ -437,7 +437,7 @@
                                     <span class="d-inline-block font-weight-500 fs-090">
                             <span class="text-<%- rates['per_trx'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                 <i class="las la-caret-<%- rates['per_trx'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                <span><%= Math.abs(rates['per_trx'].toLocaleString()) %>%</span>
+                                <span><%= Math.abs(rates['per_trx'].toLocaleString() / 100) %>%</span>
                                     </span>
                                     </span>
                                 </div>
@@ -493,7 +493,7 @@
                                     <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-<%- rates['per_xrp'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_xrp'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_xrp'].toLocaleString()) %>%</span>
+                                            <span><%= Math.abs(rates['per_xrp'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
                                 </div>
@@ -549,7 +549,7 @@
                                     <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-<%- rates['per_xlm'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_xlm'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_xlm'].toLocaleString()) %>%</span>
+                                            <span><%= Math.abs(rates['per_xlm'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
                                 </div>
@@ -584,7 +584,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -639,8 +639,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            </div> -->
+            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -695,7 +695,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
