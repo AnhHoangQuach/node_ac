@@ -1,4 +1,5 @@
-jQuery(document).ready(function( $ ) {
+
+$(document).ready(function() {
 
 	// Back to top button
 	$(window).scroll(function() {
@@ -142,6 +143,119 @@ function formatNumber(text) {
 	return text.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3");
 }
 
+/* toastr success*/
+function toastr_success(mes, ttl) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "300",
+        "timeOut": "5000",
+        "extendedTimeOut": "5000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    toastr.success(mes, ttl);
+}
+
+/* toastr error*/
+function toastr_error(mes, ttl) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "300",
+        "timeOut": "5000",
+        "extendedTimeOut": "5000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    toastr.error(mes, ttl);
+}
+/* toastr error*/
+function toastr_danger(mes, ttl) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "300",
+        "timeOut": "5000",
+        "extendedTimeOut": "5000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    toastr.error(mes, ttl);
+}
+/* toastr warning*/
+function toastr_warning(mes, ttl) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "300",
+        "timeOut": "5000",
+        "extendedTimeOut": "5000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    toastr.warning(mes, ttl);
+}
+
+/* toastr info*/
+function toastr_info(ttl, mes) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "300",
+        "timeOut": "10000",
+        "extendedTimeOut": "10000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    toastr.info(mes, ttl);
+}
+
 function copyCode(elem) {
 	var $this = $(elem); //< -- wrap the element in a jQuery wrapper
 	var copyText = $this.parent().siblings('input[type=text]');
@@ -149,4 +263,5 @@ function copyCode(elem) {
 
 	/* Copy the text inside the text field */
 	document.execCommand("copy");
+	toastr_success('Sao chép thành công', toastr.options.timeOut);
 }

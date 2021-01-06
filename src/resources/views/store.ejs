@@ -9,7 +9,7 @@
                             <div class="container">
                                 <div class="user-profile text-center text-white mt-5">
                                     <div class="user-avatar mb-2">
-                                        <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
+                                        <img src="<%= (agency.avatar == undefined) ? avatar : '' %>" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
                                         <h3 class="fs-150 mb-0 text-white">(<%- agency.name %>)</h3>
@@ -31,7 +31,7 @@
                                         <p class="fs-090 mb-3">
                                             <span class=" font-weight-normal d-block">
                                                 <i class="las la-map-marker"></i>
-                                                Địa chỉ: Số 454 Minh Khai, P. Vĩnh Tuy, Q. Hai Bà Trưng, Tp. Hà Nội.
+                                                Địa chỉ: <%= agency.homeAddress %>
                                             </span>
                                             <span class=" font-weight-normal d-block">
                                                 <span class="mr-2 ml-2">

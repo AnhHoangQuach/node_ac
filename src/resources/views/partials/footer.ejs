@@ -11,10 +11,10 @@
                             </strong>
                         </p>
                         <p class="mb-2">
-                            Địa chỉ: Số 454 Minh Khai, P. Vĩnh Tuy, Q. Hai Bà Trưng, Tp. Hà Nội.
+                            Địa chỉ: <%= agency.homeAddress %>
                         </p>
                         <p class="mb-2">
-                            Điện thoại: <%= JSON.parse(agency.contact).phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3") %> | Email: <%= JSON.parse(agency.contact).email %> | Website: https://www.daily<%= agency.name %>.vn
+                            Điện thoại: <%= JSON.parse(agency.contact).phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3") %> | Email: <%= JSON.parse(agency.contact).email %> | Website: <%= agency.website %>
                         </p>
                     </div>
                 </div>

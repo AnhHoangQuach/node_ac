@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const api_url = `https://login.acwallet.io/api/v1/rates`
-const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=SA88`
+const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA8888`
 class TransactionController {
     async index(req, res, next) {
         const fetch_response = await fetch(api_url)
@@ -8,11 +8,24 @@ class TransactionController {
 
         const fetch_store = await fetch(api_store_url)
         const data_store = await fetch_store.json()
+
+        var avatar
+        if(data_store.agency.avatar == undefined) {
+            if(data_store.agency.name.includes('SA')) {
+                avatar = 'img/sa-icon.png'
+            } else if(data_store.agency.name.includes('MA')) {
+                avatar = 'img/ma-icon.png'
+            } else if(data_store.agency.name.includes('AG')) {
+                avatar = 'img/ag-icon.png'
+            }
+        }
+
         res.render('transaction', {
             title: 'Giao dịch',
             link: 'transaction',
             rates: data.rates,
             agency: data_store.agency,
+            avatar: avatar,
         })
     }
 

@@ -3,7 +3,6 @@
         <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
             <div class="carousel-inner" role="listbox">
-
                 <div class="carousel-item active">
                     <div class="carousel-background"><img src="img/pr.jpg" alt="" class="w-100"></div>
                     <div class="carousel-container">
@@ -11,7 +10,7 @@
                             <div class="container">
                                 <div class="user-profile text-center text-white mt-5">
                                     <div class="user-avatar mb-2">
-                                        <img src="img/av.jpg" class="rounded-circle border-white border-2" width="160">
+                                        <img src="<%= (agency.avatar == undefined) ? avatar : '' %>" class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
                                         <h3 class="fs-150 mb-0 text-white">(<%= agency.name %>)</h3>
@@ -65,62 +64,6 @@
             <h3>Mua bán Coin với <%= agency.name %></h3>
         </header>
         <div class="row">
-            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
-                                            <i class="cc VNDT" title="VNDT"></i>
-                                        </span>
-                                        <span>
-                                            <strong>VNDT</strong>
-                                            <br>
-                                            <span class="fs-090 text-secondary">
-                                                VNDT/VND
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
-                                    </span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary"><%= rates['ask_vndt'].toLocaleString() %>%</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i> Mua
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning"><%= rates['bid_vndt'].toLocaleString() %>%</span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i> Bán
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="col-12 col-xl-3 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
@@ -155,7 +98,7 @@
                                         <span class="font-weight-bold text-primary"><%= rates['ask_usdf'].toLocaleString() %></span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                        <a href="#buy" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
                                             <i class="las la-file-import"></i> Mua
                                         </a>
                                     </div>
@@ -167,7 +110,7 @@
                                         <span class="font-weight-bold text-warning"><%= rates['bid_usdf'].toLocaleString() %></span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                        <a href="#sell" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
                                             <i class="las la-file-export"></i> Bán
                                         </a>
                                     </div>
@@ -211,7 +154,7 @@
                                         <span class="font-weight-bold text-primary">1,000.01</span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                        <a href="#buy" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
                                             <i class="las la-file-import"></i> Mua
                                         </a>
                                     </div>
@@ -223,7 +166,7 @@
                                         <span class="font-weight-bold text-warning">1,000.56</span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                        <a href="#sell" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
                                             <i class="las la-file-export"></i> Bán
                                         </a>
                                     </div>
@@ -267,7 +210,7 @@
                                         <span class="font-weight-bold text-primary"><%= rates['ask_usdt'].toLocaleString()%></span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                        <a href="#buy" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
                                             <i class="las la-file-import"></i> Mua
                                         </a>
                                     </div>
@@ -279,7 +222,63 @@
                                         <span class="font-weight-bold text-warning"><%= rates['bid_usdt'].toLocaleString() %></span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                        <a href="#sell" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                            <i class="las la-file-export"></i> Bán
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+                <div class="card text-black border-0 mb-4">
+                    <div class="card-body">
+                        <div class="hl-coin-box">
+                            <div class="coin-change mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                                            <i class="cc VNDT" title="VNDT"></i>
+                                        </span>
+                                        <span>
+                                            <strong>VNDT</strong>
+                                            <br>
+                                            <span class="fs-090 text-secondary">
+                                                VNDT/VND
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="d-inline-block font-weight-500 fs-080">
+                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
+                                    </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="coin-buy-sell">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
+                                        <span class="font-weight-bold text-primary"><%= rates['ask_vndt'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="#buy" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                            <i class="las la-file-import"></i> Mua
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
+                                        <span class="font-weight-bold text-warning"><%= rates['bid_vndt'].toLocaleString() %></span>
+                                    </div>
+                                    <div>
+                                        <a href="#sell" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
                                             <i class="las la-file-export"></i> Bán
                                         </a>
                                     </div>
@@ -307,7 +306,7 @@
                 <header class="section-header text-left">
                     <h3 class="text-left">Quy trình mua</h3>
                 </header>
-                <div class="row">
+                <div class="row" id="buy">
                     <div class="col-12">
                         <div class="featured-item mb-3">
                             <div class="d-flex align-items-center">
@@ -355,7 +354,7 @@
                 <header class="section-header text-left">
                     <h3 class="text-left">Quy trình bán</h3>
                 </header>
-                <div class="row">
+                <div class="row"  id="sell">
                     <div class="col-12">
                         <div class="featured-item mb-3">
                             <div class="d-flex align-items-center">
