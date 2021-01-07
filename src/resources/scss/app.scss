@@ -288,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 16px;
 	border-radius: 50%;
 	right: 15px;
-	bottom: 15px;
+	bottom: 80px;
 	transition: background 0.5s;
 	z-index: 11;
 }
@@ -598,14 +598,28 @@ h1, h2, h3, h4, h5, h6 {
 #intro.intro-short .carousel-item {
 	height: 550px;
 }
-@media(max-width:576px){
-	#intro.intro-short {
-		height: 100vh;
-	}
+@media(max-width:576px) {
+  #intro.intro-short {
+      height: 50vh;
+  }
 
-	#intro.intro-short .carousel-item {
-		height: 100vh;
-	}
+      #intro.intro-short .carousel-item {
+          height: 50vh;
+      }
+
+          #intro.intro-short .carousel-item .user-avatar img {
+              width: 80px;
+          }
+
+          #intro.intro-short .carousel-item .user-profile {
+              padding-top:2rem;
+          }
+          #intro.intro-short .carousel-item .user-info h3 {
+              font-size: 1.15rem !important;
+          }
+          #intro.intro-short .carousel-item .user-info p span.p-add {
+              display:none!important
+          }
 }
 
 #intro.intro-short-small {
