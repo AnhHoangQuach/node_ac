@@ -87,16 +87,23 @@
                                     </div>
                                     <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Số tài khoản:</span>
-                                        <span class="font-weight-bold" id="address_bank">19036456090015</span>
+                                        <span class="font-weight-bold">19036456090015</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Tên chủ tài khoản:</span>
-                                        <span class="font-weight-bold" id="address_name">Do Viet Anh</span>
+                                        <span class="font-weight-bold">Do Viet Anh</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Nội dung chuyển khoản:</span>
                                         <span class="font-weight-bold">TTB1R6WA</span>
                                     </div>
+                                    <!-- <span id="bank_list_name" style="display: none">
+                                        <% listBank.some(function(el) { %>
+                                            <% if (el.code == JSON.parse(agency.bankAccounts)[0].bankCode) { %>
+                                                <%= el.name %>
+                                            <% } %>
+                                        <% }); %>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -165,7 +172,7 @@
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </button>-->
-                                        <a href="/transaction/buy?step=4" type="button" class="btn btn-primary">
+                                        <a href="#" type="button" id="create_order" class="btn btn-primary">
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </a>
@@ -180,25 +187,43 @@
     </div>
 </section>
 <script>
+    const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA8888`
+
     var retrievedObject = JSON.parse(localStorage.getItem('user'));
-        
     var e = document.getElementById("select_bank");
+
     e.addEventListener('change', function() {
-        var BankSaved = {
-            number: document.getElementById('address_bank').innerText,
-            name: document.getElementById('address_name').innerText,
-            bank: this.options[this.selectedIndex].text,
-            bankCode: this.value,
-        }
-        var data = {
-            receiveBank: BankSaved,
-            receiveAddress: retrievedObject.receiveAddress,
-            quantity: parseFloat(retrievedObject.quantity),
-            orderType: retrievedObject.orderType,
-            currencyCode: retrievedObject.currencyCode,
-            agentId: retrievedObject.agentId,
-        }
         document.getElementById('bank_name').innerHTML = this.options[this.selectedIndex].text;
-        console.log(data);
     });
+
+    var BankSaved = {
+        number: '<%- JSON.parse(agency.bankAccounts)[0].number %>',
+        name: '<%- JSON.parse(agency.bankAccounts)[0].name %>',
+        bank: "",
+        bankCode: '<%- JSON.parse(agency.bankAccounts)[0].bankCode %>',
+    }
+
+    var data = {
+        receiveBank: BankSaved,
+        receiveAddress: retrievedObject.receiveAddress,
+        quantity: parseFloat(retrievedObject.quantity),
+        orderType: retrievedObject.orderType,
+        currencyCode: retrievedObject.currencyCode,
+        agentId: parseInt(retrievedObject.agentId),
+    }
+
+    // save to localStorage
+    localStorage.setItem('data', JSON.stringify(data));
+
+
+    document.querySelector('#create_order').addEventListener('click', function(e) {    
+        var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
+        fetch('https://login.acwallet.io/api/v1/create-order', {
+            method: 'post',
+            mode: 'no-cors', // no-cors, *cors, same-origin
+            body:    JSON.stringify(retrievedObjectData),
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(json => console.log(json));
+    }, false);
 </script>

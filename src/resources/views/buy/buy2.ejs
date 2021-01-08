@@ -154,6 +154,11 @@
     var coinCode = document.getElementById('coin_value').innerText;
     var agencyId = document.getElementById('agentId').innerText;
 
+    var typeCoin;
+    if (listCoin.hasOwnProperty(coinCode.toLowerCase())) {
+        typeCoin = listCoin[coinCode.toLowerCase()];
+    }
+
     const queryString = window.location.href;
     var type, walletCode, user
     if(queryString.includes('buy')) {
@@ -170,7 +175,7 @@
             document.getElementById('address_error').style.color = 'green';
             walletCode = this.value;
             user = {
-                currencyCode: coinCode,
+                currencyCode: typeCoin,
                 orderType: type,
                 agentId: agencyId,
                 receiveAddress: walletCode,

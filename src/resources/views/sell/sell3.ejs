@@ -75,10 +75,10 @@
                                         Ngân hàng của bạn
                                     </label>
                                     <div class="dropdown bootstrap-select form-control none">
-                                        <select class="form-control selectpickernone" tabindex="-98">
-                                            <option value="Techcombank">Techcombank</option>
-                                            <option value="Vietcombank">Vietcombank</option>
-                                            <option value="Vietinbank">Vietinbank</option>
+                                        <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
+                                            <% listBank.forEach((value, index) => { %>
+                                                <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
+                                            <% }) %>
                                         </select>
                                     </div>
                                 </div>
@@ -87,7 +87,8 @@
                                         Số tài khoản
                                     </label>
                                     <div class="find-box">
-                                        <input type="text" class="form-control" placeholder="Nhập số tài khoản...">
+                                        <input type="text" class="form-control" placeholder="Nhập số tài khoản..." id="account_number">
+                                        <span id="address_error"></span>
                                         <div class="spinner-border text-secondary spinner-border-sm" role="status">
                                             <span class="sr-only">Loading...</span>
                                         </div>
@@ -118,7 +119,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell">
+                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell" id="check_account">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -179,7 +180,7 @@
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </button>-->
-                                        <a href="/transaction/sell?step=4" type="button" class="btn btn-primary">
+                                        <a href="#" type="button" class="btn btn-primary">
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </a>
@@ -196,3 +197,47 @@
     </div>
 
 </section>
+<script>
+    var e = document.getElementById("select_bank");
+
+    var user_address = document.getElementById("account_number");
+
+    var codeBank = e.value;
+    var accountNumber, postData;
+
+    e.addEventListener('change', function() {
+        codeBank = this.value;
+    });
+
+    user_address.addEventListener('input', function() {
+        if(this.value.length == 13) {
+            document.getElementById('address_error').innerHTML = "Số tài khoản hợp lệ";
+            document.getElementById('address_error').style.color = 'green';
+            accountNumber = this.value;
+            postData = {
+                accountNumber: accountNumber,
+                bankName: codeBank,
+            }
+
+            localStorage.setItem('postData', JSON.stringify(postData));
+        } else {
+            document.getElementById('address_error').innerHTML = "Số tài khoản chưa hợp lệ";
+            document.getElementById('address_error').style.color = 'red';
+        }
+    });
+
+
+    document.querySelector('#check_account').addEventListener('click', function(e) { 
+        var data = JSON.parse(localStorage.getItem('postData'));
+        fetch('https://login.acwallet.io/api/v1/getBankAccount', {
+            method: 'post',
+            mode: 'no-cors', // no-cors, *cors, same-origin
+            body:    JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(res => console.log(res))
+        .then(json => console.log(json))
+    }, false);
+
+    localStorage.removeItem('postData');
+</script>

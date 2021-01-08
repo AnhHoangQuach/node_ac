@@ -101,9 +101,9 @@ class TransactionController {
         const data_store = await fetch_store.json()
 
         if (req.query.step == 2) {
-            res.render('sell/sell2', { title: 'Bán bước 2', link: 'sell2', agency: data_store.agency })
+            res.render('sell/sell2', { title: 'Bán bước 2', link: 'sell2', agency: data_store.agency, listBank: listBank })
         } else if (req.query.step == 3) {
-            res.render('sell/sell3', { title: 'Bán bước 3', link: 'sell3', agency: data_store.agency })
+            res.render('sell/sell3', { title: 'Bán bước 3', link: 'sell3', agency: data_store.agency, listBank: listBank })
         } else if (req.query.step == 1) {
             res.render('sell/sell1', { title: 'Bán bước 1', link: 'sell1', agency: data_store.agency })
         } else if (req.query.step == 4) {
