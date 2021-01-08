@@ -7,7 +7,7 @@ const walletRouter = require('./wallet')
 
 function route(app) {
     app.use('/details', storeRouter)
-    app.get('/transaction', transRouter)
+    app.use('/transaction', transRouter)
     app.use('/coins', coinRouter)
     app.use('/wallet', walletRouter)
 
