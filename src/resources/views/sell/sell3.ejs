@@ -54,7 +54,6 @@
 
     </div>
 </section>
-
 <section id="coin-info" class="pt-5">
 
     <div class="container">
@@ -63,51 +62,47 @@
                 <div class="card shadow-sm mb-5 border-0">
                     <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="m-0 font-weight-bold text-primary">
-                            3. Chọn ngân hàng nhận tiền
+                            3. Chọn ngân hàng của bạn
                         </h5>
                     </div>
 
                     <div class="card-body border-0 mini-col">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="select-bank bg-white rounded " style="">
+                        <div class="col-12">
+                            <div class="select-bank bg-white rounded " style="">
 
-                                    <div class="form-group">
-                                        <label for="" class="font-weight-500 d-block">
-                                            Ngân hàng của bạn
-                                        </label>
-                                        <div class="dropdown bootstrap-select form-control none">
-                                            <select class="form-control selectpickernone" tabindex="-98">
-                                                <option value="Techcombank">Techcombank</option>
-                                                <option value="Vietcombank">Vietcombank</option>
-                                                <option value="Vietinbank">Vietinbank</option>
-                                            </select>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Ngân hàng của bạn
+                                    </label>
+                                    <div class="dropdown bootstrap-select form-control none">
+                                        <select class="form-control selectpickernone" tabindex="-98">
+                                            <option value="Techcombank">Techcombank</option>
+                                            <option value="Vietcombank">Vietcombank</option>
+                                            <option value="Vietinbank">Vietinbank</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="font-weight-500 d-block">
-                                            Số tài khoản
-                                        </label>
-                                        <div class="find-box">
-                                            <input type="text" class="form-control" placeholder="Nhập số tài khoản...">
-                                            <div class="spinner-border text-secondary spinner-border-sm" role="status">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <label for="" class="font-weight-500 d-block">
-                                            Tên chủ tài khoản
-                                        </label>
-                                        <input class="form-control" type="text" readonly="readonly">
-                                        <small class="form-text text-muted">Lấy tự động theo số tài khoản bên trên</small>
-                                    </div>
-
                                 </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Số tài khoản
+                                    </label>
+                                    <div class="find-box">
+                                        <input type="text" class="form-control" placeholder="Nhập số tài khoản...">
+                                        <div class="spinner-border text-secondary spinner-border-sm" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Tên chủ tài khoản
+                                    </label>
+                                    <input class="form-control" type="text" readonly="readonly">
+                                    <small class="form-text text-muted">Lấy tự động theo số tài khoản bên trên</small>
+                                </div>
+
                             </div>
-
                         </div>
-
                     </div>
 
                     <div class="card-footer border-0">
@@ -123,7 +118,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/sell?step=4" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell">
+                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -146,14 +141,32 @@
                                             </div>
                                             <div class="col-12 fs-075 text-secondary mb-4">
                                                 <span class="ml-1 mr-1">
-                                                    Giá bán: <span class="font-weight-bold">23,150 VND</span>
+                                                    Giá bán: <span class="font-weight-bold text-danger">23,150 VND</span>
                                                 </span>
-                                                <span class="ml-1 mr-1">
+                                                <!--<span class="ml-1 mr-1">
                                                     Phí: <span class="font-weight-bold text-warning">230,384 VND</span>
-                                                </span>
+                                                </span>-->
                                             </div>
                                             <div class="text-center fs-110 font-weight-bold mb-4">
                                                 Số tiền bạn nhận: <span class="font-weight-bold text-success">48,315,000 VND</span>
+                                            </div>
+                                            <div class=" mb-3 d-inline-block">
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Ngân hàng của bạn:</span>
+                                                    <span class="font-weight-bold">Techcombank</span>
+                                                </div>
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Số tài khoản:</span>
+                                                    <span class="font-weight-bold">19036456090015</span>
+                                                </div>
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Tên chủ tài khoản:</span>
+                                                    <span class="font-weight-bold">Do Viet Anh</span>
+                                                </div>
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Nội dung chuyển khoản:</span>
+                                                    <span class="font-weight-bold">TTB1R6WA</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
