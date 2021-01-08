@@ -28,7 +28,7 @@
                                                             <span>2</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state=<%= link == 'buy2' ? '' : "done" %>>
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item">
                                                             <span>3</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
@@ -54,7 +54,6 @@
 
     </div>
 </section>
-<% if(link == "buy2") { %>
 <section id="coin-info" class="pt-5">
 
     <div class="container">
@@ -124,10 +123,10 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <button onclick="saveInfo()" class="btn btn-primary float-right">
+                        <a href="/transaction/buy?step=3" class="btn btn-primary float-right">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
-                        </button>
+                        </a>
 
                     </div>
 
@@ -137,134 +136,8 @@
     </div>
     <span id="agentId" style="display: none"><%= agency.agencyId %></span>
 </section>
-<% } else if (link == "buy3") { %>
-<section id="coin-info" class="pt-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-xl-6 col-lg-8 col-md-10">
-                <div class="card shadow-sm mb-5 border-0">
-                    <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h5 class="m-0 font-weight-bold text-primary">
-                            3. Chọn ngân hàng của đại lý
-                        </h5>
-                    </div>
-
-                    <div class="card-body border-0 mini-col">
-                        <div class="row">
-                            <div class="col-12 bank-box">
-                                <div class="form-group">
-                                    <label for="" class="font-weight-500 d-block">
-                                        Chọn ngân hàng
-                                    </label>
-                                    <div class="dropdown bootstrap-select form-control none">
-                                        <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
-                                            <% listBank.forEach((value, index) => { %>
-                                                <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="bank-box mb-3">
-                                    <div class="d-flex align-items-center mb-1">
-                                        <span class="bank-title">Tên ngân hàng:</span>
-                                        <span class="font-weight-bold" id="bank_name">Ngân hàng TMCP Bản Việt (VIETCAPITAL)</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-1">
-                                        <span class="bank-title">Số tài khoản:</span>
-                                        <span class="font-weight-bold" id="address_bank">19036456090015</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-1">
-                                        <span class="bank-title">Tên chủ tài khoản:</span>
-                                        <span class="font-weight-bold" id="address_name">Do Viet Anh</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-1">
-                                        <span class="bank-title">Nội dung chuyển khoản:</span>
-                                        <span class="font-weight-bold">TTB1R6WA</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="card-footer border-0">
-                        <!--<button class="btn btn-secondary">
-                            <i class="las la-arrow-left"></i>
-                            Quay lại
-                        </button>
-                        <button class="btn btn-primary float-right">
-                                <i class="las la-arrow-right"></i>
-                            Tiếp tục
-                        </button>-->
-                        <a href="/transaction" class="btn btn-secondary">
-                            <i class="las la-arrow-left"></i>
-                            Quay lại
-                        </a>
-                        <a href="/transaction/buy?step=3" class="btn btn-primary float-right"  data-toggle="modal" data-target="#MdlBuy">
-                            Tiếp tục
-                            <i class="las la-arrow-right"></i>
-                        </a>
-                        <!-- Popup Buy -->
-                        <div class="modal fade" id="MdlBuy" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận mua USDT</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="text-center">
-                                            <div class="col-12 mb-2">
-                                                <span class="font-weight-500">Số lượng mua:</span>
-                                                <span class="font-weight-bold text-primary">100 USDT</span>
-                                            </div>
-                                            <div class="col-12 fs-075 text-secondary mb-4">
-                                                <span class="ml-1 mr-1">
-                                                    Tỉ giá: <span class="font-weight-bold text-danger">23,150 VNDT</span>
-                                                </span>
-                                                <!--<span class="ml-1 mr-1">
-                                                    Phí: <span class="font-weight-bold text-warning">240,384 VNDT</span>
-                                                </span>-->
-                                            </div>
-                                            <div class="text-center fs-110 font-weight-bold mb-4">
-                                                Số tiền bạn trả: <span class="font-weight-bolder text-success">2,315,000 VNDT</span>
-                                            </div>
-                                            <div class="mb-4">
-                                                Địa chỉ ví nhận: <span class="font-weight-bold">TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq</span>
-                                            </div>
-                                            <div class="text-danger fs-085">
-                                                Chú ý: Cần kiểm tra kỹ địa chỉ ví. Đại lý sẽ không chịu trách nhiệm trường hợp bạn gửi nhầm coin hay địa chỉ ví.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                            <i class="las la-times-circle"></i>
-                                            Bỏ qua
-                                        </button>
-                                        <!--<button type="button" class="btn btn-primary">
-                                            <i class="las la-check-circle"></i>
-                                            Xác nhận
-                                        </button>-->
-                                        <a href="/transaction/buy?step=4" type="button" class="btn btn-primary">
-                                            <i class="las la-check-circle"></i>
-                                            Xác nhận
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<% } %>
 <script>
+    // take value of form
     var listCoin = {
         btc: 1,
         eth: 3,
@@ -278,61 +151,36 @@
         usdf: 14,
     }
 
+    var coinCode = document.getElementById('coin_value').innerText;
+    var agencyId = document.getElementById('agentId').innerText;
 
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    var type
-    if(urlParams.search('buy')) {
+    const queryString = window.location.href;
+    var type, walletCode, user
+    if(queryString.includes('buy')) {
         type = 2
-    } else if (urlParams.search('sell')) {
+    } else if (queryString.includes('sell')) {
         type = 1
     }
-    console.log(type);
-    
 
-    function saveInfo() {
-        address_wallet = document.getElementById('address_wallet');
+    address_wallet = document.getElementById('address_wallet');
 
-        
-        
-        address_wallet.addEventListener('input', function() {
-            if(this.value.length == 34 || this.value.length == 42) {
-                document.getElementById('address_error').innerHTML = "Địa chỉ ví hợp lệ";
-                document.getElementById('address_error').style.color = 'green';
-                user.receiveAddress = this.value;
-            } else {
-                document.getElementById('address_error').innerHTML = "Địa chỉ ví chưa hợp lệ";
-                document.getElementById('address_error').style.color = 'red';
+    address_wallet.addEventListener('input', function() {
+        if(this.value.length == 34 || this.value.length == 42) {
+            document.getElementById('address_error').innerHTML = "Địa chỉ ví hợp lệ";
+            document.getElementById('address_error').style.color = 'green';
+            walletCode = this.value;
+            user = {
+                currencyCode: coinCode,
+                orderType: type,
+                agentId: agencyId,
+                receiveAddress: walletCode,
+                quantity: document.getElementById('address_value').value,
             }
-        });
-
-        var coinCode = document.getElementById('coin_value').innerText;
-        var agencyId = document.getElementById('agentId').innerText;
-        var address_value = document.getElementById('address_value').value;
-        window.location.href = '/transaction/buy?step=3';
-    }
-
-    var BankSaved = {
-            number: document.getElementById('address_bank').value,
-            name: document.getElementById('address_name').value,
-            bank: document.getElementById('bank_name').value,
+            // save to localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+        } else {
+            document.getElementById('address_error').innerHTML = "Địa chỉ ví chưa hợp lệ";
+            document.getElementById('address_error').style.color = 'red';
         }
-        
-        var e = document.getElementById("select_bank");
-        e.addEventListener('change', function() {
-            BankSaved.bankCode = this.value,
-            document.getElementById('bank_name').innerHTML = this.options[this.selectedIndex].text;
-            console.log(bankSaved);
-        });
-
-        var data = {
-            receiveBank: BankSaved,
-            receiveAddress: address_wallet.value,
-            quantity: parseInt(address_value),
-            orderType: parseInt(type),
-            currencyCode: coinCode,
-            agentId: parseInt(agencyId),
-        }
-
-        console.log(data);
+    });
 </script>

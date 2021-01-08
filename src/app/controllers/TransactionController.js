@@ -83,11 +83,11 @@ class TransactionController {
         if (req.query.step == 2) {
             res.render('buy/buy2', { title: 'Mua bước 2', link: 'buy2' , agency: data_store.agency, listBank: listBank})
         } else if (req.query.step == 3) {
-            res.render('buy/buy2', { title: 'Mua bước 3', link: 'buy3' , agency: data_store.agency, listBank: listBank})
+            res.render('buy/buy3', { title: 'Mua bước 3', link: 'buy3' , agency: data_store.agency, listBank: listBank})
         } else if (req.query.step == 1) {
             res.render('buy/buy1', { title: 'Mua bước 1', link: 'buy1' , agency: data_store.agency})
         } else if (req.query.step == 4) {
-            res.render('buy/buy3', { title: 'Mua bước 4', link: 'buy4' , agency: data_store.agency})
+            res.render('buy/buy4', { title: 'Mua bước 4', link: 'buy4' , agency: data_store.agency})
         }
 
         next();
