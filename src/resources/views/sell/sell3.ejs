@@ -224,18 +224,8 @@
     });
 
     document.querySelector('#account_number').addEventListener('focusout', async function(e) {
-        const data = JSON.parse(localStorage.getItem('postData'));
-        const options = {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            // mode: 'no-cors', // no-cors, *cors, same-origin
-            body:  JSON.stringify(data),
-        };
-        const fetch_store = await fetch('https://login.acwallet.io/api/v1/getBankAccount', options);
-        console.log(fetch_store);
+        const data_store = await fetch('getAccount');
+        console.log(data_store, 'hello');
     });
 
     localStorage.removeItem('postData');

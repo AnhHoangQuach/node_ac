@@ -1,6 +1,8 @@
 const fetch = require('node-fetch')
 const api_url = `https://login.acwallet.io/api/v1/rates`
 const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA8888`
+var LocalStorage = require('node-localstorage').LocalStorage;
+var localStorage = new LocalStorage('./scratch');
 var listBank = [
     { "code" :"970454", "name" : "Ngân hàng TMCP Bản Việt (VIETCAPITAL)"},
     { "code" :"970452", "name" : "Ngân hàng TMCP Kiên Long (KIENLONGBANK)"},
@@ -88,6 +90,24 @@ class TransactionController {
         }
 
         next();
+    }
+
+    async getAccount(req, res, next) {
+        const data = {
+            bankName: "970422",
+            accountNumber: "6661181288888"
+        }
+        console.log(data);
+        const options = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body:  JSON.stringify(data),
+        };
+        const fetch_store = await fetch('https://login.acwallet.io/api/v1/getBankAccount', options);
+        return fetch_store.json()
     }
     
     async sell(req, res, next) {
