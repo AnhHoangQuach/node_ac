@@ -7,9 +7,10 @@ const app = express()
 const port = 3000
 
 const route = require('./routes')
+const axios = require('axios');
 
 app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(express.json({limit: '1mb'}))
 //HTTP logger
 app.use(morgan('combined'))
 

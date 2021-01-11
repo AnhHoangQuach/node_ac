@@ -75,9 +75,6 @@ class TransactionController {
     }
 
     async buy(req, res, next) {
-        const fetch_response = await fetch(api_url)
-        const data = await fetch_response.json()
-
         const fetch_store = await fetch(api_store_url)
         const data_store = await fetch_store.json()
         if (req.query.step == 2) {
@@ -92,11 +89,8 @@ class TransactionController {
 
         next();
     }
-
+    
     async sell(req, res, next) {
-        const fetch_response = await fetch(api_url)
-        const data = await fetch_response.json()
-
         const fetch_store = await fetch(api_store_url)
         const data_store = await fetch_store.json()
 
