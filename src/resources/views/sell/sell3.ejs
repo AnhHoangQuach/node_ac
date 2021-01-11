@@ -65,43 +65,42 @@
                             3. Chọn ngân hàng của bạn
                         </h5>
                     </div>
-
                     <div class="card-body border-0 mini-col">
                         <div class="col-12">
                             <div class="select-bank bg-white rounded " style="">
-
-                                <div class="form-group">
-                                    <label for="" class="font-weight-500 d-block">
-                                        Ngân hàng của bạn
-                                    </label>
-                                    <div class="dropdown bootstrap-select form-control none">
-                                        <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
-                                            <% listBank.forEach((value, index) => { %>
-                                                <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="font-weight-500 d-block">
-                                        Số tài khoản
-                                    </label>
-                                    <div class="find-box">
-                                        <input type="text" class="form-control" placeholder="Nhập số tài khoản..." id="account_number">
-                                        <span id="address_error"></span>
-                                        <div class="spinner-border text-secondary spinner-border-sm" role="status">
-                                            <span class="sr-only">Loading...</span>
+                                <form action="getAccount" method="POST">
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-500 d-block">
+                                            Ngân hàng của bạn
+                                        </label>
+                                        <div class="dropdown bootstrap-select form-control none">
+                                            <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
+                                                <% listBank.forEach((value, index) => { %>
+                                                    <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
+                                                <% }) %>
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group mb-0">
-                                    <label for="" class="font-weight-500 d-block">
-                                        Tên chủ tài khoản
-                                    </label>
-                                    <input class="form-control" type="text" readonly="readonly">
-                                    <small class="form-text text-muted">Lấy tự động theo số tài khoản bên trên</small>
-                                </div>
-
+                                    <div class="form-group">
+                                        <label for="" class="font-weight-500 d-block">
+                                            Số tài khoản
+                                        </label>
+                                        <div class="find-box">
+                                            <input type="text" class="form-control" placeholder="Nhập số tài khoản..." id="account_number">
+                                            <span id="address_error"></span>
+                                            <div class="spinner-border text-secondary spinner-border-sm" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <label for="" class="font-weight-500 d-block">
+                                            Tên chủ tài khoản
+                                        </label>
+                                        <input class="form-control" type="text" readonly="readonly" id="address_name">
+                                        <small class="form-text text-muted">Lấy tự động theo số tài khoản bên trên</small>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -119,7 +118,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell" id="check_account">
+                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -188,9 +187,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -215,8 +212,8 @@
             document.getElementById('address_error').style.color = 'green';
             accountNumber = this.value;
             postData = {
-                accountNumber: accountNumber,
                 bankName: codeBank,
+                accountNumber: accountNumber,
             }
 
             localStorage.setItem('postData', JSON.stringify(postData));
@@ -226,18 +223,20 @@
         }
     });
 
-
-    document.querySelector('#check_account').addEventListener('click', function(e) { 
-        var data = JSON.parse(localStorage.getItem('postData'));
-        fetch('https://login.acwallet.io/api/v1/getBankAccount', {
-            method: 'post',
-            mode: 'no-cors', // no-cors, *cors, same-origin
-            body:    JSON.stringify(data),
-            headers: { 'Content-Type': 'application/json' },
-        })
-        .then(res => console.log(res))
-        .then(json => console.log(json))
-    }, false);
+    document.querySelector('#account_number').addEventListener('focusout', async function(e) {
+        const data = JSON.parse(localStorage.getItem('postData'));
+        const options = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            // mode: 'no-cors', // no-cors, *cors, same-origin
+            body:  JSON.stringify(data),
+        };
+        const fetch_store = await fetch('https://login.acwallet.io/api/v1/getBankAccount', options);
+        console.log(fetch_store);
+    });
 
     localStorage.removeItem('postData');
 </script>
