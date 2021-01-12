@@ -233,7 +233,7 @@
     }
 
     user_address.addEventListener('input', function () {
-        if (this.value.length == 13) {
+        if (this.value.length > 6) {
             document.getElementById('address_error').innerHTML = "Số tài khoản hợp lệ";
             document.getElementById('address_error').style.color = 'green';
             accountNumber = this.value;
