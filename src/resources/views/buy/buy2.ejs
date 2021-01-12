@@ -13,7 +13,7 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Mua USDT từ đại lý SA98</h3>
+                                                <h3 class="fs-150 mb-0 text-white">Mua USDT từ đại lý <%= agency.name %></h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
                                                 <div class="kt-wizard-v3__nav">
@@ -75,7 +75,7 @@
                                         <input type="text" class="form-control" value="" id="address_value">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="coin_value">
-                                                USDT
+                                                <%= coin %>
                                             </span>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                 <div class="form-group mini-col">
                                     <label for="" class="font-weight-500">Giá mua</label>
                                     <div class="input-group mb-0">
-                                        <input type="text" class="form-control" value="23,150" readonly="">
+                                        <input type="text" id="coinPrice" class="form-control" value="<%= Intl.NumberFormat().format(rates['ask_usdf']) %>" readonly="">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 VND
@@ -96,7 +96,8 @@
                             </div>
                             <div class="col-12">
                                 <div class="text-center fs-110 font-weight-bold mb-2 mt-2">
-                                    Số tiền bạn nhận: <span class="font-weight-bold text-success">48,315,000 VND</span>
+                                    Số tiền bạn nhận: <span class="font-weight-bold text-success" id="sumPrice">
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -104,7 +105,7 @@
                                     <label for="" class="font-weight-500">Địa chỉ ví của bạn</label>
                                     <input type="text" class="form-control" id="address_wallet" value="">
                                 </div>
-                                <span id="address_error"></span>
+                                <span id="error"></span>
                             </div>
 
                         </div>
@@ -123,7 +124,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/buy?step=3" class="btn btn-primary float-right">
+                        <a href="/transaction/buy?step=3" class="btn btn-primary float-right" id="buy_continue">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -167,25 +168,71 @@
         type = 1
     }
 
+    // element for html
     address_wallet = document.getElementById('address_wallet');
+    address_val = document.getElementById('address_value');
+
+    sumPriceEle = document.getElementById('sumPrice');
+    errorEle = document.getElementById('error');
+
+    buyContinue = document.getElementById('buy_continue')
+
+    // check Error
+    function checkError(error) {
+        if(error != "") {
+            buyContinue.classList.add('disabled');
+        } else {
+            if(buyContinue.classList.contains('disabled')) {
+                buyContinue.classList.remove('disabled');
+            }
+        }
+    }
+
+    // set info for html
+    sumPriceEle.innerHTML = 0
+    buyContinue.classList.add('disabled');
+    
+    address_val.addEventListener('input', function() {
+        var error;
+        var coinPrice = document.getElementById('coinPrice').value.replace(',', '');
+        if(parseFloat(address_val.value) < 0 || address_val.value == '-') {
+            error = 'Không được nhập số âm';
+            errorEle.innerHTML = error;
+            errorEle.style.color = 'red';
+            sumPriceEle.innerHTML = 0
+        } else {
+            sumPrice = parseFloat(address_val.value) * parseFloat(coinPrice);
+            sumPriceEle.innerHTML = Intl.NumberFormat().format(sumPrice);
+            if(address_val.value == "") {
+                error = 'Vui lòng nhập số tiền'
+                errorEle.innerHTML = error;
+                errorEle.style.color = 'red';
+                sumPriceEle.innerHTML = 0
+            } else {
+                errorEle.innerHTML = '';
+            }
+        }
+        checkError(errorEle.innerHTML);
+    })
 
     address_wallet.addEventListener('input', function() {
         if(this.value.length == 34 || this.value.length == 42) {
-            document.getElementById('address_error').innerHTML = "Địa chỉ ví hợp lệ";
-            document.getElementById('address_error').style.color = 'green';
+            errorEle.innerHTML = "";
+            errorEle.style.color = 'green';
             walletCode = this.value;
             user = {
                 currencyCode: typeCoin,
                 orderType: type,
                 agentId: agencyId,
                 receiveAddress: walletCode,
-                quantity: document.getElementById('address_value').value,
+                quantity: address_val.value,
             }
             // save to localStorage
             localStorage.setItem('user', JSON.stringify(user));
         } else {
-            document.getElementById('address_error').innerHTML = "Địa chỉ ví chưa hợp lệ";
-            document.getElementById('address_error').style.color = 'red';
+            errorEle.innerHTML = "Địa chỉ ví chưa hợp lệ";
+            errorEle.style.color = 'red';
         }
+        checkError(errorEle.innerHTML);
     });
 </script>

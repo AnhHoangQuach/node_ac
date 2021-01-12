@@ -77,14 +77,42 @@ class TransactionController {
     async buy(req, res, next) {
         const fetch_store = await fetch(api_store_url)
         const data_store = await fetch_store.json()
+
+        const fetch_response = await fetch(api_url)
+        const data = await fetch_response.json()
         if (req.query.step == 2) {
-            res.render('buy/buy2', { title: 'Mua bước 2', link: 'buy2' , agency: data_store.agency, listBank: listBank})
+            res.render('buy/buy2', { 
+                title: 'Mua bước 2', 
+                link: 'buy2' , 
+                agency: data_store.agency, 
+                listBank: listBank, 
+                coin: req.query.coin,
+                rates: data.rates,
+            })
         } else if (req.query.step == 3) {
-            res.render('buy/buy3', { title: 'Mua bước 3', link: 'buy3' , agency: data_store.agency, listBank: listBank})
+            res.render('buy/buy3', { 
+                title: 'Mua bước 3', 
+                link: 'buy3' , 
+                agency: data_store.agency, 
+                listBank: listBank, 
+                coin: req.query.coin,
+                rates: data.rates,
+            })
         } else if (req.query.step == 1) {
-            res.render('buy/buy1', { title: 'Mua bước 1', link: 'buy1' , agency: data_store.agency})
+            res.render('buy/buy1', { 
+                title: 'Mua bước 1', 
+                link: 'buy1' , 
+                agency: data_store.agency, 
+                coin: req.query.coin
+            })
         } else if (req.query.step == 4) {
-            res.render('buy/buy4', { title: 'Mua bước 4', link: 'buy4' , agency: data_store.agency})
+            res.render('buy/buy4', { 
+                title: 'Mua bước 4', 
+                link: 'buy4' , 
+                agency: data_store.agency, 
+                coin: req.query.coin,
+                rates: data.rates,
+            })
         }
 
         next();
@@ -94,14 +122,41 @@ class TransactionController {
         const fetch_store = await fetch(api_store_url)
         const data_store = await fetch_store.json()
 
+        const fetch_response = await fetch(api_url)
+        const data = await fetch_response.json()
         if (req.query.step == 2) {
-            res.render('sell/sell2', { title: 'Bán bước 2', link: 'sell2', agency: data_store.agency, listBank: listBank })
+            res.render('sell/sell2', { 
+                title: 'Bán bước 2', 
+                link: 'sell2', 
+                agency: data_store.agency, 
+                listBank: listBank , 
+                coin: req.query.coin,
+                rates: data.rates,
+            })
         } else if (req.query.step == 3) {
-            res.render('sell/sell3', { title: 'Bán bước 3', link: 'sell3', agency: data_store.agency, listBank: listBank })
+            res.render('sell/sell3', { 
+                title: 'Bán bước 3', 
+                link: 'sell3', 
+                agency: data_store.agency, 
+                listBank: listBank,
+                rates: data.rates,
+            })
         } else if (req.query.step == 1) {
-            res.render('sell/sell1', { title: 'Bán bước 1', link: 'sell1', agency: data_store.agency })
+            res.render('sell/sell1', { 
+                title: 'Bán bước 1', 
+                link: 'sell1', agency: 
+                data_store.agency, coin: 
+                req.query.coin,
+                rates: data.rates,
+            })
         } else if (req.query.step == 4) {
-            res.render('sell/sell4', { title: 'Bán bước 4', link: 'sell4', agency: data_store.agency })
+            res.render('sell/sell4', { 
+                title: 'Bán bước 4', 
+                link: 'sell4', 
+                agency: data_store.agency, 
+                coin: req.query.coin,
+                rates: data.rates,
+            })
         }
 
         next();
