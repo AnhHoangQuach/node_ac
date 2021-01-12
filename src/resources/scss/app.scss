@@ -2522,3 +2522,10 @@ ul.pricing-table li {
 .rate {
     font-size: 12px;
 }
+
+
+//disable tag
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
