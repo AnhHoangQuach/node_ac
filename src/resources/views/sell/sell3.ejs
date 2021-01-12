@@ -20,15 +20,18 @@
                                                     <div class="kt-wizard-v3__nav-line"></div>
                                                     <div class="kt-wizard-v3__nav-items">
 
-                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>1</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>2</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>3</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
@@ -74,10 +77,13 @@
                                             Ngân hàng của bạn
                                         </label>
                                         <div class="dropdown bootstrap-select form-control none">
-                                            <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
-                                                <% listBank.forEach((value, index) => { %>
-                                                    <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
-                                                <% }) %>
+                                            <select class="form-control selectpickernone" tabindex="-98"
+                                                id="select_bank">
+                                                <% listBank.forEach((value, index)=> { %>
+                                                    <option value="<%= value.code %>" <%=index==0 ? "selected" : '' %>>
+                                                        <%= value.name %>
+                                                    </option>
+                                                    <% }) %>
                                             </select>
                                         </div>
                                     </div>
@@ -86,7 +92,8 @@
                                             Số tài khoản
                                         </label>
                                         <div class="find-box">
-                                            <input type="text" class="form-control" placeholder="Nhập số tài khoản..." id="account_number">
+                                            <input type="text" class="form-control" placeholder="Nhập số tài khoản..."
+                                                id="account_number">
                                             <span id="address_error"></span>
                                             <div class="spinner-border text-secondary spinner-border-sm" role="status">
                                                 <span class="sr-only">Loading...</span>
@@ -98,7 +105,8 @@
                                             Tên chủ tài khoản
                                         </label>
                                         <input class="form-control" type="text" readonly="readonly" id="address_name">
-                                        <small class="form-text text-muted">Lấy tự động theo số tài khoản bên trên</small>
+                                        <small class="form-text text-muted">Lấy tự động theo số tài khoản bên
+                                            trên</small>
                                     </div>
                                 </form>
                             </div>
@@ -141,14 +149,16 @@
                                             </div>
                                             <div class="col-12 fs-075 text-secondary mb-4">
                                                 <span class="ml-1 mr-1">
-                                                    Giá bán: <span class="font-weight-bold text-danger">23,150 VND</span>
+                                                    Giá bán: <span class="font-weight-bold text-danger">23,150
+                                                        VND</span>
                                                 </span>
                                                 <!--<span class="ml-1 mr-1">
                                                     Phí: <span class="font-weight-bold text-warning">230,384 VND</span>
                                                 </span>-->
                                             </div>
                                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                                Số tiền bạn nhận: <span class="font-weight-bold text-success">48,315,000 VND</span>
+                                                Số tiền bạn nhận: <span class="font-weight-bold text-success">48,315,000
+                                                    VND</span>
                                             </div>
                                             <div class=" mb-3 d-inline-block">
                                                 <div class="align-items-center mb-1">
@@ -183,6 +193,7 @@
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -192,8 +203,13 @@
             </div>
         </div>
     </div>
+    <a href="#" onclick="bomay()" type="button" class="btn btn-primary">
+        <i class="las la-check-circle"></i>
+        Xác nhận
+    </a>
 
 </section>
+<script src="/lib/jquery/jquery-3.5.1.min.js"></script>
 <script>
     var e = document.getElementById("select_bank");
 
@@ -202,12 +218,31 @@
     var codeBank = e.value;
     var accountNumber, postData;
 
-    e.addEventListener('change', function() {
+    e.addEventListener('change', function () {
         codeBank = this.value;
     });
+    async function bomay() {
+        console.log(1234);
+        var dataPost = {};
+        dataPost.bankName = "970436";
+        dataPost.accountNumber = "0971000009787";
+        $.ajax({
+            url: "https://login.acwallet.io/api/v1/getBankAccount?accountNumber=0971000009787&bankName=970436",
+            type: "GET",           
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            success: function (responce) {
+                console.log(responce);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+    // bomay();
 
-    user_address.addEventListener('input', function() {
-        if(this.value.length == 13) {
+    user_address.addEventListener('input', function () {
+        if (this.value.length == 13) {
             document.getElementById('address_error').innerHTML = "Số tài khoản hợp lệ";
             document.getElementById('address_error').style.color = 'green';
             accountNumber = this.value;
@@ -223,16 +258,16 @@
         }
     });
 
-    document.querySelector('#account_number').addEventListener('focusout', async function(e) {
+    document.querySelector('#account_number').addEventListener('focusout', async function (e) {
         const data = JSON.parse(localStorage.getItem('postData'));
         const options = {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             // mode: 'no-cors', // no-cors, *cors, same-origin
-            body:  JSON.stringify(data),
+            body: JSON.stringify(data),
         };
         const fetch_store = await fetch('https://login.acwallet.io/api/v1/getBankAccount', options);
         console.log(fetch_store);
