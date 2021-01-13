@@ -75,9 +75,7 @@
                                     <div class="dropdown bootstrap-select form-control none">
                                         <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
                                             <% listBank.forEach((value, index) => { %>
-                                                <% if (value.code == JSON.parse(agency.bankAccounts)[0].bankCode) { %>
-                                                    <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
-                                                <% } %>
+                                                <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
                                             <% }) %>
                                         </select>
                                     </div>
@@ -89,23 +87,23 @@
                                     </div>
                                     <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Số tài khoản:</span>
-                                        <span class="font-weight-bold"><%- JSON.parse(agency.bankAccounts)[0].number %></span>
+                                        <span class="font-weight-bold">19036456090015</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Tên chủ tài khoản:</span>
-                                        <span class="font-weight-bold"><%- JSON.parse(agency.bankAccounts)[0].name %></span>
+                                        <span class="font-weight-bold">Do Viet Anh</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Nội dung chuyển khoản:</span>
                                         <span class="font-weight-bold">TTB1R6WA</span>
                                     </div>
-                                    <span id="bank_list_name" style="display: none">
+                                    <!-- <span id="bank_list_name" style="display: none">
                                         <% listBank.some(function(el) { %>
                                             <% if (el.code == JSON.parse(agency.bankAccounts)[0].bankCode) { %>
                                                 <%= el.name %>
                                             <% } %>
                                         <% }); %>
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -135,7 +133,7 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận mua <%= coin %></h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận mua USDT</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -144,23 +142,21 @@
                                         <div class="text-center">
                                             <div class="col-12 mb-2">
                                                 <span class="font-weight-500">Số lượng mua:</span>
-                                                <span class="font-weight-bold text-primary" id="order_value_coin"></span>
+                                                <span class="font-weight-bold text-primary">100 USDT</span>
                                             </div>
                                             <div class="col-12 fs-075 text-secondary mb-4">
                                                 <span class="ml-1 mr-1">
-                                                    Tỉ giá: <span class="font-weight-bold text-danger">
-                                                        <%= Intl.NumberFormat().format(rate) %>
-                                                    </span>
+                                                    Tỉ giá: <span class="font-weight-bold text-danger">23,150 VNDT</span>
                                                 </span>
                                                 <!--<span class="ml-1 mr-1">
                                                     Phí: <span class="font-weight-bold text-warning">240,384 VNDT</span>
                                                 </span>-->
                                             </div>
                                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                                Số tiền bạn trả: <span class="font-weight-bolder text-success" id="sum_price_value">2,315,000 VNDT</span>
+                                                Số tiền bạn trả: <span class="font-weight-bolder text-success">2,315,000 VNDT</span>
                                             </div>
                                             <div class="mb-4">
-                                                Địa chỉ ví nhận: <span class="font-weight-bold" id="address_receive">TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq</span>
+                                                Địa chỉ ví nhận: <span class="font-weight-bold">TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq</span>
                                             </div>
                                             <div class="text-danger fs-085">
                                                 Chú ý: Cần kiểm tra kỹ địa chỉ ví. Đại lý sẽ không chịu trách nhiệm trường hợp bạn gửi nhầm coin hay địa chỉ ví.
@@ -176,7 +172,7 @@
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </button>-->
-                                        <a href="javascript:void(0)" type="button" id="create_order" class="btn btn-primary">
+                                        <a href="#" type="button" id="create_order" class="btn btn-primary">
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </a>
@@ -226,18 +222,9 @@
             body:    JSON.stringify(retrievedObjectData),
             headers: { 'Content-Type': 'application/json' },
         })
-        .then(response =>  {
-            return response.json();
-        }).then(data => {
-            localStorage.setItem('fullData', JSON.stringify(data));
-            window.location.href = 'http://localhost:3000/transaction/buy?step=4&coin=<%= coin %>';
-        });
+        .then(json => console.log(json));
     }
 
-    // set information for order
-    document.querySelector('#order_value_coin').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity)) + ' <%= coin %>';
-    document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.sumPrice));
-    document.querySelector('#address_receive').innerHTML = retrievedObject.receiveAddress;
 
     document.querySelector('#create_order').addEventListener('click', function(e) {    
         createOrder();

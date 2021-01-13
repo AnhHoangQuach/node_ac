@@ -72,38 +72,38 @@
 
                                 <div class="text-center">
                                     <div class="mb-3 fs-120">
-                                        <span class="font-weight-bold">Bạn đã đặt lệnh mua <%= coin %> thành công!</span>
+                                        <span class="font-weight-bold">Bạn đã đặt lệnh mua USDT thành công!</span>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <span class="font-weight-500">Số lượng mua:</span>
-                                        <span class="font-weight-bold text-primary" id="coin_value_buy"></span>
+                                        <span class="font-weight-bold text-primary">2,345 USDT</span>
                                     </div>
                                     <div class="col-12 fs-075 text-secondary mb-4">
                                         <span class="ml-1 mr-1">
-                                            Tỉ giá: <span class="font-weight-bold"><%= Intl.NumberFormat().format(rate) %></span>
+                                            Tỉ giá: <span class="font-weight-bold">23,150 VND</span>
                                         </span>
-                                        <!-- <span class="ml-1 mr-1">
+                                        <span class="ml-1 mr-1">
                                             Phí: <span class="font-weight-bold text-warning">230,384 VND</span>
-                                        </span> -->
+                                        </span>
                                     </div>
                                     <div class="text-center fs-110 font-weight-bold mb-4">
-                                        Số tiền bạn trả: <span class="font-weight-bold text-success" id="pay_value"></span>
+                                        Số tiền bạn trả: <span class="font-weight-bold text-success">48,315,000 VND</span>
                                     </div>
                                     <div class="mb-4">
-                                        Địa chỉ ví nhận: <span class="font-weight-bold" id="address_receive">TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq</span>
+                                        Địa chỉ ví nhận: <span class="font-weight-bold">TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq</span>
                                     </div>
                                     <div class=" mb-3 d-inline-block">
                                         <div class="align-items-center mb-1">
                                             <span class="bank-title">Chuyển tiền vào ngân hàng:</span>
-                                            <span class="font-weight-bold" id="bank_name_receive">Techcombank</span>
+                                            <span class="font-weight-bold">Techcombank</span>
                                         </div>
                                         <div class="align-items-center mb-1">
                                             <span class="bank-title">Số tài khoản:</span>
-                                            <span class="font-weight-bold" id="agency_number_receive">19036456090015</span>
+                                            <span class="font-weight-bold">19036456090015</span>
                                         </div>
                                         <div class="align-items-center mb-1">
                                             <span class="bank-title">Tên chủ tài khoản:</span>
-                                            <span class="font-weight-bold" id="agency_name_receive">Do Viet Anh</span>
+                                            <span class="font-weight-bold">Do Viet Anh</span>
                                         </div>
                                         <div class="align-items-center mb-1">
                                             <span class="bank-title">Nội dung chuyển khoản:</span>
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="fs-080 mb-4 text-center">
                                         <span>
-                                            Thời gian chuyển khoản còn: <span class="text-danger font-weight-500" id="expireTime"></span>
+                                            Thời gian chuyển khoản còn: <span class="text-danger font-weight-500">13 phút</span>
                                         </span>
                                     </div>
                                     <div class="fs-080 mb-2 text-center">
@@ -141,13 +141,3 @@
     </div>
 
 </section>
-<script>
-    var retrievedFullData = JSON.parse(localStorage.getItem('fullData'));
-    console.log(retrievedFullData)
-    document.getElementById('coin_value_buy').innerHTML = Intl.NumberFormat().format(retrievedFullData.quantity) + ' <%= coin %>';
-    document.getElementById('address_receive').innerHTML = retrievedFullData.receiveAddress;
-    document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);
-    document.getElementById('agency_number_receive').innerHTML = retrievedFullData.receiveBank.number;
-    document.getElementById('agency_name_receive').innerHTML = retrievedFullData.receiveBank.name;
-    document.getElementById('expireTime').innerHTML = new Date(retrievedFullData.expiryTime).getUTCMinutes() + ' phút';
-</script>

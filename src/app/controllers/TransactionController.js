@@ -111,8 +111,7 @@ class TransactionController {
                 link: 'buy4' , 
                 agency: data_store.agency, 
                 coin: coin.toUpperCase(),
-                rate : data.rates['ask_'+coin.toLowerCase()],          
-                listBank: listBank,   
+                rate : data.rates['ask_'+coin.toLowerCase()]             
             })
         }
 
@@ -157,7 +156,6 @@ class TransactionController {
                 agency: data_store.agency, 
                 coin: req.query.coin,
                 rates: data.rates,
-                listBank: listBank,
             })
         }
 
