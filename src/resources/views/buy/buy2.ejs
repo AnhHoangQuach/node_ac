@@ -162,7 +162,6 @@
 
     var coinCode = document.getElementById('coin_value').innerText;
     var agencyId = document.getElementById('agentId').innerText;
-
     var typeCoin;
     if (listCoin.hasOwnProperty(coinCode.toLowerCase())) {
         typeCoin = listCoin[coinCode.toLowerCase()];
@@ -243,6 +242,8 @@
             agentId: agencyId,
             receiveAddress: this.value,
             quantity: address_val.value,
+            sumPrice: parseFloat(address_val.value) * <%=rate%>,
+            amountValue: <%=rate%>,
         }
         // save to localStorage
         localStorage.setItem('user', JSON.stringify(user));
