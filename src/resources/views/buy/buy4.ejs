@@ -191,7 +191,6 @@
     ];
 
     var retrievedFullData = JSON.parse(localStorage.getItem('fullData'));
-    console.log(retrievedFullData)
     document.getElementById('coin_value_buy').innerHTML = Intl.NumberFormat().format(retrievedFullData.quantity) + ' <%= coin %>';
     document.getElementById('address_receive').innerHTML = retrievedFullData.receiveAddress;
     document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);

@@ -13,7 +13,7 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Bán USDT cho đại lý SA98</h3>
+                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%= agency.name %></h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
                                                 <div class="kt-wizard-v3__nav">
@@ -69,32 +69,32 @@
                     <div class="card-body border-0 mini-col">
                         <div class="text-center">
                             <div class="mb-3 fs-120">
-                                <span class="font-weight-bold">Bạn đã đặt lệnh bán USDT thành công!</span>
+                                <span class="font-weight-bold">Bạn đã đặt lệnh bán <%= coin %> thành công!</span>
                             </div>
                             <div class="col-12 mb-2">
                                 <span class="font-weight-500">Số lượng bán:</span>
-                                <span class="font-weight-bold text-primary">2,345 USDT</span>
+                                <span class="font-weight-bold text-primary" id="coin_value_sell"></span>
                             </div>
                             <div class="col-12 fs-075 text-secondary mb-4">
                                 <span class="ml-1 mr-1">
-                                    Giá bán: <span class="font-weight-bold text-danger">23,150 VND</span>
+                                    Giá bán: <span class="font-weight-bold text-danger"><%= Intl.NumberFormat().format(rate) %> VND</span>
                                 </span>
                             </div>
                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success">48,315,000 VND</span>
+                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success" id="sumPriceSell">48,315,000 VND</span>
                             </div>
                             <div class=" d-inline-block">
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Ngân hàng nhận tiền:</span>
-                                    <span class="font-weight-bold">Techcombank</span>
+                                    <span class="font-weight-bold" id="bank_receive">Techcombank</span>
                                 </div>
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Số tài khoản:</span>
-                                    <span class="font-weight-bold">19036456090015</span>
+                                    <span class="font-weight-bold" id="address_receive_number">19036456090015</span>
                                 </div>
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Tên chủ tài khoản:</span>
-                                    <span class="font-weight-bold">Do Viet Anh</span>
+                                    <span class="font-weight-bold" id="address_receive_name">Do Viet Anh</span>
                                 </div>
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Nội dung chuyển khoản:</span>
@@ -106,7 +106,7 @@
                                 <div class="col-12">
                                     <div class="address-box">
                                         <div class="form-group mini-col text-center">
-                                            <label for="" class="font-weight-bold">Bạn hãy gửi số USDT cần bán vào ví của đại lý SA88</label>
+                                            <label for="" class="font-weight-bold">Bạn hãy gửi số <%= coin %> cần bán vào ví của đại lý <%= agency.name %></label>
                                             <div class="text-center">
                                                 <img src="/img/qr.png" width="200">
                                             </div>
@@ -151,3 +151,13 @@
     </div>
 
 </section>
+
+<script>
+    var retrievedFullData = JSON.parse(localStorage.getItem('sellValue'));
+    var accountInfo = JSON.parse(JSON.parse(localStorage.getItem('accountInfo')));
+
+    document.getElementById('coin_value_sell').innerHTML = Intl.NumberFormat().format(retrievedFullData) + ' <%= coin %>';
+    document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData) * parseFloat(<%= rate %>));
+    document.getElementById('address_receive_number').innerHTML = accountInfo.accountNumber;
+    document.getElementById('address_receive_name').innerHTML = accountInfo.accountName;
+</script>
