@@ -102,8 +102,7 @@ class TransactionController {
             res.render('buy/buy1', { 
                 title: 'Mua bước 1', 
                 link: 'buy1' , 
-                agency: data_store.agency, 
-                coin: coin.toUpperCase()                
+                agency: data_store.agency,            
             })
         } else if (req.query.step == 4) {
             res.render('buy/buy4', { 
@@ -125,6 +124,8 @@ class TransactionController {
 
         const fetch_response = await fetch(api_url)
         const data = await fetch_response.json()
+
+        const coin = req.query.coin;
         if (req.query.step == 2) {
             res.render('sell/sell2', { 
                 title: 'Bán bước 2', 
@@ -133,6 +134,8 @@ class TransactionController {
                 listBank: listBank , 
                 coin: req.query.coin,
                 rates: data.rates,
+                coin: coin.toUpperCase(),
+                rate : data.rates['bid_'+coin.toLowerCase()],
             })
         } else if (req.query.step == 3) {
             res.render('sell/sell3', { 
@@ -141,13 +144,14 @@ class TransactionController {
                 agency: data_store.agency, 
                 listBank: listBank,
                 rates: data.rates,
+                coin: coin.toUpperCase(),
+                rate : data.rates['ask_'+coin.toLowerCase()],
             })
         } else if (req.query.step == 1) {
             res.render('sell/sell1', { 
                 title: 'Bán bước 1', 
                 link: 'sell1', agency: 
-                data_store.agency, coin: 
-                req.query.coin,
+                data_store.agency,
                 rates: data.rates,
             })
         } else if (req.query.step == 4) {
@@ -158,6 +162,8 @@ class TransactionController {
                 coin: req.query.coin,
                 rates: data.rates,
                 listBank: listBank,
+                coin: coin.toUpperCase(),
+                rate : data.rates['bid_'+coin.toLowerCase()],
             })
         }
 
