@@ -52,8 +52,7 @@ class TransactionController {
         const data = await fetch_response.json()
 
         const fetch_store = await fetch(api_store_url)
-        const data_store = await fetch_store.json()
-
+        const data_store = await fetch_store.json()    
         var avatar
         if(data_store.agency.avatar == undefined) {
             if(data_store.agency.name.includes('SA')) {
@@ -80,14 +79,15 @@ class TransactionController {
 
         const fetch_response = await fetch(api_url)
         const data = await fetch_response.json()
+        const coin = req.query.coin;
         if (req.query.step == 2) {
             res.render('buy/buy2', { 
                 title: 'Mua bước 2', 
                 link: 'buy2' , 
                 agency: data_store.agency, 
                 listBank: listBank, 
-                coin: req.query.coin,
-                rates: data.rates,
+                coin: coin.toUpperCase(),              
+                rate : data.rates['ask_'+coin.toLowerCase()]               
             })
         } else if (req.query.step == 3) {
             res.render('buy/buy3', { 
@@ -95,23 +95,23 @@ class TransactionController {
                 link: 'buy3' , 
                 agency: data_store.agency, 
                 listBank: listBank, 
-                coin: req.query.coin,
-                rates: data.rates,
+                coin: coin.toUpperCase(),
+                rate : data.rates['ask_'+coin.toLowerCase()],                
             })
         } else if (req.query.step == 1) {
             res.render('buy/buy1', { 
                 title: 'Mua bước 1', 
                 link: 'buy1' , 
                 agency: data_store.agency, 
-                coin: req.query.coin
+                coin: coin.toUpperCase()                
             })
         } else if (req.query.step == 4) {
             res.render('buy/buy4', { 
                 title: 'Mua bước 4', 
                 link: 'buy4' , 
                 agency: data_store.agency, 
-                coin: req.query.coin,
-                rates: data.rates,
+                coin: coin.toUpperCase(),
+                rate : data.rates['ask_'+coin.toLowerCase()]             
             })
         }
 

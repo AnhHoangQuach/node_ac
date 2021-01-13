@@ -13,18 +13,22 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Mua USDT từ đại lý <%= agency.name %></h3>
+                                                <h3 class="fs-150 mb-0 text-white">Mua <%=coin %> từ đại lý <%=
+                                                            agency.name %>
+                                                </h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
                                                 <div class="kt-wizard-v3__nav">
                                                     <div class="kt-wizard-v3__nav-line"></div>
                                                     <div class="kt-wizard-v3__nav-items">
 
-                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>1</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>2</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
@@ -72,7 +76,7 @@
                                 <div class="form-group">
                                     <label for="" class="font-weight-500">Số lượng mua</label>
                                     <div class="input-group mb-0">
-                                        <input type="text" class="form-control" value="" id="address_value">
+                                        <input type="number" class="form-control" value="" id="address_value">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="coin_value">
                                                 <%= coin %>
@@ -85,7 +89,8 @@
                                 <div class="form-group mini-col">
                                     <label for="" class="font-weight-500">Giá mua</label>
                                     <div class="input-group mb-0">
-                                        <input type="text" id="coinPrice" class="form-control" value="<%= Intl.NumberFormat().format(rates['ask_usdf']) %>" readonly="">
+                                        <input type="text" id="coinPrice" class="form-control"
+                                            value="<%= Intl.NumberFormat().format(rate) %>" readonly="">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 VND
@@ -103,7 +108,7 @@
                             <div class="col-12">
                                 <div class="form-group mini-col mb-2">
                                     <label for="" class="font-weight-500">Địa chỉ ví của bạn</label>
-                                    <input type="text" class="form-control" id="address_wallet" value="">
+                                    <input type="text" class="form-control" id="address_wallet" >
                                 </div>
                                 <span id="error"></span>
                             </div>
@@ -120,11 +125,12 @@
                             <i class="las la-arrow-right"></i>
                             Tiếp tục
                         </button>-->
-                        <a href="/transaction/buy?step=1" class="btn btn-secondary">
+                        <a href="/transaction/buy?step=1&coin=<%=coin%>" class="btn btn-secondary">
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/buy?step=3" class="btn btn-primary float-right" id="buy_continue">
+                        <a href="/transaction/buy?step=3&coin=<%=coin%>" class="btn btn-primary float-right"
+                            id="buy_continue">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -135,7 +141,9 @@
             </div>
         </div>
     </div>
-    <span id="agentId" style="display: none"><%= agency.agencyId %></span>
+    <span id="agentId" style="display: none">
+        <%= agency.agencyId %>
+    </span>
 </section>
 <script>
     // take value of form
@@ -162,7 +170,7 @@
 
     const queryString = window.location.href;
     var type, walletCode, user
-    if(queryString.includes('buy')) {
+    if (queryString.includes('buy')) {
         type = 2
     } else if (queryString.includes('sell')) {
         type = 1
@@ -178,61 +186,67 @@
     buyContinue = document.getElementById('buy_continue')
 
     // check Error
-    function checkError(error) {
-        if(error != "") {
+    function checkError() {
+        if (quantityInvalid || addressInvalid) {
             buyContinue.classList.add('disabled');
-        } else {
-            if(buyContinue.classList.contains('disabled')) {
-                buyContinue.classList.remove('disabled');
-            }
-        }
+        }else{
+            buyContinue.classList.remove('disabled');
+        }       
     }
 
     // set info for html
     sumPriceEle.innerHTML = 0
     buyContinue.classList.add('disabled');
-    
-    address_val.addEventListener('input', function() {
-        var error;
-        var coinPrice = document.getElementById('coinPrice').value.replace(',', '');
-        if(parseFloat(address_val.value) < 0 || address_val.value == '-') {
-            error = 'Không được nhập số âm';
-            errorEle.innerHTML = error;
-            errorEle.style.color = 'red';
-            sumPriceEle.innerHTML = 0
-        } else {
-            sumPrice = parseFloat(address_val.value) * parseFloat(coinPrice);
-            sumPriceEle.innerHTML = Intl.NumberFormat().format(sumPrice);
-            if(address_val.value == "") {
-                error = 'Vui lòng nhập số tiền'
-                errorEle.innerHTML = error;
-                errorEle.style.color = 'red';
-                sumPriceEle.innerHTML = 0
-            } else {
-                errorEle.innerHTML = '';
-            }
+    var quantityInvalid = true;
+    var addressInvalid = true;
+    address_val.addEventListener('input', function () {        
+        var coinPrice = <%=rate%>;
+        quantityInvalid = true;
+        var quantity = address_val.value;
+        if (quantity == undefined || quantity == "") {
+            toastr_error('Vui lòng nhập số lượng mua','');
+            return;
         }
-        checkError(errorEle.innerHTML);
+        if (parseFloat(quantity) < 0) {
+            toastr_error('Số lượng không hợp lệ', '');
+            return;
+        }
+        sumPrice = parseFloat(quantity) * parseFloat(coinPrice);
+        sumPriceEle.innerHTML = Intl.NumberFormat().format(sumPrice);
+        quantityInvalid = false;
+        checkError();
     })
 
-    address_wallet.addEventListener('input', function() {
-        if(this.value.length == 34 || this.value.length == 42) {
-            errorEle.innerHTML = "";
-            errorEle.style.color = 'green';
-            walletCode = this.value;
-            user = {
-                currencyCode: typeCoin,
-                orderType: type,
-                agentId: agencyId,
-                receiveAddress: walletCode,
-                quantity: address_val.value,
-            }
-            // save to localStorage
-            localStorage.setItem('user', JSON.stringify(user));
-        } else {
-            errorEle.innerHTML = "Địa chỉ ví chưa hợp lệ";
-            errorEle.style.color = 'red';
+    address_wallet.addEventListener('blur', function () {      
+        addressInvalid = true;
+        if (this.value == undefined || this.value == "") {
+            toastr_error('Vui lòng nhập địa chỉ nhận coin', '');
+            return;
         }
-        checkError(errorEle.innerHTML);
+        var cur = '<%= coin %>';
+        if ("BTC TRX USDF XENG VNDT XRP".indexOf(cur.toUpperCase()) > -1 && this.value.length != 34) {
+            toastr_error('Địa chỉ nhận không hợp lệ', '');
+            return;
+        }
+        if ("ETH USDT".indexOf(cur.toUpperCase()) > -1 && this.value.length != 42) {
+            toastr_error('Địa chỉ nhận không hợp lệ', '');
+            return;
+        }
+        if ("XLM".indexOf(cur.toUpperCase()) > -1 && this.value.length != 56) {
+            toastr_error('Địa chỉ nhận không hợp lệ', '');
+            return;
+        }
+
+        user = {
+            currencyCode: typeCoin,
+            orderType: type,
+            agentId: agencyId,
+            receiveAddress: this.value,
+            quantity: address_val.value,
+        }
+        // save to localStorage
+        localStorage.setItem('user', JSON.stringify(user));
+        addressInvalid = false;
+        checkError();
     });
 </script>
