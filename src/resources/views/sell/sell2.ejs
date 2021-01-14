@@ -143,14 +143,15 @@
             sellContinue.classList.add('disabled');
         }else{
             sellContinue.classList.remove('disabled');
-        }       
+        } 
+        return;     
     }
 
     sumPriceSell.innerHTML = 0
     sellContinue.classList.add('disabled');
     var quantityInvalid = true;
     address_val.addEventListener('input', function () {        
-        var coinPrice = <%=rate%>;
+        var coinPrice = parseFloat('<%=rate%>');
         quantityInvalid = true;
         var quantity = address_val.value;
         if (quantity == undefined || quantity == "") {

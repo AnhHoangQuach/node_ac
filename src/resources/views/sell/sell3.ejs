@@ -13,7 +13,9 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%= agency.name %></h3>
+                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%=
+                                                            agency.name %>
+                                                </h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
                                                 <div class="kt-wizard-v3__nav">
@@ -92,10 +94,12 @@
                                             Số tài khoản
                                         </label>
                                         <div class="find-box">
-                                            <input type="text" class="form-control" placeholder="Nhập số tài khoản..."
+                                            <input type="number" class="form-control" placeholder="Nhập số tài khoản..."
                                                 id="account_number">
                                             <span id="address_error"></span>
-                                            <div class="spinner-border text-secondary spinner-border-sm" role="status">
+                                            <div id="spinner"
+                                                class="spinner-border text-secondary spinner-border-sm d-none"
+                                                role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </div>
@@ -126,7 +130,8 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="#" id="sell_continue" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell">
+                        <a href="#" id="sell_continue" class="btn btn-primary float-right" data-toggle="modal"
+                            data-target="#MdlSell">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -136,7 +141,8 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận bán <%= coin %></h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận bán <%= coin %>
+                                        </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
@@ -149,33 +155,32 @@
                                             </div>
                                             <div class="col-12 fs-075 text-secondary mb-4">
                                                 <span class="ml-1 mr-1">
-                                                    Giá bán: <span class="font-weight-bold text-danger"><%= Intl.NumberFormat().format(rate) %>
-                                                        VND</span>
+                                                    Giá bán: <span class="font-weight-bold text-danger">
+                                                        <%= Intl.NumberFormat().format(rate) %>
+                                                            VND
+                                                    </span>
                                                 </span>
                                                 <!--<span class="ml-1 mr-1">
                                                     Phí: <span class="font-weight-bold text-warning">230,384 VND</span>
                                                 </span>-->
                                             </div>
                                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                                Số tiền bạn nhận: <span class="font-weight-bold text-success" id="receive_amount">48,315,000
+                                                Số tiền bạn nhận: <span class="font-weight-bold text-success"
+                                                    id="receive_amount">48,315,000
                                                     VND</span>
                                             </div>
                                             <div class=" mb-3 d-inline-block">
                                                 <div class="align-items-center mb-1">
                                                     <span class="bank-title">Ngân hàng của bạn:</span>
-                                                    <span class="font-weight-bold" id="bank_name_receive">Techcombank</span>
+                                                    <span class="font-weight-bold" id="bank_name_receive"></span>
                                                 </div>
                                                 <div class="align-items-center mb-1">
                                                     <span class="bank-title">Số tài khoản:</span>
-                                                    <span class="font-weight-bold" id="account_address">19036456090015</span>
+                                                    <span class="font-weight-bold" id="account_address"></span>
                                                 </div>
                                                 <div class="align-items-center mb-1">
                                                     <span class="bank-title">Tên chủ tài khoản:</span>
-                                                    <span class="font-weight-bold" id="account_name">Do Viet Anh</span>
-                                                </div>
-                                                <div class="align-items-center mb-1">
-                                                    <span class="bank-title">Nội dung chuyển khoản:</span>
-                                                    <span class="font-weight-bold">TTB1R6WA</span>
+                                                    <span class="font-weight-bold" id="account_name"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +194,8 @@
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </button>-->
-                                        <a href="/transaction/sell?step=4&coin=<%=coin%>" type="button" id="create_sell_order" class="btn btn-primary">
+                                        <a href="/transaction/sell?step=4&coin=<%=coin%>" type="button"
+                                            id="create_sell_order" class="btn btn-primary">
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </a>
@@ -207,49 +213,49 @@
 <script>
     // list bank
     var listBank = [
-        { "code" :"970454", "name" : "Ngân hàng TMCP Bản Việt (VIETCAPITAL)"},
-        { "code" :"970452", "name" : "Ngân hàng TMCP Kiên Long (KIENLONGBANK)"},
-        { "code" :"970400", "name" : "Ngân hàng TMCP Sài Gòn Công Thương (SAIGONBANK)"},
-        { "code" :"970430", "name" : "Ngân hàng TMCP Xăng Dầu Petrolimex (PG BANK)"},
-        { "code" :"970431", "name" : "Ngân hàng TMCP xuất nhập khẩu Việt Nam (EXIMBANK)"},
-        { "code" :"970455", "name" : "Ngân hàng Công nghiệp Hàn Quốc (IBK)"},
-        { "code" :"970421", "name" : "Ngân hàng Liên Doanh Việt Nga (VRB)"},
-        { "code" :"970405", "name" : "Ngân hàng NN và PTNN Việt Nam (AGRIBANK)"},
-        { "code" :"970408", "name" : "Ngân hàng TM TNHH MTV Dầu Khí Toàn Cầu (GPB)"},
-        { "code" :"970416", "name" : "Ngân hàng TMCP Á Châu (ACB)"},
-        { "code" :"970425", "name" : "Ngân hàng TMCP An Bình (ABBANK)"},
-        { "code" :"970438", "name" : "Ngân hàng TMCP Bảo Việt (BVB)"},
-        { "code" :"970449", "name" : "Ngân hàng TMCP Bưu Điện Liên Việt (LPB)"},
-        { "code" :"970415", "name" : "Ngân hàng TMCP Công Thương Việt Nam (VIETINBANK)"},
-        { "code" :"970412", "name" : "Ngân hàng TMCP Đại Chúng Việt Nam (PVCOMBANK)"},
-        { "code" :"970414", "name" : "Ngân hàng TMCP Đại Dương (OCEANBANK)"},
-        { "code" :"970418", "name" : "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)"},
-        { "code" :"970406", "name" : "Ngân hàng TMCP Đông Á (DONGABANK)"},
-        { "code" :"970440", "name" : "Ngân hàng TMCP Đông Nam Á (SEABANK)"},
-        { "code" :"970426", "name" : "Ngân hàng TMCP Hàng Hải Việt Nam (MSB)"},
-        { "code" :"970407", "name" : "Ngân hàng TMCP Kỹ thương Việt Nam (TECHCOMBANK)"},
-        { "code" :"970428", "name" : "Ngân hàng TMCP Nam Á (NAMABANK)"},
-        { "code" :"970436", "name" : "Ngân hàng TMCP Ngoại Thương Việt Nam (VIETCOMBANK)"},
-        { "code" :"970437", "name" : "Ngân hàng TMCP Phát Triển Thành Phố Hồ Chí Minh (HDB)"},
-        { "code" :"970448", "name" : "Ngân hàng TMCP Phương Đông (OCB)"},
-        { "code" :"970422", "name" : "Ngân hàng TMCP Quân Đội (MB)"},
-        { "code" :"970419", "name" : "Ngân hàng TMCP Quốc Dân (NCB)"},
-        { "code" :"970441", "name" : "Ngân hàng TMCP Quốc Tế (VIB)"},
-        { "code" :"970429", "name" : "Ngân hàng TMCP Sài Gòn (SCB)"},
-        { "code" :"970443", "name" : "Ngân hàng TMCP Sài Gòn - Hà Nội (SHB)"},
-        { "code" :"970403", "name" : "Ngân hàng TMCP Sài Gòn Thương Tín (SACOMBANK)"},
-        { "code" :"970423", "name" : "Ngân hàng TMCP Tiên Phong (TPBANK)"},
-        { "code" :"970427", "name" : "Ngân hàng TMCP Việt Á (VAB)"},
-        { "code" :"970432", "name" : "Ngân hàng TMCP Việt Nam Thịnh Vương (VPBANK)"},
-        { "code" :"970433", "name" : "Ngân hàng TMCP Việt Nam Thương Tín (VIETBANK)"},
-        { "code" :"970434", "name" : "Ngân hàng TNHH Indovina (INDOVINA)"},
-        { "code" :"422589", "name" : "Ngân hàng TNHH MTV CIMB Việt Nam (CIMB)"},
-        { "code" :"970442", "name" : "Ngân hàng TNHH MTV Hongleong Việt Nam (HONGLEONG)"},
-        { "code" :"970439", "name" : "Ngân hàng TNHH MTV Public Việt Nam (PBVN)"},
-        { "code" :"970424", "name" : "Ngân hàng TNHH MTV Shinhan Việt Nam (SHBVN)"},
-        { "code" :"970458", "name" : "Ngân hàng TNHH MTV United Overseas Bank (UOB)"},
-        
-        { "code" :"970457", "name" : "Ngân hàng Wooribank (WOORIBANK)"}
+        { "code": "970454", "name": "Ngân hàng TMCP Bản Việt (VIETCAPITAL)" },
+        { "code": "970452", "name": "Ngân hàng TMCP Kiên Long (KIENLONGBANK)" },
+        { "code": "970400", "name": "Ngân hàng TMCP Sài Gòn Công Thương (SAIGONBANK)" },
+        { "code": "970430", "name": "Ngân hàng TMCP Xăng Dầu Petrolimex (PG BANK)" },
+        { "code": "970431", "name": "Ngân hàng TMCP xuất nhập khẩu Việt Nam (EXIMBANK)" },
+        { "code": "970455", "name": "Ngân hàng Công nghiệp Hàn Quốc (IBK)" },
+        { "code": "970421", "name": "Ngân hàng Liên Doanh Việt Nga (VRB)" },
+        { "code": "970405", "name": "Ngân hàng NN và PTNN Việt Nam (AGRIBANK)" },
+        { "code": "970408", "name": "Ngân hàng TM TNHH MTV Dầu Khí Toàn Cầu (GPB)" },
+        { "code": "970416", "name": "Ngân hàng TMCP Á Châu (ACB)" },
+        { "code": "970425", "name": "Ngân hàng TMCP An Bình (ABBANK)" },
+        { "code": "970438", "name": "Ngân hàng TMCP Bảo Việt (BVB)" },
+        { "code": "970449", "name": "Ngân hàng TMCP Bưu Điện Liên Việt (LPB)" },
+        { "code": "970415", "name": "Ngân hàng TMCP Công Thương Việt Nam (VIETINBANK)" },
+        { "code": "970412", "name": "Ngân hàng TMCP Đại Chúng Việt Nam (PVCOMBANK)" },
+        { "code": "970414", "name": "Ngân hàng TMCP Đại Dương (OCEANBANK)" },
+        { "code": "970418", "name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)" },
+        { "code": "970406", "name": "Ngân hàng TMCP Đông Á (DONGABANK)" },
+        { "code": "970440", "name": "Ngân hàng TMCP Đông Nam Á (SEABANK)" },
+        { "code": "970426", "name": "Ngân hàng TMCP Hàng Hải Việt Nam (MSB)" },
+        { "code": "970407", "name": "Ngân hàng TMCP Kỹ thương Việt Nam (TECHCOMBANK)" },
+        { "code": "970428", "name": "Ngân hàng TMCP Nam Á (NAMABANK)" },
+        { "code": "970436", "name": "Ngân hàng TMCP Ngoại Thương Việt Nam (VIETCOMBANK)" },
+        { "code": "970437", "name": "Ngân hàng TMCP Phát Triển Thành Phố Hồ Chí Minh (HDB)" },
+        { "code": "970448", "name": "Ngân hàng TMCP Phương Đông (OCB)" },
+        { "code": "970422", "name": "Ngân hàng TMCP Quân Đội (MB)" },
+        { "code": "970419", "name": "Ngân hàng TMCP Quốc Dân (NCB)" },
+        { "code": "970441", "name": "Ngân hàng TMCP Quốc Tế (VIB)" },
+        { "code": "970429", "name": "Ngân hàng TMCP Sài Gòn (SCB)" },
+        { "code": "970443", "name": "Ngân hàng TMCP Sài Gòn - Hà Nội (SHB)" },
+        { "code": "970403", "name": "Ngân hàng TMCP Sài Gòn Thương Tín (SACOMBANK)" },
+        { "code": "970423", "name": "Ngân hàng TMCP Tiên Phong (TPBANK)" },
+        { "code": "970427", "name": "Ngân hàng TMCP Việt Á (VAB)" },
+        { "code": "970432", "name": "Ngân hàng TMCP Việt Nam Thịnh Vương (VPBANK)" },
+        { "code": "970433", "name": "Ngân hàng TMCP Việt Nam Thương Tín (VIETBANK)" },
+        { "code": "970434", "name": "Ngân hàng TNHH Indovina (INDOVINA)" },
+        { "code": "422589", "name": "Ngân hàng TNHH MTV CIMB Việt Nam (CIMB)" },
+        { "code": "970442", "name": "Ngân hàng TNHH MTV Hongleong Việt Nam (HONGLEONG)" },
+        { "code": "970439", "name": "Ngân hàng TNHH MTV Public Việt Nam (PBVN)" },
+        { "code": "970424", "name": "Ngân hàng TNHH MTV Shinhan Việt Nam (SHBVN)" },
+        { "code": "970458", "name": "Ngân hàng TNHH MTV United Overseas Bank (UOB)" },
+
+        { "code": "970457", "name": "Ngân hàng Wooribank (WOORIBANK)" }
     ];
 
 
@@ -257,19 +263,25 @@
 
     var user_address = document.getElementById("account_number");
     var sellContinue = document.getElementById("sell_continue")
+    var spinner = document.getElementById("spinner");
 
     var codeBank = e.value;
     var accountNumberValid = true, postData;
 
     e.addEventListener('change', function () {
         codeBank = this.value;
+        document.getElementById('address_name').value = "";
+        sellContinue.classList.add('disabled');
+        user_address.value = "";
+        return;
     });
 
     async function getAccount() {
         var dataPost = JSON.parse(localStorage.getItem('postData'));
+        spinner.classList.remove("d-none");
         $.ajax({
             url: `https://login.acwallet.io/api/v1/getBankAccount?accountNumber=${dataPost.accountNumber}&bankName=${dataPost.bankName}`,
-            type: "GET",           
+            type: "GET",
             // mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             success: function (response) {
@@ -277,9 +289,16 @@
                 document.getElementById("account_name").innerHTML = JSON.parse(response).accountName
                 document.getElementById("account_address").innerHTML = JSON.parse(response).accountNumber
                 localStorage.setItem('accountInfo', JSON.stringify(response));
+                sellContinue.classList.remove('disabled');
+                spinner.classList.add("d-none");
+                return;
             },
             error: function (error) {
                 console.log(error);
+                var respError = JSON.parse(error.responseText);
+                toastr_error(respError.description, "");
+                spinner.classList.add("d-none");
+                return;
             }
         })
     }
@@ -287,48 +306,43 @@
     sellContinue.classList.add('disabled');
 
     user_address.addEventListener('input', function () {
+        sellContinue.classList.add('disabled');
+        document.getElementById('address_name').value = "";
+        return;
+    });
+
+    user_address.addEventListener('blur', function () {
         if (this.value.length <= 6) {
             toastr_error("Số tài khoản chưa hợp lệ");
             sellContinue.classList.add('disabled');
             return;
-        } else {
-            toastr_success("Số tài khoản đã hợp lệ");
         }
-
-        sellContinue.classList.remove('disabled');
         var accountNumber = this.value;
-
         postData = {
             bankName: codeBank,
             accountNumber: accountNumber,
         }
-
-        let bankName = listBank.find(value => {
-            return value.code == codeBank
-        })
-
-        document.getElementById('bank_name_receive').innerHTML = bankName.name;
         localStorage.setItem('postData', JSON.stringify(postData));
-    });
-
-    document.querySelector('#account_number').addEventListener('focusout', async function (e) {
-        // const data = JSON.parse(localStorage.getItem('postData'));
-        // const options = {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     // mode: 'no-cors', // no-cors, *cors, same-origin
-        //     body: JSON.stringify(data),
-        // };
-        // const fetch_store = await fetch('https://login.acwallet.io/api/v1/getBankAccount', options);
-        // console.log(fetch_store.json());
         getAccount();
+        return;
     });
 
     var coin_want_sell = JSON.parse(localStorage.getItem('sellValue'))
 
     document.getElementById("coinSell").innerHTML = coin_want_sell + ' <%= coin %>'
-    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell) * parseFloat(<%= rate %>));
+    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell) * parseFloat('<%= rate %>'));
 </script>
+<style>
+    /*Hide arow input number*/
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>

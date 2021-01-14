@@ -190,7 +190,8 @@
             buyContinue.classList.add('disabled');
         }else{
             buyContinue.classList.remove('disabled');
-        }       
+        }
+        return;  
     }
 
     // set info for html
@@ -199,7 +200,7 @@
     var quantityInvalid = true;
     var addressInvalid = true;
     address_val.addEventListener('input', function () {        
-        var coinPrice = <%=rate%>;
+        var coinPrice = parseFloat('<%=rate%>');
         quantityInvalid = true;
         var quantity = address_val.value;
         if (quantity == undefined || quantity == "") {
@@ -242,8 +243,8 @@
             agentId: agencyId,
             receiveAddress: this.value,
             quantity: address_val.value,
-            sumPrice: parseFloat(address_val.value) * <%=rate%>,
-            amountValue: <%=rate%>,
+            sumPrice: parseFloat(address_val.value) * parseFloat('<%=rate%>'),
+            amountValue: '<%=rate%>',
         }
         // save to localStorage
         localStorage.setItem('user', JSON.stringify(user));

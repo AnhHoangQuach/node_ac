@@ -71,35 +71,35 @@
                             <div class="mb-3 fs-120">
                                 <span class="font-weight-bold">Bạn đã đặt lệnh bán <%= coin %> thành công!</span>
                             </div>
+                            <div class="col-12 mb-2 fs-80">
+                                <span class="font-weight-500">Mã đơn hàng:</span>
+                                <span class="font-weight-bold text-danger" id="order_id"></span>
+                            </div>
                             <div class="col-12 mb-2">
                                 <span class="font-weight-500">Số lượng bán:</span>
                                 <span class="font-weight-bold text-primary" id="coin_value_sell"></span>
                             </div>
                             <div class="col-12 fs-075 text-secondary mb-4">
                                 <span class="ml-1 mr-1">
-                                    Giá bán: <span class="font-weight-bold text-danger"><%= Intl.NumberFormat().format(rate) %> VND</span>
+                                    Giá bán: <span class="font-weight-bold text-danger" id="rate"></span>
                                 </span>
                             </div>
                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success" id="sumPriceSell">48,315,000 VND</span>
+                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success" id="sumPriceSell"></span>
                             </div>
                             <div class=" d-inline-block">
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Ngân hàng nhận tiền:</span>
-                                    <span class="font-weight-bold" id="bank_receive">Techcombank</span>
+                                    <span class="font-weight-bold" id="bank_receive"></span>
                                 </div>
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Số tài khoản:</span>
-                                    <span class="font-weight-bold" id="address_receive_number">19036456090015</span>
+                                    <span class="font-weight-bold" id="address_receive_number"></span>
                                 </div>
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Tên chủ tài khoản:</span>
-                                    <span class="font-weight-bold" id="address_receive_name">Do Viet Anh</span>
-                                </div>
-                                <div class="align-items-center mb-1">
-                                    <span class="bank-title">Nội dung chuyển khoản:</span>
-                                    <span class="font-weight-bold">TTB1R6WA</span>
-                                </div>
+                                    <span class="font-weight-bold" id="address_receive_name"></span>
+                                </div>                               
                             </div>
                             <hr />
                             <div class="row">
@@ -117,8 +117,7 @@
                                                 <input type="text" class="form-control" readonly="readonly" value="TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-light border" id="basic-addon2" onclick="copyCode()">
-                                                        <i class="las la-copy mr-1"></i>
-                                                        Sao chép
+                                                        <i class="las la-copy mr-1"></i>                                                        
                                                     </button>
                                                 </div>
                                             </div>
@@ -154,10 +153,12 @@
 
 <script>
     var retrievedFullData = JSON.parse(localStorage.getItem('sellValue'));
+    console.log(retrievedFullData);
     var accountInfo = JSON.parse(JSON.parse(localStorage.getItem('accountInfo')));
 
     document.getElementById('coin_value_sell').innerHTML = Intl.NumberFormat().format(retrievedFullData) + ' <%= coin %>';
-    document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData) * parseFloat(<%= rate %>));
+    document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData) * parseFloat('<%= rate %>'));
+    document.getElementById('rate').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData.rate));
     document.getElementById('address_receive_number').innerHTML = accountInfo.accountNumber;
     document.getElementById('address_receive_name').innerHTML = accountInfo.accountName;
 </script>

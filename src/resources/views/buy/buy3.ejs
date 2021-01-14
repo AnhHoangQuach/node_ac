@@ -95,10 +95,10 @@
                                         <span class="bank-title">Tên chủ tài khoản:</span>
                                         <span class="font-weight-bold"><%- JSON.parse(agency.bankAccounts)[0].name %></span>
                                     </div>
-                                    <div class="d-flex align-items-center mb-1">
+                                    <!-- <div class="d-flex align-items-center mb-1">
                                         <span class="bank-title">Nội dung chuyển khoản:</span>
                                         <span class="font-weight-bold">TTB1R6WA</span>
-                                    </div>
+                                    </div> -->
                                     <span id="bank_list_name" style="display: none">
                                         <% listBank.some(function(el) { %>
                                             <% if (el.code == JSON.parse(agency.bankAccounts)[0].bankCode) { %>
@@ -157,10 +157,10 @@
                                                 </span>-->
                                             </div>
                                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                                Số tiền bạn trả: <span class="font-weight-bolder text-success" id="sum_price_value">2,315,000 VNDT</span>
+                                                Số tiền bạn trả: <span class="font-weight-bolder text-success" id="sum_price_value">0 VNDT</span>
                                             </div>
                                             <div class="mb-4">
-                                                Địa chỉ ví nhận: <span class="font-weight-bold" id="address_receive">TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq</span>
+                                                Địa chỉ ví nhận: <span class="font-weight-bold" id="address_receive"></span>
                                             </div>
                                             <div class="text-danger fs-085">
                                                 Chú ý: Cần kiểm tra kỹ địa chỉ ví. Đại lý sẽ không chịu trách nhiệm trường hợp bạn gửi nhầm coin hay địa chỉ ví.
@@ -278,13 +278,14 @@
             return response.json();
         }).then(data => {
             localStorage.setItem('fullData', JSON.stringify(data));
-            window.location.href = 'http://localhost:3000/transaction/buy?step=4&coin=<%= coin %>';
+            window.location.href = '/transaction/buy?step=4&coin=<%= coin %>';
+            return;
         });
     }
 
     // set information for order
     document.querySelector('#order_value_coin').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity)) + ' <%= coin %>';
-    document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.sumPrice));
+    document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity) * parseFloat('<%= rate %>'));
     document.querySelector('#address_receive').innerHTML = retrievedObject.receiveAddress;
 
     document.querySelector('#create_order').addEventListener('click', function(e) {    
