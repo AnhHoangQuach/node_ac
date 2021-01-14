@@ -202,6 +202,7 @@
     address_val.addEventListener('input', function () {        
         var coinPrice = parseFloat('<%=rate%>');
         quantityInvalid = true;
+        buyContinue.classList.add('disabled');
         var quantity = address_val.value;
         if (quantity == undefined || quantity == "") {
             toastr_error('Vui lòng nhập số lượng mua','');
@@ -219,6 +220,7 @@
 
     address_wallet.addEventListener('blur', function () {      
         addressInvalid = true;
+        buyContinue.classList.add('disabled');
         if (this.value == undefined || this.value == "") {
             toastr_error('Vui lòng nhập địa chỉ nhận coin', '');
             return;

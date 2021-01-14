@@ -172,14 +172,14 @@
                                             <i class="las la-times-circle"></i>
                                             Bỏ qua
                                         </button>
-                                        <!--<button type="button" class="btn btn-primary">
+                                   
+                                        <button id="create_order" class="btn btn-primary">
+                                            <div id="confirm-spinner" class="spinner-border text-secondary spinner-border-sm d-none" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
-                                        </button>-->
-                                        <a href="javascript:void(0)" type="button" id="create_order" class="btn btn-primary">
-                                            <i class="las la-check-circle"></i>
-                                            Xác nhận
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -270,6 +270,9 @@
     localStorage.setItem('data', JSON.stringify(data));
 
     async function createOrder() {
+        $("#MdlBuy button").attr('disabled',true);
+        document.querySelector('#confirm-spinner').classList.remove('d-none');
+
         var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
         fetch('https://login.acwallet.io/api/v1/create-order', {
             method: 'POST',
