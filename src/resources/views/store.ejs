@@ -9,23 +9,27 @@
                             <div class="container">
                                 <div class="user-profile text-center text-white mt-5">
                                     <div class="user-avatar mb-2">
-                                        <img src="<%= (agency.avatar == undefined) ? avatar : '' %>" class="rounded-circle border-white border-2" width="160">
+                                        <img src="<%= (agency.avatar == undefined) ? avatar : '' %>"
+                                            class="rounded-circle border-white border-2" width="160">
                                     </div>
                                     <div class="user-info">
                                         <h3 class="fs-150 mb-0 text-white">(<%- agency.name %>)</h3>
                                         <p class="mb-3" style="line-height:1">
                                             <span class="ml-1 fs-080 font-weight-normal mt-1">
-                                                Cấp đại lý: <span class="font-weight-bold"><%= type %></span>
+                                                Cấp đại lý: <span class="font-weight-bold">
+                                                    <%= type %>
+                                                </span>
                                             </span>
                                         </p>
                                         <p class="mb-3">
-                                            <span class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
+                                            <span
+                                                class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
                                                 <i class="las la-check-circle"></i>
-                                                <% if(agency.verification === "nonVerify") { %>
-                                                    Chưa xác minh    
-                                                <% } else { %>
-                                                    Đã xác minh
-                                                <% } %>
+                                                <% if(agency.verification==="nonVerify" ) { %>
+                                                    Chưa xác minh
+                                                    <% } else { %>
+                                                        Đã xác minh
+                                                        <% } %>
                                             </span>
                                         </p>
                                         <p class="fs-090 mb-3">
@@ -36,9 +40,10 @@
                                             <span class=" font-weight-normal d-block p-add">
                                                 <span class="mr-2 ml-2">
                                                     <i class="las la-phone-alt"></i>
-                                                    <%= JSON.parse(agency.contact).phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3") %>
+                                                    <%= JSON.parse(agency.contact).phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3"
+                                                        ) %>
                                                 </span>
-                                                <span class="mr-2 ml-2">    
+                                                <span class="mr-2 ml-2">
                                                     <i class="las la-envelope"></i>
                                                     <%= JSON.parse(agency.contact).email %>
                                                 </span>
@@ -47,32 +52,39 @@
                                         <p>
                                             <span class="d-block">
                                                 <span class="col-12 col-lg-8 col-md-8 text-left">
-                                                    <a href="<%= JSON.parse(agency.contact).facebook %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('facebook') == true && JSON.parse(agency.contact).facebook != '')  ? '' : 'display:none' %>">
+                                                    <a href="<%= JSON.parse(agency.contact).facebook %>"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('facebook') == true && JSON.parse(agency.contact).facebook != '')  ? '' : 'display:none' %>">
                                                         <img src="img/fb.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 zl"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('zalo') == true && JSON.parse(agency.contact).zalo != '') ? '' : 'display:none' %>">
+                                                    <a href="#"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 zl"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('zalo') == true && JSON.parse(agency.contact).zalo != '') ? '' : 'display:none' %>">
                                                         <img src="img/zl.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 tl"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('telegram') == true && JSON.parse(agency.contact).telegram != '') ? '' : 'display:none' %>">
+                                                    <a href="#"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 tl"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('telegram') == true && JSON.parse(agency.contact).telegram != '') ? '' : 'display:none' %>">
                                                         <img src="img/tl.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 vb"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('viber') == true && JSON.parse(agency.contact).viber != '') ? '' : 'display:none' %>">
+                                                    <a href="#"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 vb"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('viber') == true && JSON.parse(agency.contact).viber != '') ? '' : 'display:none' %>">
                                                         <img src="img/vb.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 messenger"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('message') == true && JSON.parse(agency.contact).message != '') ? '' : 'display:none' %>">
+                                                    <a href="#"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 messenger"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('message') == true && JSON.parse(agency.contact).message != '') ? '' : 'display:none' %>">
                                                         <img src="img/messenger.png" width="32">
                                                     </a>
-                                                    <a href="tel:<%= JSON.parse(agency.contact).phone %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 phone"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('phone') == true && JSON.parse(agency.contact).phone != '') ? '' : 'display:none' %>">
+                                                    <a href="tel:<%= JSON.parse(agency.contact).phone %>"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 phone"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('phone') == true && JSON.parse(agency.contact).phone != '') ? '' : 'display:none' %>">
                                                         <img src="img/phone.png" width="32">
                                                     </a>
-                                                    <a href="mailto:<%= JSON.parse(agency.contact).email %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 gmail"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('email') == true && JSON.parse(agency.contact).email != '') ? '' : 'display:none' %>">
+                                                    <a href="mailto:<%= JSON.parse(agency.contact).email %>"
+                                                        class="w-25 text-decoration-none text-secondary mr-2 ml-2 gmail"
+                                                        style="<%= (JSON.parse(agency.contact).hasOwnProperty('email') == true && JSON.parse(agency.contact).email != '') ? '' : 'display:none' %>">
                                                         <img src="img/gmail.png" width="32">
                                                     </a>
                                                 </span>
@@ -96,7 +108,8 @@
             <div class="col-12 col-xl-8 col-lg-8 col-md-12">
                 <div class="prifile-box">
                     <div class="card shadow-sm mb-4 border-0">
-                        <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
+                        <div
+                            class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
                             <h5 class="m-0 font-weight-bold text-primary">
                                 Ký quỹ
                             </h5>
@@ -111,7 +124,7 @@
                                             <span>Số tiền ký quỹ</span>
                                         </div>
                                         <div class="col-12 col-lg-8 col-md-8 text-left">
-                                            <span class="font-weight-bold text-danger">
+                                            <span class="font-weight-bold text-danger" id="guaranter-amount">
                                                 <%- Intl.NumberFormat().format(agency.guaranteeAmount) %>
                                             </span>
                                         </div>
@@ -140,7 +153,6 @@
                                         </div>
                                     </div>
 
-
                                 </div>
                             </div>
 
@@ -157,14 +169,16 @@
                     </div>
                     <div class="card-body border-0 pt-3 pb-3 pr-4 pl-4 ml-1 mr-1">
                         <div class="row">
-                            <% wallet.forEach((value, index) => { %>
+                            <% wallet.forEach((value, index)=> { %>
                                 <div class="col-12">
                                     <div class="form-group mini-col">
                                         <label for="" class="font-weight-500">Địa chỉ ví <%= value.currency %></label>
                                         <div class="input-group mb-0">
-                                            <input type="text" class="form-control" value="<%= value.address %>" readonly="">
+                                            <input type="text" class="form-control" value="<%= value.address %>"
+                                                readonly="">
                                             <div class="input-group-append">
-                                                <button class="btn btn-light border" id="basic-addon2" onclick="copyCode(this)">
+                                                <button class="btn btn-light border" id="basic-addon2"
+                                                    onclick="copyCode(this)">
                                                     <i class="las la-copy mr-1"></i>
                                                     Sao chép
                                                 </button>
@@ -172,7 +186,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <% }) %>
+                                <% }) %>
                         </div>
                     </div>
                 </div>
@@ -180,4 +194,43 @@
         </div>
 
     </div>
+
+    <script>
+
+        // $.ajax({
+        //     url: 'https://api.trongrid.io/v1/accounts/' + '<%- agency.address %>',
+        //     type: "GET",
+        //     // mode: 'no-cors',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     success: function (response) {
+        //         console.log(response);
+        //         return;
+        //     },
+        //     error: function (error) {
+        //         console.log(error);            
+        //         return;
+        //     }
+        // })
+
+        function getBalance() {
+            fetch('https://api.trongrid.io/v1/accounts/' + '<%- agency.address %>', {
+                method: 'GET',
+            })
+                .then(response => {
+                    return response.json();
+                }).then(data => {
+                    console.log(data);
+                    var assetV2 = data.data[0].assetV2;
+                    assetV2.forEach(element => {
+                        if (element.key == "1003496") {
+                            var balance = element.value;
+                            document.getElementById('guaranter-amount').innerHTML =Intl.NumberFormat().format(balance / 1000) + ' VNDT';
+                        }
+                    });
+                    return;
+                });
+        }
+        getBalance();
+
+    </script>
 </section>
