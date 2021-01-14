@@ -26,62 +26,8 @@
 <section id="buy-sell" class="pt-5">
     <div class="container pb-4">
         <div class="row">
-            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
-                                            <i class="cc VNDT" title="VNDT"></i>
-                                        </span>
-                                        <span>
-                                            <strong>VN Coin</strong><br>
-                                            <span class="fs-090 text-secondary">
-                                                VNDT/VNDT
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary"><%= rates['ask_vndt'] %></span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i> Mua
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning"><%= rates['bid_vndt'] %></span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i> Bán
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -137,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -193,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card text-black border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -249,62 +195,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card text-black border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
-                                            <i class="cc WEX" title="WEX"></i>
-                                        </span>
-                                        <span>
-                                            <strong>WEXLocaly</strong><br>
-                                            <span class="fs-090 text-secondary">
-                                                WEX/VNDT
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_wex'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_wex'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_wex'].toLocaleString()) %>%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bold text-primary"><%= rates['ask_wex'] %></span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i> Mua
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bold text-warning"><%= rates['bid_wex'] %></span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i> Bán
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -360,7 +251,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -416,7 +307,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -472,7 +363,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -528,7 +419,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
@@ -584,28 +475,28 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
+            <div class="col-12 col-xl-4 col-lg-6 col-md-6">
                 <div class="card bg-white text-black shadow border-0 mb-4">
                     <div class="card-body">
                         <div class="hl-coin-box">
                             <div class="coin-change mb-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
-                                            <i class="cc BCH" title="BCH"></i>
+                                        <span class="fs-220 lh-1 mr-3 d-inline-flex">
+                                            <i class="cc VNDT" title="VNDT"></i>
                                         </span>
                                         <span>
-                                            <strong>Bitcoin Cash</strong>
+                                            <strong>VNCOIN</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
-                                                BCH/VND
+                                                VNDT/VND
                                             </span>
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_bch'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_bch'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_bch'].toLocaleString()) %>%</span>
+                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
                                         </span>
                                     </span>
                                 </div>
@@ -615,10 +506,10 @@
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bolder text-primary"><%= rates['ask_bch'].toLocaleString() %></span>
+                                        <span class="font-weight-bolder text-primary"><%= rates['ask_vndt'].toLocaleString() %></span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
+                                        <a href="/transaction/buy?step=2&coin=vndt" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
                                             <i class="las la-file-import"></i> Mua
                                         </a>
                                     </div>
@@ -627,10 +518,10 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bolder text-warning"><%= rates['bid_bch'].toLocaleString() %></span>
+                                        <span class="font-weight-bolder text-warning"><%= rates['bid_vndt'].toLocaleString() %></span>
                                     </div>
                                     <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
+                                        <a href="/transaction/sell?step=2&coin=vndt" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
                                             <i class="las la-file-export"></i> Bán
                                         </a>
                                     </div>
@@ -639,63 +530,8 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <!-- <div class="col-12 col-xl-3 col-lg-6 col-md-6">
-                <div class="card bg-white text-black shadow border-0 mb-4">
-                    <div class="card-body">
-                        <div class="hl-coin-box">
-                            <div class="coin-change mb-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <span class="fs-220 lh-1 mr-3">
-                                            <i class="cc LTC" title="LTC"></i>
-                                        </span>
-                                        <span>
-                                            <strong>!!ALTcoinsHOSTING!!</strong>
-                                            <br>
-                                            <span class="fs-090 text-secondary">
-                                                LTC/VND
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_ltc'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_ltc'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_ltc'].toLocaleString()) %>%</span>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="coin-buy-sell">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá mua:</span>
-                                        <span class="font-weight-bolder text-primary"><%= rates['ask_ltc'].toLocaleString() %></span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/buy?step=2" class="btn btn-sm btn-link font-weight-bold text-primary p-0">
-                                            <i class="las la-file-import"></i> Mua
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <span class="font-weight-500 fs-090 text-secondary">Giá bán:</span>
-                                        <span class="font-weight-bolder text-warning"><%= rates['bid_ltc'].toLocaleString() %></span>
-                                    </div>
-                                    <div>
-                                        <a href="/transaction/sell?step=2" class="btn btn-sm btn-link font-weight-bold text-warning p-0">
-                                            <i class="las la-file-export"></i> Bán
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+            </div>
+          
         </div>
     </div>
 </section>
