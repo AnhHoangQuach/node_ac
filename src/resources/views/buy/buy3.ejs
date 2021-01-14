@@ -76,7 +76,7 @@
                                         <select class="form-control selectpickernone" tabindex="-98" id="select_bank">
                                             <% listBank.forEach((value, index) => { %>
                                                 <% if (value.code == JSON.parse(agency.bankAccounts)[0].bankCode) { %>
-                                                    <option value="<%= value.code %>" <%= index == 0 ? "selected" : '' %>><%= value.name %></option>
+                                                    <option value="<%= value.code %>"><%= value.name %></option>
                                                 <% } %>
                                             <% }) %>
                                         </select>
@@ -244,6 +244,8 @@
     var retrievedObject = JSON.parse(localStorage.getItem('user'));
     var e = document.getElementById("select_bank");
 
+    document.getElementById('bank_name').innerHTML = e.options[0].text;
+
     e.addEventListener('change', function() {
         document.getElementById('bank_name').innerHTML = this.options[this.selectedIndex].text;
     });
@@ -275,6 +277,7 @@
             headers: { 'Content-Type': 'application/json' },
         })
         .then(response =>  {
+            console.log(response);
             return response.json();
         }).then(data => {
             localStorage.setItem('fullData', JSON.stringify(data));

@@ -82,7 +82,7 @@
                                             <select class="form-control selectpickernone" tabindex="-98"
                                                 id="select_bank">
                                                 <% listBank.forEach((value, index)=> { %>
-                                                    <option value="<%= value.code %>" <%=index==0 ? "selected" : '' %>>
+                                                    <option value="<%= value.code %>">
                                                         <%= value.name %>
                                                     </option>
                                                     <% }) %>
@@ -194,7 +194,7 @@
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
                                         </button>-->
-                                        <a href="/transaction/sell?step=4&coin=<%=coin%>" type="button"
+                                        <a href="javascript:void(0)" type="button"
                                             id="create_sell_order" class="btn btn-primary">
                                             <i class="las la-check-circle"></i>
                                             Xác nhận
@@ -268,9 +268,20 @@
     var codeBank = e.value;
     var accountNumberValid = true, postData;
 
+    document.getElementById('bank_name_receive').innerHTML = e.options[0].text
+    var BankSaved = {}
+
     e.addEventListener('change', function () {
         codeBank = this.value;
         document.getElementById('address_name').value = "";
+        let bankName = listBank.find(value => {
+            return value.code == codeBank
+        })
+
+        BankSaved.bankCode = codeBank
+        BankSaved.name = bankName.name
+
+        document.getElementById('bank_name_receive').innerHTML = bankName.name;
         sellContinue.classList.add('disabled');
         user_address.value = "";
         return;
@@ -323,6 +334,8 @@
             accountNumber: accountNumber,
         }
         localStorage.setItem('postData', JSON.stringify(postData));
+        BankSaved.number = accountNumber;
+        BankSaved.bank = ""
         getAccount();
         return;
     });
@@ -331,6 +344,68 @@
 
     document.getElementById("coinSell").innerHTML = coin_want_sell + ' <%= coin %>'
     document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell) * parseFloat('<%= rate %>'));
+
+    // create order
+
+    //orderType
+    const queryString = window.location.href;
+    var type
+    if (queryString.includes('buy')) {
+        type = 2
+    } else if (queryString.includes('sell')) {
+        type = 1
+    }
+
+    //typeCoin
+    var listCoin = {
+        btc: 1,
+        eth: 3,
+        bch: 4,
+        ltc: 5,
+        usdt: 6,
+        xrp: 8,
+        xlm: 10,
+        trx: 11,
+        vndt: 12,
+        usdf: 14,
+    }
+
+    var typeCoin;
+    var coinCode = '<%= coin %>'
+    if (listCoin.hasOwnProperty(coinCode.toLowerCase())) {
+        typeCoin = listCoin[coinCode.toLowerCase()];
+    }
+
+    var retrievedObject = JSON.parse(localStorage.getItem('user'));
+    var data = {
+        orderType: type,
+        currencyCode: typeCoin,
+        quantity: parseFloat(coin_want_sell),
+        receiveBank: BankSaved,
+        receiveAddress: '<%= agency.address %>',
+        agentId: parseInt(retrievedObject.agentId),
+    }
+
+    async function createSellOrder() {
+        fetch('https://login.acwallet.io/api/v1/create-order', {
+            method: 'POST',
+            body:    JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response =>  {
+            console.log(response);
+            return response.json();
+        }).then(data => {
+            localStorage.setItem('fullData', JSON.stringify(data));
+            window.location.href = '/transaction/sell?step=4&coin=<%= coin %>';
+            return;
+        });
+    }
+
+
+    document.querySelector('#create_sell_order').addEventListener('click', function(e) {    
+        createSellOrder();
+    }, false);
 </script>
 <style>
     /*Hide arow input number*/
