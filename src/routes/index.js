@@ -3,6 +3,7 @@ const storeRouter = require('./store')
 const transRouter = require('./transaction')
 const coinRouter = require('./coins')
 const walletRouter = require('./wallet')
+const searchRouter = require('./search')
 
 
 function route(app) {
@@ -10,6 +11,7 @@ function route(app) {
     app.use('/transaction', transRouter)
     app.use('/coins', coinRouter)
     app.use('/wallet', walletRouter)
+    app.use('/search', searchRouter)
 
     app.use('/', siteRouter)
 
