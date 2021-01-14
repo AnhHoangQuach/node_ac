@@ -1,78 +1,61 @@
 <section id="intro" class="intro-short-small">
-    <div class="intro-container ">
-        <div id="introCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-            <div class="carousel-inner" role="listbox">
-
-                <div class="carousel-item active">
-                    <div class="carousel-background"><img src="img/pr.jpg" alt="" class="w-100"></div>
-                    <div class="carousel-container">
-                        <div class="carousel-content content-center">
-                            <div class="container">
-                                <div class="user-profile text-center text-white mt-5">
-                                    <div class="user-info">
-                                        <h3 class="fs-150 mb-0 text-white mb-4">Tra cứu đơn hàng</h3>
-                                        <div class="row justify-content-center">
-                                            <div class="col-12 col-xl-6 col-lg-7 col-md-8 col-sm-12">
-                                                <div class="input-group input-group-lg">
-                                                    <input name="ctr_banner_home$TxtKeyword" type="text" id="ctr_banner_home_TxtKeyword" class="form-control key-word" placeholder="Mã giao dịch...">
-                                                    <div class="input-group-append">
-                                                        <a id="ctr_banner_home_LbtSearch" class="btn btn-secondary btn-block" href="#">
-                                                            <i class="icon-magnifier f-16"></i>
-                                                            <span>Tra cứu</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="h-100 bn-search text-center d-flex align-items-center" style="background-image: url('img/pr.jpg');">
+        <div class="intro-container w-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-6 col-lg-7 col-md-8 col-sm-12">
+                        <h3 class="fs-150 mb-0 text-white mb-4">Tra cứu đơn hàng</h3>
+                        <div class="input-group input-group-lg">
+                            <input class="form-control" placeholder="Mã giao dịch..." id="order_id_value">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-block" id="search_order">
+                                    <i class="icon-magnifier f-16"></i>
+                                    <span>Tra cứu</span>
+                                </button>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
+    
 </section>
 
 <section id="coin-info" class="pt-5">
 
-    <div class="container pb-5">
+    <div class="container pb-5 d-none">
 
         <div class="row justify-content-center">
             <div class="col-12 col-xl-6 col-lg-7 ">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">Đơn hàng: DH087485229</h5>
+                        <h5 class="mb-0" id="code_order"></h5>
                     </div>
                     <div class="card-body">
                         <div class="view-box fs-090">
                             <p class="mb-2">
                                 <span>Mã giao dịch </span>
-                                <span class="float-right font-weight-bold ">
+                                <span class="float-right font-weight-bold " id="code_transaction">
                                     TTB23F01A
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Số lượng </span>
-                                <span class="float-right font-weight-bold text-danger">
+                                <span class="float-right font-weight-bold text-danger" id="code_quantity">
                                     150.084 XENG
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Tỉ giá </span>
-                                <span class="float-right">
+                                <span class="float-right" id="code_rate">
                                     23,374 VNDT
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Tổng cộng </span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="code_amount">
                                     3,485,939 VNDT
                                 </span>
                             </p>
@@ -85,19 +68,19 @@
                             <hr>
                             <p class="mb-2">
                                 <span>Giao dịch </span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="coin_type">
                                     Mua XENG
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Người bán </span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="coin_person_sell">
                                     Tuanhung
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Địa chỉ ví nhận </span>
-                                <span class="float-right d-inline-block text-right font-weight-bold" style="word-wrap: break-word;max-width:calc(100% - 80px);">
+                                <span class="float-right d-inline-block text-right font-weight-bold" style="word-wrap: break-word;max-width:calc(100% - 80px);" id="coin_receive_address">
                                     TPwSyT9NY6Tx7iLNXAghJhGZawC4d7F7nq
                                 </span>
                             </p>
@@ -113,19 +96,19 @@
                             <hr>
                             <p class="mb-2">
                                 <span>Chuyển tiền vào ngân hàng</span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="coin_bank">
                                     Techcombank
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Số tài khoản</span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="coin_bank_address">
                                     19036456090015
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Tên chủ tài khoản</span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="coin_bank_name">
                                     Do Viet Anh
                                 </span>
                             </p>
@@ -138,7 +121,7 @@
 
                             <p class="mb-2">
                                 <span>Ngày tháng </span>
-                                <span class="float-right font-weight-bold">
+                                <span class="float-right font-weight-bold" id="coin_date">
                                     2020-11-29 30:20:03
                                 </span>
                             </p>
@@ -150,3 +133,150 @@
 
     </div>
 </section>
+<script>
+    // list bank
+    var listBank = [
+        { "code": "970454", "name": "Ngân hàng TMCP Bản Việt (VIETCAPITAL)" },
+        { "code": "970452", "name": "Ngân hàng TMCP Kiên Long (KIENLONGBANK)" },
+        { "code": "970400", "name": "Ngân hàng TMCP Sài Gòn Công Thương (SAIGONBANK)" },
+        { "code": "970430", "name": "Ngân hàng TMCP Xăng Dầu Petrolimex (PG BANK)" },
+        { "code": "970431", "name": "Ngân hàng TMCP xuất nhập khẩu Việt Nam (EXIMBANK)" },
+        { "code": "970455", "name": "Ngân hàng Công nghiệp Hàn Quốc (IBK)" },
+        { "code": "970421", "name": "Ngân hàng Liên Doanh Việt Nga (VRB)" },
+        { "code": "970405", "name": "Ngân hàng NN và PTNN Việt Nam (AGRIBANK)" },
+        { "code": "970408", "name": "Ngân hàng TM TNHH MTV Dầu Khí Toàn Cầu (GPB)" },
+        { "code": "970416", "name": "Ngân hàng TMCP Á Châu (ACB)" },
+        { "code": "970425", "name": "Ngân hàng TMCP An Bình (ABBANK)" },
+        { "code": "970438", "name": "Ngân hàng TMCP Bảo Việt (BVB)" },
+        { "code": "970449", "name": "Ngân hàng TMCP Bưu Điện Liên Việt (LPB)" },
+        { "code": "970415", "name": "Ngân hàng TMCP Công Thương Việt Nam (VIETINBANK)" },
+        { "code": "970412", "name": "Ngân hàng TMCP Đại Chúng Việt Nam (PVCOMBANK)" },
+        { "code": "970414", "name": "Ngân hàng TMCP Đại Dương (OCEANBANK)" },
+        { "code": "970418", "name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)" },
+        { "code": "970406", "name": "Ngân hàng TMCP Đông Á (DONGABANK)" },
+        { "code": "970440", "name": "Ngân hàng TMCP Đông Nam Á (SEABANK)" },
+        { "code": "970426", "name": "Ngân hàng TMCP Hàng Hải Việt Nam (MSB)" },
+        { "code": "970407", "name": "Ngân hàng TMCP Kỹ thương Việt Nam (TECHCOMBANK)" },
+        { "code": "970428", "name": "Ngân hàng TMCP Nam Á (NAMABANK)" },
+        { "code": "970436", "name": "Ngân hàng TMCP Ngoại Thương Việt Nam (VIETCOMBANK)" },
+        { "code": "970437", "name": "Ngân hàng TMCP Phát Triển Thành Phố Hồ Chí Minh (HDB)" },
+        { "code": "970448", "name": "Ngân hàng TMCP Phương Đông (OCB)" },
+        { "code": "970422", "name": "Ngân hàng TMCP Quân Đội (MB)" },
+        { "code": "970419", "name": "Ngân hàng TMCP Quốc Dân (NCB)" },
+        { "code": "970441", "name": "Ngân hàng TMCP Quốc Tế (VIB)" },
+        { "code": "970429", "name": "Ngân hàng TMCP Sài Gòn (SCB)" },
+        { "code": "970443", "name": "Ngân hàng TMCP Sài Gòn - Hà Nội (SHB)" },
+        { "code": "970403", "name": "Ngân hàng TMCP Sài Gòn Thương Tín (SACOMBANK)" },
+        { "code": "970423", "name": "Ngân hàng TMCP Tiên Phong (TPBANK)" },
+        { "code": "970427", "name": "Ngân hàng TMCP Việt Á (VAB)" },
+        { "code": "970432", "name": "Ngân hàng TMCP Việt Nam Thịnh Vương (VPBANK)" },
+        { "code": "970433", "name": "Ngân hàng TMCP Việt Nam Thương Tín (VIETBANK)" },
+        { "code": "970434", "name": "Ngân hàng TNHH Indovina (INDOVINA)" },
+        { "code": "422589", "name": "Ngân hàng TNHH MTV CIMB Việt Nam (CIMB)" },
+        { "code": "970442", "name": "Ngân hàng TNHH MTV Hongleong Việt Nam (HONGLEONG)" },
+        { "code": "970439", "name": "Ngân hàng TNHH MTV Public Việt Nam (PBVN)" },
+        { "code": "970424", "name": "Ngân hàng TNHH MTV Shinhan Việt Nam (SHBVN)" },
+        { "code": "970458", "name": "Ngân hàng TNHH MTV United Overseas Bank (UOB)" },
+
+        { "code": "970457", "name": "Ngân hàng Wooribank (WOORIBANK)" }
+    ];
+
+
+    function checkError() {
+        if (orderCode) {
+            button_search_order.classList.add('disabled');
+        }else{
+            button_search_order.classList.remove('disabled');
+        } 
+        return;
+    }
+
+    var orderCode = true, codeSearch
+
+    order_id_value = document.getElementById('order_id_value')
+    button_search_order = document.getElementById('search_order')
+
+    button_search_order.classList.add('disabled');
+
+    order_id_value.addEventListener('input', function () {        
+        orderCode = true
+        if (this.value == undefined || this.value == "") {
+            toastr_error('Vui lòng nhập địa chỉ đơn hàng', '');
+            return;
+        }
+
+        if(this.value.length != 13) {
+            toastr_error('Địa chỉ đơn hàng không hợp lệ', '');
+            return;
+        }
+
+        codeSearch = parseInt(this.value);
+        orderCode = false;
+        checkError()
+    })
+
+    button_search_order.addEventListener('click', function (e) {
+        getOrderDetails(codeSearch);
+    })
+
+    var listCoin = {
+        btc: 1,
+        eth: 3,
+        bch: 4,
+        ltc: 5,
+        usdt: 6,
+        xrp: 8,
+        xlm: 10,
+        trx: 11,
+        vndt: 12,
+        usdf: 14,
+    }
+
+    function checkType(type) {
+        if(type == 1) {
+            return 'Mua';
+        }
+        return 'Bán';
+    }
+
+    function customDate(date) {
+        var d = new Date(date);
+        var year = d.getFullYear()
+        var month = d.getMonth() + 1
+        var day = d.getDate();
+        var time = d.toLocaleTimeString();
+        return `${year}-${month}-${day} ${time}`
+    }
+
+    async function getOrderDetails(id) {
+        const api_url = `http://login.acwallet.io/api/v1/order-details?id=${id}`
+        const fetch_response = await fetch(api_url)
+        const data = await fetch_response.json()
+
+        if(fetch_response.status == 200) {
+            document.querySelector('#coin-info .container').classList.remove('d-none')
+        } else {
+            const message = `Đơn hàng ${id} không tồn tại`;
+            toastr_error(message, '');
+            return;
+        }
+        
+        document.getElementById('code_order').innerHTML = 'Đơn hàng: ' +  data.id
+        document.getElementById('code_transaction').innerHTML = data.id
+        document.getElementById('code_rate').innerHTML = Intl.NumberFormat().format(data.rate)
+        document.getElementById('code_amount').innerHTML = Intl.NumberFormat().format(data.amount)
+
+        let coin_name = Object.keys(listCoin).find(key => listCoin[key] === data.currencyCode)
+        document.getElementById('code_quantity').innerHTML = data.quantity + ' ' + coin_name.toUpperCase()
+        document.getElementById('coin_type').innerHTML = checkType(data.orderType) + ' ' + coin_name.toUpperCase()
+        document.getElementById('coin_person_sell').innerHTML = data.receiveBank.name
+        document.getElementById('coin_receive_address').innerHTML = data.receiveAddress
+        document.getElementById('coin_bank_address').innerHTML = data.receiveBank.number
+        document.getElementById('coin_date').innerHTML = customDate(data.createdDate)
+
+        let bankName = listBank.find(value => {
+            return value.code == data.receiveBank.bankCode
+        })
+        document.getElementById('coin_bank_name').innerHTML = bankName.name
+    }
+</script>
