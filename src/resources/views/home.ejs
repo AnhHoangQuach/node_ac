@@ -22,11 +22,7 @@
                                         <p class="mb-3">
                                             <span class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
                                                 <i class="las la-check-circle"></i>
-                                                <% if(agency.verification === "nonVerify") { %>
-                                                    Chưa xác minh    
-                                                <% } else { %>
-                                                    Đã xác minh
-                                                <% } %>
+                                                <%= verification %>
                                             </span>
                                             <!--<span class="badge badge-pill badge-secondary rounded d-inline-block ">
                                                 <i class="las la-ban"></i>
@@ -34,7 +30,7 @@
                                             </span>-->
                                             <div class="mb-2">
                                                 <span>Đã ký quỹ:</span><span class="font-weight-bold text-warning">
-                                                    <%- Intl.NumberFormat().format(agency.guaranteeAmount) %> VNDT
+                                                    <%- guaranteeAmount %> VNDT
                                                 </span>
                                             </div>
                                             <a href="/details" class="text-info fs-080">

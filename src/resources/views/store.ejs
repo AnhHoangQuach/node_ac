@@ -25,11 +25,7 @@
                                             <span
                                                 class="badge badge-pill badge-info rounded d-inline-block text-uppercase fs-070 font-weight-normal">
                                                 <i class="las la-check-circle"></i>
-                                                <% if(agency.verification==="nonVerify" ) { %>
-                                                    Chưa xác minh
-                                                    <% } else { %>
-                                                        Đã xác minh
-                                                        <% } %>
+                                                <%= verification %>
                                             </span>
                                         </p>
                                         <p class="fs-090 mb-3">
@@ -124,9 +120,7 @@
                                             <span>Số tiền ký quỹ</span>
                                         </div>
                                         <div class="col-12 col-lg-8 col-md-8 text-left">
-                                            <span class="font-weight-bold text-danger" id="guaranter-amount">
-                                                <%- Intl.NumberFormat().format(agency.guaranteeAmount) %>
-                                            </span>
+                                            <span class="font-weight-bold text-danger" id="guaranter-amount"></span>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -196,22 +190,6 @@
     </div>
 
     <script>
-
-        // $.ajax({
-        //     url: 'https://api.trongrid.io/v1/accounts/' + '<%- agency.address %>',
-        //     type: "GET",
-        //     // mode: 'no-cors',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     success: function (response) {
-        //         console.log(response);
-        //         return;
-        //     },
-        //     error: function (error) {
-        //         console.log(error);            
-        //         return;
-        //     }
-        // })
-
         function getBalance() {
             fetch('https://api.trongrid.io/v1/accounts/' + '<%- agency.address %>', {
                 method: 'GET',
@@ -219,7 +197,6 @@
                 .then(response => {
                     return response.json();
                 }).then(data => {
-                    console.log(data);
                     var assetV2 = data.data[0].assetV2;
                     assetV2.forEach(element => {
                         if (element.key == "1003496") {

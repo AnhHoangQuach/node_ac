@@ -345,7 +345,7 @@
     var coin_want_sell = JSON.parse(localStorage.getItem('sellValue'))
 
     document.getElementById("coinSell").innerHTML = coin_want_sell + ' <%= coin %>'
-    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell) * parseFloat('<%= rate %>'));
+    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell.quantity) * parseFloat('<%= rate %>'));
 
     // create order
 
@@ -378,8 +378,6 @@
         typeCoin = listCoin[coinCode.toLowerCase()];
     }
 
-    var retrievedObject = JSON.parse(localStorage.getItem('user'));
-
     async function createSellOrder() {
 
         $("#MdlSell button").attr('disabled',true);
@@ -388,9 +386,9 @@
         var data = {
             orderType: type,
             currencyCode: typeCoin,
-            quantity: parseFloat(coin_want_sell),
+            quantity: coin_want_sell.quantity,
             receiveBank: BankSaved,     
-            agentId: parseInt(retrievedObject.agentId),
+            agentId: coin_want_sell.agentId,
         }
         console.log(data);      
 

@@ -129,13 +129,17 @@
             </div>
         </div>
     </div>
-
+    <span id="agentId" style="display: none">
+        <%= agency.agencyId %>
+    </span>
 </section>
 
 <script>
     address_val = document.getElementById('sell_coin_value');
     sumPriceSell = document.getElementById('receive_amount');
     sellContinue = document.getElementById('sell_continue');
+
+    var agencyId = document.getElementById('agentId').innerText;
 
     // check Error
     function checkError() {
@@ -166,8 +170,15 @@
         sumPrice = parseFloat(quantity) * parseFloat(coinPrice);
         sumPriceSell.innerHTML = Intl.NumberFormat().format(sumPrice);
         quantityInvalid = false;
+
+        console.log('<%= agency.agentId %>')
         checkError();
 
-        localStorage.setItem('sellValue', JSON.stringify(quantity));
+        var info = {
+            quantity: parseFloat(quantity),
+            agentId: parseInt(agencyId),
+        }
+
+        localStorage.setItem('sellValue', JSON.stringify(info));
     })
 </script>

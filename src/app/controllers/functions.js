@@ -1,5 +1,6 @@
 const e = require("express");
-
+const url = require('url')
+const fetch  = require('node-fetch')
 var listBank = [
     { "code": "970454", "name": "Ngân hàng TMCP Bản Việt (VIETCAPITAL)" },
     { "code": "970452", "name": "Ngân hàng TMCP Kiên Long (KIENLONGBANK)" },
@@ -119,7 +120,54 @@ module.exports = {
 
         var result = (day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
         return result;
-
-       
+    },
+    getTypeAgency: function(api_store_url) {
+        var path_name = url.parse(api_store_url).query.split('name=')[1]
+        var type, avatar
+        if ( path_name.includes('SA')) {
+            type = 'Super Admin'
+            avatar = 'img/sa-icon.png'
+        } else if (path_name.includes('MA')) {
+            type = 'Master Agent'
+            avatar = 'img/ma-icon.png'
+        } else if (path_name.includes('AG')) {
+            type = 'Agent'
+            avatar = 'img/ag-icon.png'
+        } else {
+            type = ''
+        }
+        var agency_info = {
+            type: type,
+            avatar: avatar,
+        }
+        return agency_info
+    },
+    getVerification: function(agency) {
+        if(agency.verification === "nonVerify") {
+            return 'Chưa xác minh';
+        } else {
+            return 'Đã xác minh'
+        }
+    },
+    formatNumber: function(number) {
+        return Intl.NumberFormat().format(number);
+    },
+    getBalance: function(address) {
+        fetch(`https://api.trongrid.io/v1/accounts/${address}`, {
+            method: 'GET',
+        })
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            var assetV2 = data.data[0].assetV2;
+            assetV2.forEach(element => {
+                if (element.key == "1003496") {
+                    var balance = element.value;
+                    var value_return = Intl.NumberFormat().format(balance / 1000) + ' VNDT'
+                    return value_return;
+                }
+            });
+            return;
+        });
     }
 };
