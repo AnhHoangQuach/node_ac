@@ -894,8 +894,26 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.85rem;
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-  line-height: 1.35rem; }
-
+  line-height: 1.35rem; 
+}
+#intro .bn-search {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#intro .bn-search::before {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index:0;
+}
 .carousel-caption {
   right: 30px;
   bottom: unset;

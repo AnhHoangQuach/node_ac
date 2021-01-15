@@ -27,13 +27,13 @@
 
 </section>
 
-<section id="coin-info" class="pt-5 <%= order_exist %>">
+<section id="coin-info" class="pt-5" style="min-height: 350px;">
 
     <div class="container pb-5">
 
         <div class="row justify-content-center">
             <div class="col-12 col-xl-6 col-lg-7 ">
-                <div class="card">
+                <div class="card <%= order_exist %>">
                     <div class="card-header">
                         <h5 class="mb-0" id="code_order">Đơn hàng <%= order.id %>
                         </h5>
@@ -49,26 +49,26 @@
                             <p class="mb-2">
                                 <span>Số lượng </span>
                                 <span class="float-right font-weight-bold text-danger" id="code_quantity">
-                                    <%= order.quantity %>
+                                    <%= Intl.NumberFormat().format(order.quantity) %>
                                         <%= order.currency %>
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Tỉ giá </span>
                                 <span class="float-right" id="code_rate">
-                                    <%= order.rate %> VNDT
+                                    <%= Intl.NumberFormat().format(order.rate) %> VNDT
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Tổng cộng </span>
                                 <span class="float-right font-weight-bold" id="code_amount">
-                                    <%= order.amount %> VNDT
+                                    <%= Intl.NumberFormat().format(order.amount) %> VNDT
                                 </span>
                             </p>
                             <p class="mb-2">
                                 <span>Trạng thái </span>
                                 <span class="float-right">
-                                    <span class="badge badge-pill badge-success wf-85">
+                                    <span class="badge badge-pill badge-<%=order.statusClass%> wf-85">
                                         <%= order.statusText %>
                                     </span>
                                 </span>
@@ -169,7 +169,7 @@
         }
         document.getElementById('search_order').removeAttribute('disabled');
     }
-    
+
     function checkOrder() {
         console.log(order_id_value.value);
         window.location.href = ("/search?id=" + order_id_value.value);

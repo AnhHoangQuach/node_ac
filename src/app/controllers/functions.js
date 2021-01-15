@@ -2,48 +2,48 @@ const e = require("express");
 const url = require('url')
 const fetch  = require('node-fetch')
 var listBank = [
-    { "code": "970454", "name": "Ngân hàng TMCP Bản Việt (VIETCAPITAL)" },
-    { "code": "970452", "name": "Ngân hàng TMCP Kiên Long (KIENLONGBANK)" },
-    { "code": "970400", "name": "Ngân hàng TMCP Sài Gòn Công Thương (SAIGONBANK)" },
-    { "code": "970430", "name": "Ngân hàng TMCP Xăng Dầu Petrolimex (PG BANK)" },
-    { "code": "970431", "name": "Ngân hàng TMCP xuất nhập khẩu Việt Nam (EXIMBANK)" },
-    { "code": "970455", "name": "Ngân hàng Công nghiệp Hàn Quốc (IBK)" },
-    { "code": "970421", "name": "Ngân hàng Liên Doanh Việt Nga (VRB)" },
-    { "code": "970405", "name": "Ngân hàng NN và PTNN Việt Nam (AGRIBANK)" },
-    { "code": "970408", "name": "Ngân hàng TM TNHH MTV Dầu Khí Toàn Cầu (GPB)" },
-    { "code": "970416", "name": "Ngân hàng TMCP Á Châu (ACB)" },
-    { "code": "970425", "name": "Ngân hàng TMCP An Bình (ABBANK)" },
-    { "code": "970438", "name": "Ngân hàng TMCP Bảo Việt (BVB)" },
-    { "code": "970449", "name": "Ngân hàng TMCP Bưu Điện Liên Việt (LPB)" },
-    { "code": "970415", "name": "Ngân hàng TMCP Công Thương Việt Nam (VIETINBANK)" },
-    { "code": "970412", "name": "Ngân hàng TMCP Đại Chúng Việt Nam (PVCOMBANK)" },
-    { "code": "970414", "name": "Ngân hàng TMCP Đại Dương (OCEANBANK)" },
-    { "code": "970418", "name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)" },
-    { "code": "970406", "name": "Ngân hàng TMCP Đông Á (DONGABANK)" },
-    { "code": "970440", "name": "Ngân hàng TMCP Đông Nam Á (SEABANK)" },
-    { "code": "970426", "name": "Ngân hàng TMCP Hàng Hải Việt Nam (MSB)" },
-    { "code": "970407", "name": "Ngân hàng TMCP Kỹ thương Việt Nam (TECHCOMBANK)" },
-    { "code": "970428", "name": "Ngân hàng TMCP Nam Á (NAMABANK)" },
-    { "code": "970436", "name": "Ngân hàng TMCP Ngoại Thương Việt Nam (VIETCOMBANK)" },
-    { "code": "970437", "name": "Ngân hàng TMCP Phát Triển Thành Phố Hồ Chí Minh (HDB)" },
-    { "code": "970448", "name": "Ngân hàng TMCP Phương Đông (OCB)" },
-    { "code": "970422", "name": "Ngân hàng TMCP Quân Đội (MB)" },
-    { "code": "970419", "name": "Ngân hàng TMCP Quốc Dân (NCB)" },
-    { "code": "970441", "name": "Ngân hàng TMCP Quốc Tế (VIB)" },
-    { "code": "970429", "name": "Ngân hàng TMCP Sài Gòn (SCB)" },
-    { "code": "970443", "name": "Ngân hàng TMCP Sài Gòn - Hà Nội (SHB)" },
-    { "code": "970403", "name": "Ngân hàng TMCP Sài Gòn Thương Tín (SACOMBANK)" },
-    { "code": "970423", "name": "Ngân hàng TMCP Tiên Phong (TPBANK)" },
-    { "code": "970427", "name": "Ngân hàng TMCP Việt Á (VAB)" },
-    { "code": "970432", "name": "Ngân hàng TMCP Việt Nam Thịnh Vương (VPBANK)" },
-    { "code": "970433", "name": "Ngân hàng TMCP Việt Nam Thương Tín (VIETBANK)" },
-    { "code": "970434", "name": "Ngân hàng TNHH Indovina (INDOVINA)" },
-    { "code": "422589", "name": "Ngân hàng TNHH MTV CIMB Việt Nam (CIMB)" },
-    { "code": "970442", "name": "Ngân hàng TNHH MTV Hongleong Việt Nam (HONGLEONG)" },
-    { "code": "970439", "name": "Ngân hàng TNHH MTV Public Việt Nam (PBVN)" },
-    { "code": "970424", "name": "Ngân hàng TNHH MTV Shinhan Việt Nam (SHBVN)" },
-    { "code": "970458", "name": "Ngân hàng TNHH MTV United Overseas Bank (UOB)" },
-    { "code": "970457", "name": "Ngân hàng Wooribank (WOORIBANK)" }
+    { "code": "970454", "name": "NH TMCP Bản Việt (VIETCAPITAL)" },
+    { "code": "970452", "name": "NH TMCP Kiên Long (KIENLONGBANK)" },
+    { "code": "970400", "name": "NH TMCP Sài Gòn Công Thương (SAIGONBANK)" },
+    { "code": "970430", "name": "NH TMCP Xăng Dầu Petrolimex (PG BANK)" },
+    { "code": "970431", "name": "NH TMCP xuất nhập khẩu Việt Nam (EXIMBANK)" },
+    { "code": "970455", "name": "NH Công nghiệp Hàn Quốc (IBK)" },
+    { "code": "970421", "name": "NH Liên Doanh Việt Nga (VRB)" },
+    { "code": "970405", "name": "NH NN và PTNN Việt Nam (AGRIBANK)" },
+    { "code": "970408", "name": "NH TM TNHH MTV Dầu Khí Toàn Cầu (GPB)" },
+    { "code": "970416", "name": "NH TMCP Á Châu (ACB)" },
+    { "code": "970425", "name": "NH TMCP An Bình (ABBANK)" },
+    { "code": "970438", "name": "NH TMCP Bảo Việt (BVB)" },
+    { "code": "970449", "name": "NH TMCP Bưu Điện Liên Việt (LPB)" },
+    { "code": "970415", "name": "NH TMCP Công Thương Việt Nam (VIETINBANK)" },
+    { "code": "970412", "name": "NH TMCP Đại Chúng Việt Nam (PVCOMBANK)" },
+    { "code": "970414", "name": "NH TMCP Đại Dương (OCEANBANK)" },
+    { "code": "970418", "name": "NH TMCP Đầu tư và Phát triển Việt Nam (BIDV)" },
+    { "code": "970406", "name": "NH TMCP Đông Á (DONGABANK)" },
+    { "code": "970440", "name": "NH TMCP Đông Nam Á (SEABANK)" },
+    { "code": "970426", "name": "NH TMCP Hàng Hải Việt Nam (MSB)" },
+    { "code": "970407", "name": "NH TMCP Kỹ thương Việt Nam (TECHCOMBANK)" },
+    { "code": "970428", "name": "NH TMCP Nam Á (NAMABANK)" },
+    { "code": "970436", "name": "NH TMCP Ngoại Thương Việt Nam (VIETCOMBANK)" },
+    { "code": "970437", "name": "NH TMCP Phát Triển TP Hồ Chí Minh (HDB)" },
+    { "code": "970448", "name": "NH TMCP Phương Đông (OCB)" },
+    { "code": "970422", "name": "NH TMCP Quân Đội (MB)" },
+    { "code": "970419", "name": "NH TMCP Quốc Dân (NCB)" },
+    { "code": "970441", "name": "NH TMCP Quốc Tế (VIB)" },
+    { "code": "970429", "name": "NH TMCP Sài Gòn (SCB)" },
+    { "code": "970443", "name": "NH TMCP Sài Gòn - Hà Nội (SHB)" },
+    { "code": "970403", "name": "NH TMCP Sài Gòn Thương Tín (SACOMBANK)" },
+    { "code": "970423", "name": "NH TMCP Tiên Phong (TPBANK)" },
+    { "code": "970427", "name": "NH TMCP Việt Á (VAB)" },
+    { "code": "970432", "name": "NH TMCP Việt Nam Thịnh Vương (VPBANK)" },
+    { "code": "970433", "name": "NH TMCP Việt Nam Thương Tín (VIETBANK)" },
+    { "code": "970434", "name": "NH TNHH Indovina (INDOVINA)" },
+    { "code": "422589", "name": "NH TNHH MTV CIMB Việt Nam (CIMB)" },
+    { "code": "970442", "name": "NH TNHH MTV Hongleong Việt Nam (HONGLEONG)" },
+    { "code": "970439", "name": "NH TNHH MTV Public Việt Nam (PBVN)" },
+    { "code": "970424", "name": "NH TNHH MTV Shinhan Việt Nam (SHBVN)" },
+    { "code": "970458", "name": "NH TNHH MTV United Overseas Bank (UOB)" },
+    { "code": "970457", "name": "NH Wooribank (WOORIBANK)" }
 ];
 
 var listCoin = {
@@ -80,13 +80,24 @@ module.exports = {
     },
     getStatusText: function (code) {
         if (code == 1) {
+            return "Hoàn thành";
+        } else if (code == 2) {
+            return "Đang chờ";
+        } else if (code == 3) {
+            return "Đang xử lý";
+        } else {
+            return "Đã hủy";
+        }
+    },
+    getStatusClass: function (code) {
+        if (code == 1) {
             return "success";
         } else if (code == 2) {
-            return "pending";
+            return "warning";
         } else if (code == 3) {
-            return "proccessing";
+            return "primary";
         } else {
-            return "error";
+            return "danger";
         }
     },
     getcurrencyName: function (code) {
