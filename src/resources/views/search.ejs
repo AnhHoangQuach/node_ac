@@ -16,9 +16,6 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="text-danger mt-4">
-                            <%= error_desc %>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -33,111 +30,122 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-xl-6 col-lg-7 ">
-                <div class="card <%= order_exist %>">
-                    <div class="card-header">
-                        <h5 class="mb-0" id="code_order">Đơn hàng <%= order.id %>
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="view-box fs-090">
-                            <p class="mb-2">
-                                <span>Mã giao dịch </span>
-                                <span class="float-right font-weight-bold " id="code_transaction">
-                                    <%= order.id %>
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Số lượng </span>
-                                <span class="float-right font-weight-bold text-danger" id="code_quantity">
-                                    <%= Intl.NumberFormat().format(order.quantity) %>
-                                        <%= order.currency %>
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Tỉ giá </span>
-                                <span class="float-right" id="code_rate">
-                                    <%= Intl.NumberFormat().format(order.rate) %> VNDT
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Tổng cộng </span>
-                                <span class="float-right font-weight-bold" id="code_amount">
-                                    <%= Intl.NumberFormat().format(order.amount) %> VNDT
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Trạng thái </span>
-                                <span class="float-right">
-                                    <span class="badge badge-pill badge-<%=order.statusClass%> wf-85">
-                                        <%= order.statusText %>
-                                    </span>
-                                </span>
-                            </p>
-                            <hr>
-                            <p class="mb-2">
-                                <span>Giao dịch </span>
-                                <span class="float-right font-weight-bold" id="coin_type">
-                                    <%= order.type %>
-                                        <%= order.currency %>
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Người bán </span>
-                                <span class="float-right font-weight-bold" id="coin_person_sell">
-                                    <%= order.buyerName %>
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Địa chỉ ví nhận </span>
-                                <span class="float-right d-inline-block text-right font-weight-bold"
-                                    style="word-wrap: break-word;max-width:calc(100% - 80px);"
-                                    id="coin_receive_address">
-                                    <%= order.receiveAddress %>
-                                </span>
-                            </p>
-                            <div class="clearfix"></div>
-                            <hr>
-                            <p class="mb-2">
-                                <span>TxID </span>
-                                <span class="float-right d-inline-block text-right font-weight-bold"
-                                    style="word-wrap: break-word;max-width:calc(100% - 80px);">
-                                    <%= order.hash %>
-                                </span>
-                            </p>
-                            <div class="clearfix"></div>
-                            <hr>
-                            <p class="mb-2">
-                                <% if (order.orderType==1 ){ %>
-                                    <span>Nhận tiền về ngân hàng</span>
-                                    <% }else{ %>
-                                        <span>Chuyển tiền vào ngân hàng</span>
-                                        <% } %>
-                                            <span class="float-right font-weight-bold" id="coin_bank">
-                                                <%= order.receiveBank!=null ? order.receiveBank.bank :'' %>
-                                            </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Số tài khoản</span>
-                                <span class="float-right font-weight-bold" id="coin_bank_address">
-                                    <%= order.receiveBank!=null ? order.receiveBank.number :'' %>
-                                </span>
-                            </p>
-                            <p class="mb-2">
-                                <span>Tên chủ tài khoản</span>
-                                <span class="float-right font-weight-bold" id="coin_bank_name">
-                                    <%= order.receiveBank!=null ? order.receiveBank.name:'' %>
-                                </span>
-                            </p>
-
-                            <p class="mb-2">
-                                <span>Ngày tháng </span>
-                                <span class="float-right font-weight-bold" id="coin_date">
-                                    <%= order.createdText %>
-                                </span>
-                            </p>
+                <% if (error_desc !='' ){ %>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0" id="code_order">Đơn hàng <%= order.id %>
+                            </h5>
+                            <div class="text-danger mt-4">
+                                <%= error_desc %>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <% } %>
+                        <div class="card <%= order_exist %>">
+                            <div class="card-header">
+                                <h5 class="mb-0" id="code_order">Đơn hàng <%= order.id %>
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="view-box fs-090">
+                                    <p class="mb-2">
+                                        <span>Mã giao dịch </span>
+                                        <span class="float-right font-weight-bold " id="code_transaction">
+                                            <%= order.id %>
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Số lượng </span>
+                                        <span class="float-right font-weight-bold text-danger" id="code_quantity">
+                                            <%= Intl.NumberFormat().format(order.quantity) %>
+                                                <%= order.currency %>
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Tỉ giá </span>
+                                        <span class="float-right" id="code_rate">
+                                            <%= Intl.NumberFormat().format(order.rate) %> VNDT
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Tổng cộng </span>
+                                        <span class="float-right font-weight-bold" id="code_amount">
+                                            <%= Intl.NumberFormat().format(order.amount) %> VNDT
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Trạng thái </span>
+                                        <span class="float-right">
+                                            <span class="badge badge-pill badge-<%=order.statusClass%> wf-85">
+                                                <%= order.statusText %>
+                                            </span>
+                                        </span>
+                                    </p>
+                                    <hr>
+                                    <p class="mb-2">
+                                        <span>Giao dịch </span>
+                                        <span class="float-right font-weight-bold" id="coin_type">
+                                            <%= order.type %>
+                                                <%= order.currency %>
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Người bán </span>
+                                        <span class="float-right font-weight-bold" id="coin_person_sell">
+                                            <%= order.buyerName %>
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Địa chỉ ví nhận </span>
+                                        <span class="float-right d-inline-block text-right font-weight-bold"
+                                            style="word-wrap: break-word;max-width:calc(100% - 80px);"
+                                            id="coin_receive_address">
+                                            <%= order.receiveAddress %>
+                                        </span>
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <p class="mb-2">
+                                        <span>TxID </span>
+                                        <span class="float-right d-inline-block text-right font-weight-bold"
+                                            style="word-wrap: break-word;max-width:calc(100% - 80px);">
+                                            <%= order.hash %>
+                                        </span>
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <p class="mb-2">
+                                        <% if (order.orderType==1 ){ %>
+                                            <span>Nhận tiền về ngân hàng</span>
+                                            <% }else{ %>
+                                                <span>Chuyển tiền vào ngân hàng</span>
+                                                <% } %>
+                                                    <span class="float-right font-weight-bold" id="coin_bank">
+                                                        <%= order.receiveBank!=null ? order.receiveBank.bank :'' %>
+                                                    </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Số tài khoản</span>
+                                        <span class="float-right font-weight-bold" id="coin_bank_address">
+                                            <%= order.receiveBank!=null ? order.receiveBank.number :'' %>
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <span>Tên chủ tài khoản</span>
+                                        <span class="float-right font-weight-bold" id="coin_bank_name">
+                                            <%= order.receiveBank!=null ? order.receiveBank.name:'' %>
+                                        </span>
+                                    </p>
+
+                                    <p class="mb-2">
+                                        <span>Ngày tháng </span>
+                                        <span class="float-right font-weight-bold" id="coin_date">
+                                            <%= order.createdText %>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
             </div>
         </div>
 
@@ -162,7 +170,7 @@
             toastr_error('Vui lòng nhập địa chỉ đơn hàng', '');
             return;
         }
-        
+
         if (value.length != 13) {
             toastr_error('Địa chỉ đơn hàng không hợp lệ', '');
             return;

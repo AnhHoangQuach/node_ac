@@ -19,6 +19,7 @@ class SearchController {
         if (data_order.id == undefined) {
             order_exist = "d-none";
             error_desc = orderId != undefined ? data_order.description : "";
+            data_order.id = orderId;
         } else {
             data_order.currency = func.getcurrencyName(data_order.currencyCode);
             data_order.statusText = func.getStatusText(data_order.status);
