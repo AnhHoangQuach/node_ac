@@ -263,5 +263,5 @@ function copyCode(elem) {
 
 	/* Copy the text inside the text field */
 	document.execCommand("copy");
-	toastr_success('Sao chép thành công', toastr.options.timeOut);
+	toastr_success('Sao chép thành công', "");
 }
