@@ -11,6 +11,8 @@ class StoreController {
         var agency_info = func.getTypeAgency(api_store_url)
         var verification = func.getVerification(data)
 
+        var balance = await func.getBalance(data.agency.address)
+
         res.render('store', {
             title: 'Chi tiết đại lý',
             link: 'details',
@@ -19,6 +21,7 @@ class StoreController {
             type: agency_info.type,
             avatar: agency_info.avatar,
             verification: verification,
+            balance: balance,
         })
     }
 }

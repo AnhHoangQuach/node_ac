@@ -120,7 +120,9 @@
                                             <span>Số tiền ký quỹ</span>
                                         </div>
                                         <div class="col-12 col-lg-8 col-md-8 text-left">
-                                            <span class="font-weight-bold text-danger" id="guaranter-amount"></span>
+                                            <span class="font-weight-bold text-danger">
+                                                <%= balance %>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -186,28 +188,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    <script>
-        function getBalance() {
-            fetch('https://api.trongrid.io/v1/accounts/' + '<%- agency.address %>', {
-                method: 'GET',
-            })
-                .then(response => {
-                    return response.json();
-                }).then(data => {
-                    var assetV2 = data.data[0].assetV2;
-                    assetV2.forEach(element => {
-                        if (element.key == "1003496") {
-                            var balance = element.value;
-                            document.getElementById('guaranter-amount').innerHTML =Intl.NumberFormat().format(balance / 1000) + ' VNDT';
-                        }
-                    });
-                    return;
-                });
-        }
-        getBalance();
-
-    </script>
 </section>

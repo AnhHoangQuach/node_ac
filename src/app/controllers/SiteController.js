@@ -9,11 +9,12 @@ class SiteController {
 
         const fetch_store = await fetch(api_store_url)
         const data_store = await fetch_store.json()
-        
+
+        var balance = await func.getBalance(data_store.agency.address)
+
         var agency_info = func.getTypeAgency(api_store_url)
 
         var verification = func.getVerification(data_store)
-        var guaranteeAmount = func.formatNumber(data_store.agency.guaranteeAmount)
 
         res.render('home', {
             title: 'Trang chủ',
@@ -23,7 +24,7 @@ class SiteController {
             type: agency_info.type,
             avatar: agency_info.avatar,
             verification: verification,
-            guaranteeAmount: guaranteeAmount
+            balance: balance
         })
     }
 

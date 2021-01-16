@@ -67,6 +67,8 @@ function checkZero(data) {
 }
 
 module.exports = {
+    listBank: listBank,
+    listCoin: listCoin,
     getBankName: function (code) {
         var name = "";
         for (let i = 0; i < listBank.length; i++) {
@@ -164,21 +166,20 @@ module.exports = {
         return Intl.NumberFormat().format(number);
     },
     getBalance: function(address) {
-        fetch(`https://api.trongrid.io/v1/accounts/${address}`, {
+        return fetch(`https://api.trongrid.io/v1/accounts/${address}`, {
             method: 'GET',
         })
         .then(response => {
             return response.json();
         }).then(data => {
             var assetV2 = data.data[0].assetV2;
+            var balance;
             assetV2.forEach(element => {
                 if (element.key == "1003496") {
-                    var balance = element.value;
-                    var value_return = Intl.NumberFormat().format(balance / 1000) + ' VNDT'
-                    return value_return;
+                    balance = element.value;
                 }
             });
-            return;
+            return Intl.NumberFormat().format(balance / 1000) + ' VNDT';
         });
     }
 };
