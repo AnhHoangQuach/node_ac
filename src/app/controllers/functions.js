@@ -179,7 +179,7 @@ module.exports = {
                     balance = element.value;
                 }
             });
-            return Intl.NumberFormat().format(balance / 1000) + ' VNDT';
+            return this.formatNumber(balance / 1000);
         });
     }
 };
