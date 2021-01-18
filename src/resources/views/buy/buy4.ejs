@@ -105,7 +105,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Email
                                     </label>
-                                    <input type="text" class="form-control" value="" placeholder="biso.vn@gmail.com" id="email">
+                                    <input type="email" class="form-control" value="" placeholder="biso.vn@gmail.com" id="email">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -113,7 +113,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Số điện thoại
                                     </label>
-                                    <input type="text" class="form-control" id="phone">
+                                    <input type="number" class="form-control" id="phone">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -121,7 +121,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Zalo
                                     </label>
-                                    <input type="text" class="form-control" id="zalo">
+                                    <input type="number" class="form-control" id="zalo">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -129,7 +129,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Telegram
                                     </label>
-                                    <input type="text" class="form-control" id="telegram">
+                                    <input type="number" class="form-control" id="telegram">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -137,7 +137,7 @@
                                     <label for="" class="font-weight-500 d-block" id="skype">
                                         Skype
                                     </label>
-                                    <input type="text" class="form-control">
+                                    <input type="number" class="form-control">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -145,7 +145,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Viber
                                     </label>
-                                    <input type="text" class="form-control" id="viber">
+                                    <input type="number" class="form-control" id="viber">
                                 </div>
                             </div>
                         </div>
@@ -281,16 +281,54 @@
     //     accId: "",
     // }
 
+    var failedEmail = true
+    var failedPhone = true
+
+    function checkError() {
+        if(failedEmail || failedPhone) {
+            document.querySelector("#orderSoft").classList.add('disabled');
+        } else {
+            document.querySelector("#orderSoft").classList.remove('disabled');
+            toastr.success("Dữ liệu hợp lệ", "");
+            return;
+        }
+    }
+
+    document.querySelector("#orderSoft").classList.add('disabled')
+
     buyerNameInput.addEventListener('change', function() {
         retrievedObjectData.buyerName = this.value;
     });
 
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!regex.test(email)) {
+           return false;
+        } else {
+           return true;
+        }
+    }
+
     email.addEventListener('change', function() {
-        contact.email = this.value;
+        if(!isEmail(this.value)) {
+            toastr_error('Email không hợp lệ', '');
+            return;
+        } else {
+            contact.email = this.value;
+        }
+        failedEmail = false;
+        checkError()
     });
 
     phone.addEventListener('change', function() {
-        contact.phone = this.value;
+        if(this.value.length != 10) {
+            toastr.error('Số điện thoại không đúng', '')
+            return;
+        } else {
+            contact.phone = this.value;
+        }
+        failedPhone = false;
+        checkError()
     });
 
     zalo.addEventListener('change', function() {
