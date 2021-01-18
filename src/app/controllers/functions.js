@@ -137,7 +137,7 @@ module.exports = {
     getTypeAgency: function(api_store_url) {
         var path_name = url.parse(api_store_url).query.split('name=')[1]
         var type, avatar
-        if ( path_name.includes('SA')) {
+        if (path_name.includes('SA')) {
             type = 'Super Admin'
             avatar = 'img/sa-icon.png'
         } else if (path_name.includes('MA')) {

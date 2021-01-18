@@ -36,6 +36,10 @@
                                                             <span>4</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item">
+                                                            <span>5</span>
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -126,64 +130,10 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/buy?step=3" class="btn btn-primary float-right"  data-toggle="modal" data-target="#MdlBuy">
+                        <a href="/transaction/buy?step=4&coin=<%=coin%>" class="btn btn-primary float-right">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
-                        <!-- Popup Buy -->
-                        <div class="modal fade" id="MdlBuy" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận mua <%= coin %></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="text-center">
-                                            <div class="col-12 mb-2">
-                                                <span class="font-weight-500">Số lượng mua:</span>
-                                                <span class="font-weight-bold text-primary" id="order_value_coin"></span>
-                                            </div>
-                                            <div class="col-12 fs-075 text-secondary mb-4">
-                                                <span class="ml-1 mr-1">
-                                                    Tỉ giá: <span class="font-weight-bold text-danger">
-                                                        <%= Intl.NumberFormat().format(rate) %> VND
-                                                    </span>
-                                                </span>
-                                                <!--<span class="ml-1 mr-1">
-                                                    Phí: <span class="font-weight-bold text-warning">240,384 VNDT</span>
-                                                </span>-->
-                                            </div>
-                                            <div class="text-center fs-110 font-weight-bold mb-4">
-                                                Số tiền bạn trả: <span class="font-weight-bolder text-success" id="sum_price_value">0 VNDT</span>
-                                            </div>
-                                            <div class="mb-4">
-                                                Địa chỉ ví nhận: <span class="font-weight-bold" id="address_receive"></span>
-                                            </div>
-                                            <div class="text-danger fs-085">
-                                                Chú ý: Cần kiểm tra kỹ địa chỉ ví. Đại lý sẽ không chịu trách nhiệm trường hợp bạn gửi nhầm coin hay địa chỉ ví.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                            <i class="las la-times-circle"></i>
-                                            Bỏ qua
-                                        </button>
-                                   
-                                        <button id="create_order" class="btn btn-primary">
-                                            <div id="confirm-spinner" class="spinner-border text-secondary spinner-border-sm d-none" role="status">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
-                                            <i class="las la-check-circle"></i>
-                                            Xác nhận
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -239,8 +189,6 @@
         { "code" :"970457", "name" : "Ngân hàng Wooribank (WOORIBANK)"}
     ];
 
-    const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA8888`
-
     var retrievedObject = JSON.parse(localStorage.getItem('user'));
     var e = document.getElementById("select_bank");
 
@@ -268,33 +216,4 @@
 
     // save to localStorage
     localStorage.setItem('data', JSON.stringify(data));
-
-    async function createOrder() {
-        $("#MdlBuy button").attr('disabled',true);
-        document.querySelector('#confirm-spinner').classList.remove('d-none');
-
-        var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
-        fetch('https://login.acwallet.io/api/v1/create-order', {
-            method: 'POST',
-            body:    JSON.stringify(retrievedObjectData),
-            headers: { 'Content-Type': 'application/json' },
-        })
-        .then(response =>  {
-            console.log(response);
-            return response.json();
-        }).then(data => {
-            localStorage.setItem('fullData', JSON.stringify(data));
-            window.location.href = '/transaction/buy?step=4&coin=<%= coin %>';
-            return;
-        });
-    }
-
-    // set information for order
-    document.querySelector('#order_value_coin').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity)) + ' <%= coin %>';
-    document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity) * parseFloat('<%= rate %>'));
-    document.querySelector('#address_receive').innerHTML = retrievedObject.receiveAddress;
-
-    document.querySelector('#create_order').addEventListener('click', function(e) {    
-        createOrder();
-    }, false);
 </script>

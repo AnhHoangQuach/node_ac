@@ -13,27 +13,36 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%= agency.name %></h3>
+                                                <h3 class="fs-150 mb-0 text-white">Mua <%= coin %> từ đại lý <%= agency.name %>
+                                                </h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
                                                 <div class="kt-wizard-v3__nav">
                                                     <div class="kt-wizard-v3__nav-line"></div>
                                                     <div class="kt-wizard-v3__nav-items">
 
-                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>1</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>2</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>3</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>4</span>
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item">
+                                                            <span>5</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
                                                     </div>
@@ -62,162 +71,377 @@
                 <div class="card shadow-sm mb-5 border-0">
                     <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="m-0 font-weight-bold text-primary">
-                            4. Hoàn thành
+                            4. Thông tin liên hệ của bạn
                         </h5>
                     </div>
 
                     <div class="card-body border-0 mini-col">
-                        <div class="text-center">
-                            <div class="mb-3 fs-120">
-                                <span class="font-weight-bold">Bạn đã đặt lệnh bán <%= coin %> thành công!</span>
-                            </div>
-                            <div class="col-12 mb-2 fs-80">
-                                <span class="font-weight-500">Mã đơn hàng:</span>
-                                <span class="font-weight-bold text-danger" id="order_id"></span>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <span class="font-weight-500">Số lượng bán:</span>
-                                <span class="font-weight-bold text-primary" id="coin_value_sell"></span>
-                            </div>
-                            <div class="col-12 fs-075 text-secondary mb-4">
-                                <span class="ml-1 mr-1">
-                                    Giá bán: <span class="font-weight-bold text-danger" id="rate"></span>
-                                </span>
-                            </div>
-                            <div class="text-center fs-110 font-weight-bold mb-4">
-                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success" id="sumPriceSell"></span>
-                            </div>
-                            <div class=" d-inline-block">
-                                <div class="align-items-center mb-1">
-                                    <span class="bank-title">Ngân hàng nhận tiền:</span>
-                                    <span class="font-weight-bold" id="bank_receive"></span>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input is-member" id="customCheck" onchange="valueChanged()">
+                                        <label class="custom-control-label" for="customCheck">
+                                            Là thành viên trên ACWallet
+                                        </label>
+                                    </div>
+                                    <div class="form-group mini-col mt-2 uid-member" style="display:none;">
+                                        <input type="text" class="form-control" value="" id="accountId">
+                                        <small class="form-text text-muted">Nhập UID tài khoản ACWallet</small>
+                                    </div>
                                 </div>
-                                <div class="align-items-center mb-1">
-                                    <span class="bank-title">Số tài khoản:</span>
-                                    <span class="font-weight-bold" id="address_receive_number"></span>
-                                </div>
-                                <div class="align-items-center mb-1">
-                                    <span class="bank-title">Tên chủ tài khoản:</span>
-                                    <span class="font-weight-bold" id="address_receive_name"></span>
-                                </div>                               
+                                
                             </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="address-box">
-                                        <div class="form-group mini-col text-center">
-                                            <label for="" class="font-weight-bold">Bạn hãy gửi số <%= coin %> cần bán vào ví của đại lý <%= agency.name %></label>
-                                            <div class="text-center" id="qr-code">
-                                                <img src="" width="200">
-                                            </div>
-                                        </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Họ và Tên:
+                                    </label>
+                                    <input type="text" class="form-control" value="" placeholder="Nguyễn Văn A" id="buyerName">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Email
+                                    </label>
+                                    <input type="text" class="form-control" value="" placeholder="biso.vn@gmail.com" id="email">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group mini-col">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Số điện thoại
+                                    </label>
+                                    <input type="text" class="form-control" id="phone">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group mini-col">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Zalo
+                                    </label>
+                                    <input type="text" class="form-control" id="zalo">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group mini-col">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Telegram
+                                    </label>
+                                    <input type="text" class="form-control" id="telegram">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group mini-col">
+                                    <label for="" class="font-weight-500 d-block" id="skype">
+                                        Skype
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <div class="form-group mini-col">
+                                    <label for="" class="font-weight-500 d-block">
+                                        Viber
+                                    </label>
+                                    <input type="text" class="form-control" id="viber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                        <div class="form-group mini-col">
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" readonly="readonly" id="agency-address" value="" aria-describedby="basic-addon2">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-light border" id="basic-addon2" onclick="copyCode(this)">
-                                                        <i class="las la-copy mr-1"></i>                                                        
-                                                    </button>
+                    <div class="card-footer border-0">
+                        <!--<button class="btn btn-secondary">
+                            <i class="las la-arrow-left"></i>
+                            Quay lại
+                        </button>
+                        <button class="btn btn-primary float-right">
+                             <i class="las la-arrow-right"></i>
+                            Tiếp tục
+                        </button>-->
+                        <a href="/transaction/sell?step=3&coin=<%=coin%>" class="btn btn-secondary">
+                            <i class="las la-arrow-left"></i>
+                            Quay lại
+                        </a>
+                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell" id="orderSoft">
+                            Tiếp tục
+                            <i class="las la-arrow-right"></i>
+                        </a>
+                        <!-- Popup Buy -->
+                        <div class="modal fade" id="MdlSell" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận bán <%= coin %>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="text-center">
+                                            <div class="col-12 mb-2">
+                                                <span class="font-weight-500">Số lượng bán:</span>
+                                                <span class="font-weight-bold text-primary" id="coinSell"></span>
+                                            </div>
+                                            <div class="col-12 fs-075 text-secondary mb-4">
+                                                <span class="ml-1 mr-1">
+                                                    Giá bán: <span class="font-weight-bold text-danger">
+                                                        <%= Intl.NumberFormat().format(rate) %>
+                                                            VND
+                                                    </span>
+                                                </span>
+                                                <!--<span class="ml-1 mr-1">
+                                                    Phí: <span class="font-weight-bold text-warning">230,384 VND</span>
+                                                </span>-->
+                                            </div>
+                                            <div class="text-center fs-110 font-weight-bold mb-4">
+                                                Số tiền bạn nhận: <span class="font-weight-bold text-success"
+                                                    id="receive_amount">48,315,000
+                                                    VND</span>
+                                            </div>
+                                            <div class=" mb-3 d-inline-block">
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Ngân hàng của bạn:</span>
+                                                    <span class="font-weight-bold" id="bank_name_receive"></span>
+                                                </div>
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Số tài khoản:</span>
+                                                    <span class="font-weight-bold" id="account_address"></span>
+                                                </div>
+                                                <div class="align-items-center mb-1">
+                                                    <span class="bank-title">Tên chủ tài khoản:</span>
+                                                    <span class="font-weight-bold" id="account_name"></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            <i class="las la-times-circle"></i>
+                                            Bỏ qua
+                                        </button>                                 
+                                        <button id="create_sell_order" class="btn btn-primary">
+                                            <div id="confirm-spinner" class="spinner-border text-secondary spinner-border-sm d-none" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <i class="las la-check-circle"></i>
+                                            Xác nhận
+                                        </button>
 
-                            </div>
-                            <div class="fs-090 mb-3 text-center">
-                                <span>
-                                    Trạng thái: <span class="badge badge-pill badge-warning wf-85">Đang chờ</span>
-                                </span>
-                            </div>
-                            <div class="fs-080 mb-2 text-center">
-                                <span class="text-danger">
-                                    <strong>Chú ý!</strong>
-                                    Bạn sẽ nhận được tiền vào tài khoản ngân hàng ngay sau khi chúng tôi kiểm tra lệnh bán là hợp lệ. Liên hệ với chúng tôi theo số điện thoại bên dưới để được tư vấn.
-                                </span>
-                            </div>
-                            <div class="fs-080 mb-2 text-center">
-                                <span class="">
-                                    Nếu bạn là thành viên của ACWallet. <a href="https://login.acwallet.io/">Click vào đây</a> để đăng nhập
-                                </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-
 </section>
-
 <script>
-    var retrievedFullData = JSON.parse(localStorage.getItem('fullData'));
-    console.log(retrievedFullData)
+    async function createOrder() {
+        $("#MdlBuy button").attr('disabled',true);
+        document.querySelector('#confirm-spinner').classList.remove('d-none');
 
-    document.getElementById('coin_value_sell').innerHTML = Intl.NumberFormat().format(retrievedFullData.quantity) + ' <%= coin %>';
-    document.getElementById('order_id').innerHTML = retrievedFullData.id;
-    document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);
-    document.getElementById('rate').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData.rate));
-    document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveAddress;
-    document.getElementById('agency-address').value = retrievedFullData.receiveAddress;
-    document.getElementById('qr-code').innerHTML = '<img src="https://chart.googleapis.com/chart?chs=360x360&cht=qr&chl='+retrievedFullData.receiveAddress+'&choe=UTF-8" width="200">';
+        fetch('https://login.acwallet.io/api/v1/create-order', {
+            method: 'POST',
+            body:    JSON.stringify(retrievedObjectData),
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response =>  {
+            console.log(response);
+            return response.json();
+        }).then(data => {
+            localStorage.setItem('fullData', JSON.stringify(data));
+            window.location.href = '/transaction/buy?step=5&coin=<%= coin %>';
+            return;
+        });
+    }
 
-    //list bank
-    var listBank = [
-        { "code": "970454", "name": "Ngân hàng TMCP Bản Việt (VIETCAPITAL)" },
-        { "code": "970452", "name": "Ngân hàng TMCP Kiên Long (KIENLONGBANK)" },
-        { "code": "970400", "name": "Ngân hàng TMCP Sài Gòn Công Thương (SAIGONBANK)" },
-        { "code": "970430", "name": "Ngân hàng TMCP Xăng Dầu Petrolimex (PG BANK)" },
-        { "code": "970431", "name": "Ngân hàng TMCP xuất nhập khẩu Việt Nam (EXIMBANK)" },
-        { "code": "970455", "name": "Ngân hàng Công nghiệp Hàn Quốc (IBK)" },
-        { "code": "970421", "name": "Ngân hàng Liên Doanh Việt Nga (VRB)" },
-        { "code": "970405", "name": "Ngân hàng NN và PTNN Việt Nam (AGRIBANK)" },
-        { "code": "970408", "name": "Ngân hàng TM TNHH MTV Dầu Khí Toàn Cầu (GPB)" },
-        { "code": "970416", "name": "Ngân hàng TMCP Á Châu (ACB)" },
-        { "code": "970425", "name": "Ngân hàng TMCP An Bình (ABBANK)" },
-        { "code": "970438", "name": "Ngân hàng TMCP Bảo Việt (BVB)" },
-        { "code": "970449", "name": "Ngân hàng TMCP Bưu Điện Liên Việt (LPB)" },
-        { "code": "970415", "name": "Ngân hàng TMCP Công Thương Việt Nam (VIETINBANK)" },
-        { "code": "970412", "name": "Ngân hàng TMCP Đại Chúng Việt Nam (PVCOMBANK)" },
-        { "code": "970414", "name": "Ngân hàng TMCP Đại Dương (OCEANBANK)" },
-        { "code": "970418", "name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)" },
-        { "code": "970406", "name": "Ngân hàng TMCP Đông Á (DONGABANK)" },
-        { "code": "970440", "name": "Ngân hàng TMCP Đông Nam Á (SEABANK)" },
-        { "code": "970426", "name": "Ngân hàng TMCP Hàng Hải Việt Nam (MSB)" },
-        { "code": "970407", "name": "Ngân hàng TMCP Kỹ thương Việt Nam (TECHCOMBANK)" },
-        { "code": "970428", "name": "Ngân hàng TMCP Nam Á (NAMABANK)" },
-        { "code": "970436", "name": "Ngân hàng TMCP Ngoại Thương Việt Nam (VIETCOMBANK)" },
-        { "code": "970437", "name": "Ngân hàng TMCP Phát Triển Thành Phố Hồ Chí Minh (HDB)" },
-        { "code": "970448", "name": "Ngân hàng TMCP Phương Đông (OCB)" },
-        { "code": "970422", "name": "Ngân hàng TMCP Quân Đội (MB)" },
-        { "code": "970419", "name": "Ngân hàng TMCP Quốc Dân (NCB)" },
-        { "code": "970441", "name": "Ngân hàng TMCP Quốc Tế (VIB)" },
-        { "code": "970429", "name": "Ngân hàng TMCP Sài Gòn (SCB)" },
-        { "code": "970443", "name": "Ngân hàng TMCP Sài Gòn - Hà Nội (SHB)" },
-        { "code": "970403", "name": "Ngân hàng TMCP Sài Gòn Thương Tín (SACOMBANK)" },
-        { "code": "970423", "name": "Ngân hàng TMCP Tiên Phong (TPBANK)" },
-        { "code": "970427", "name": "Ngân hàng TMCP Việt Á (VAB)" },
-        { "code": "970432", "name": "Ngân hàng TMCP Việt Nam Thịnh Vương (VPBANK)" },
-        { "code": "970433", "name": "Ngân hàng TMCP Việt Nam Thương Tín (VIETBANK)" },
-        { "code": "970434", "name": "Ngân hàng TNHH Indovina (INDOVINA)" },
-        { "code": "422589", "name": "Ngân hàng TNHH MTV CIMB Việt Nam (CIMB)" },
-        { "code": "970442", "name": "Ngân hàng TNHH MTV Hongleong Việt Nam (HONGLEONG)" },
-        { "code": "970439", "name": "Ngân hàng TNHH MTV Public Việt Nam (PBVN)" },
-        { "code": "970424", "name": "Ngân hàng TNHH MTV Shinhan Việt Nam (SHBVN)" },
-        { "code": "970458", "name": "Ngân hàng TNHH MTV United Overseas Bank (UOB)" },
+    // // set information for order
+    // document.querySelector('#order_value_coin').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity)) + ' <%= coin %>';
+    // document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity) * parseFloat('<%= rate %>'));
+    // document.querySelector('#address_receive').innerHTML = retrievedObject.receiveAddress;
 
-        { "code": "970457", "name": "Ngân hàng Wooribank (WOORIBANK)" }
-    ];
+    // get information in input fields
+    buyerNameInput = document.getElementById("buyerName")
+    email = document.getElementById("email")
+    phone = document.getElementById("phone")
+    zalo = document.getElementById("zalo")
+    telegram = document.getElementById("telegram")
+    sky = document.getElementById("skype")
+    viber = document.getElementById("viber")
 
-    let bankName = listBank.find(value => {
-        return value.code == retrievedFullData.receiveBank.bankCode
-    })
+    var contact = {
+        email: "",
+        phone: "",
+        zalo: "",
+        telegram: "",
+        sky: "",
+        viber: "",
+    };
 
-    var accountInfo = JSON.parse(JSON.parse(localStorage.getItem('accountInfo')));
+    // var allDataOrder = {
+    //     contact: contact,
+    //     buyerName: "",
+    //     memberAc: false,
+    //     accId: "",
+    // }
 
-    document.getElementById('bank_receive').innerHTML = bankName.name;
-    document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveBank.number;
-    document.getElementById('address_receive_name').innerHTML = accountInfo.accountName;
+    buyerNameInput.addEventListener('change', function() {
+        retrievedObjectData.buyerName = this.value;
+    });
 
+    email.addEventListener('change', function() {
+        contact.email = this.value;
+    });
+
+    phone.addEventListener('change', function() {
+        contact.phone = this.value;
+    });
+
+    zalo.addEventListener('change', function() {
+        contact.zalo = this.value;
+    });
+
+    telegram.addEventListener('change', function() {
+        contact.telegram = this.value;
+    });
+    
+    sky.addEventListener('change', function() {
+        contact.sky = this.value;
+    });
+
+    viber.addEventListener('change', function() {
+        contact.viber = this.value;
+    });
+
+    var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
+
+    accountId = document.getElementById("accountId")
+
+    function valueChanged() {
+        if ($('.is-member').is(":checked")) {
+            $(".uid-member").show();
+            retrievedObjectData.memberAc = true;
+            accountId.addEventListener('change', function() {
+                retrievedObjectData.accId = this.value;
+            });
+        } else {
+            $(".uid-member").hide();
+            retrievedObjectData.memberAc = false
+            retrievedObjectData.accId = ""
+        }
+    }
+
+    document.querySelector("#orderSoft").addEventListener("click", function(e) {
+        retrievedObjectData.contact = JSON.stringify(contact);
+        console.log(retrievedObjectData)
+    }, false)
+
+    var coin_want_sell = JSON.parse(localStorage.getItem('sellValue'))
+
+    document.getElementById("coinSell").innerHTML = coin_want_sell.quantity + ' <%= coin %>'
+    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell.quantity) * parseFloat('<%= rate %>'));
+
+    // create order
+
+    //orderType
+    const queryString = window.location.href;
+    var type
+    if (queryString.includes('buy')) {
+        type = 2
+    } else if (queryString.includes('sell')) {
+        type = 1
+    }
+
+    //typeCoin
+    var listCoin = {
+        btc: 1,
+        eth: 3,
+        bch: 4,
+        ltc: 5,
+        usdt: 6,
+        xrp: 8,
+        xlm: 10,
+        trx: 11,
+        vndt: 12,
+        usdf: 14,
+    }
+
+    var typeCoin;
+    var coinCode = '<%= coin %>'
+    if (listCoin.hasOwnProperty(coinCode.toLowerCase())) {
+        typeCoin = listCoin[coinCode.toLowerCase()];
+    }
+
+    async function createSellOrder() {
+
+        $("#MdlSell button").attr('disabled',true);
+        // document.querySelector('#create_sell_order').classList.add('disabled');
+        document.querySelector('#confirm-spinner').classList.remove('d-none');        
+        var data = {
+            orderType: type,
+            currencyCode: typeCoin,
+            quantity: coin_want_sell.quantity,
+            receiveBank: BankSaved,     
+            agentId: coin_want_sell.agentId,
+        }
+        console.log(data);      
+
+
+        fetch('https://login.acwallet.io/api/v1/create-order', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(response => {
+                console.log(response);
+                return response.json();
+            }).then(data => {
+                localStorage.setItem('fullData', JSON.stringify(data));
+                window.location.href = '/transaction/sell?step=5&coin=<%= coin %>';
+                return;
+            });
+    }
+
+
+    document.querySelector('#create_sell_order').addEventListener('click', function (e) {
+        createSellOrder();
+    }, false);
+
+    bankData = JSON.parse(localStorage.getItem('bankData'))
+    accountInfo = JSON.parse(localStorage.getItem('accountInfo'))
+
+    document.getElementById('bank_name_receive').innerHTML = bankData.bank
+    document.getElementById('account_address').innerHTML = accountInfo.accountNumber
+    document.getElementById('account_name').innerHTML = accountInfo.accountName
+
+    var retrievedObjectData = JSON.parse(localStorage.getItem('accountInfo'));
+
+    accountId = document.getElementById("accountId")
+
+    function valueChanged() {
+        if ($('.is-member').is(":checked")) {
+            $(".uid-member").show();
+            retrievedObjectData.memberAc = true;
+            accountId.addEventListener('change', function() {
+                retrievedObjectData.accId = this.value;
+            });
+        } else {
+            $(".uid-member").hide();
+            retrievedObjectData.memberAc = false
+            retrievedObjectData.accId = ""
+        }
+    }
+
+    var BankSaved = {
+        number: accountInfo.accountNumber,
+        name: accountInfo.accountName,
+        bank: bankData.bank,
+        bankCode: bankData.bankCode,
+    }
 </script>
