@@ -13,8 +13,7 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%=
-                                                            agency.name %>
+                                                <h3 class="fs-150 mb-0 text-white">Mua <%= coin %> từ đại lý <%= agency.name %>
                                                 </h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
@@ -37,11 +36,12 @@
                                                             <span>3</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>4</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
                                                             <span>5</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
@@ -71,78 +71,95 @@
                 <div class="card shadow-sm mb-5 border-0">
                     <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="m-0 font-weight-bold text-primary">
-                            3. Chọn ngân hàng của bạn
+                            4. Chuyển khoản cho đại lý
                         </h5>
                     </div>
+
                     <div class="card-body border-0 mini-col">
-                        <div class="col-12">
-                            <div class="select-bank bg-white rounded " style="">
-                                <form action="getAccount" method="POST">
-                                    <div class="form-group">
-                                        <label for="" class="font-weight-500 d-block">
-                                            Ngân hàng của bạn
-                                        </label>
-                                        <div class="dropdown bootstrap-select form-control none">
-                                            <select class="form-control selectpickernone" tabindex="-98"
-                                                id="select_bank">
-                                                <% listBank.forEach((value, index)=> { %>
-                                                    <option value="<%= value.code %>">
-                                                        <%= value.name %>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
+                        <div class="row">
+                            <div class="col-12">
+
+                                <div class="text-center">
+                                    <div class="mb-3 fs-120">
+                                        <span class="font-weight-bold">Bạn đã đặt lệnh mua <%= coin %> thành
+                                                công!</span>
+                                    </div>
+                                    <div class="col-12 mb-2 fs-80">
+                                        <span class="font-weight-500">Mã đơn hàng:</span>
+                                        <span class="font-weight-bold text-danger" id="order_id"></span>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <span class="font-weight-500">Số lượng mua:</span>
+                                        <span class="font-weight-bold text-primary" id="coin_value_buy"></span>
+                                    </div>
+                                    <div class="col-12 fs-075 text-secondary mb-4">
+                                        <span class="ml-1 mr-1">
+                                            Tỉ giá: <span class="font-weight-bold" id="rate">                                                
+                                            </span>
+                                        </span>
+                                        <!-- <span class="ml-1 mr-1">
+                                            Phí: <span class="font-weight-bold text-warning">230,384 VND</span>
+                                        </span> -->
+                                    </div>
+                                    <div class="text-center fs-110 font-weight-bold mb-4">
+                                        Số tiền bạn trả: <span class="font-weight-bold text-success"
+                                            id="pay_value"></span>
+                                    </div>
+                                    <div class="mb-4">
+                                        Địa chỉ ví nhận: <span class="font-weight-bold" id="address_receive"></span>
+                                    </div>
+                                    <div class=" mb-3 d-inline-block">
+                                        <div class="align-items-center mb-1">
+                                            <span class="bank-title">Chuyển tiền vào ngân hàng:</span>
+                                            <span class="font-weight-bold" id="bank_name_receive"></span>
+                                        </div>
+                                        <div class="align-items-center mb-1">
+                                            <span class="bank-title">Số tài khoản:</span>
+                                            <span class="font-weight-bold" id="agency_number_receive"></span>
+                                        </div>
+                                        <div class="align-items-center mb-1">
+                                            <span class="bank-title">Tên chủ tài khoản:</span>
+                                            <span class="font-weight-bold" id="agency_name_receive"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="" class="font-weight-500 d-block">
-                                            Số tài khoản
-                                        </label>
-                                        <div class="find-box">
-                                            <input type="number" class="form-control" placeholder="Nhập số tài khoản..."
-                                                id="account_number">
-                                            <span id="address_error"></span>
-                                            <div id="spinner" class="spinner-border text-secondary spinner-border-sm d-none" role="status">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
-                                        </div>
+
+                                    <div class="fs-090 mb-3 text-center">
+                                        <span>
+                                            Trạng thái: <span class="badge badge-pill badge-warning wf-85">Chưa chuyển
+                                                tiền</span>
+                                        </span>
                                     </div>
-                                    <div class="form-group mb-0">
-                                        <label for="" class="font-weight-500 d-block">
-                                            Tên chủ tài khoản
-                                        </label>
-                                        <input class="form-control" type="text" readonly="readonly" id="address_name">
-                                        <small class="form-text text-muted">Lấy tự động theo số tài khoản bên
-                                            trên</small>
+                                    <div class="fs-080 mb-4 text-center">
+                                        <span>
+                                            Thời gian chuyển khoản còn: <span class="text-danger font-weight-500"
+                                                id="expireTime"></span>
+                                        </span>
                                     </div>
-                                </form>
+                                    <div class="fs-080 mb-2 text-center">
+                                        <span class="text-danger">
+                                            <strong>Chú ý!</strong>
+                                            Bạn sẽ nhận được Coin vào ví của bạn ngay sau khi chúng tôi kiểm tra lệnh
+                                            mua là hợp lệ và bạn đã chuyển khoản ngân hàng cho chúng tôi theo số tài
+                                            khoản bên trên. Liên hệ với chúng tôi theo số điện thoại bên dưới để được tư
+                                            vấn.
+                                        </span>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
+
                     </div>
 
-                    <div class="card-footer border-0">
-                        <!--<button class="btn btn-secondary">
-                            <i class="las la-arrow-left"></i>
-                            Quay lại
-                        </button>
-                        <button class="btn btn-primary float-right">
-                             Tiếp tục
-                            <i class="las la-arrow-right"></i>
-                        </button>-->
-                        <a href="/transaction/sell?step=2&coin=<%=coin%>" class="btn btn-secondary">
-                            <i class="las la-arrow-left"></i>
-                            Quay lại
-                        </a>
-                        <a href="/transaction/sell?step=4&coin=<%=coin%>" id="sell_continue" class="btn btn-primary float-right">
-                            Tiếp tục
-                            <i class="las la-arrow-right"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 <script>
+
     // list bank
     var listBank = [
         { "code": "970454", "name": "Ngân hàng TMCP Bản Việt (VIETCAPITAL)" },
@@ -186,105 +203,33 @@
         { "code": "970439", "name": "Ngân hàng TNHH MTV Public Việt Nam (PBVN)" },
         { "code": "970424", "name": "Ngân hàng TNHH MTV Shinhan Việt Nam (SHBVN)" },
         { "code": "970458", "name": "Ngân hàng TNHH MTV United Overseas Bank (UOB)" },
-
         { "code": "970457", "name": "Ngân hàng Wooribank (WOORIBANK)" }
     ];
 
-
-    
-    var user_address = document.getElementById("account_number");
-    var sellContinue = document.getElementById("sell_continue")
-    var spinner = document.getElementById("spinner");
-    var postData;
-
-    async function getAccount() {
-        var dataPost = JSON.parse(localStorage.getItem('postData'));
-        spinner.classList.remove("d-none");
-        $.ajax({
-            url: `https://login.acwallet.io/api/v1/getBankAccount?accountNumber=${dataPost.accountNumber}&bankName=${dataPost.bankName}`,
-            type: "GET",
-            // mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            success: function (response) {
-                var bankInfo = JSON.parse(response);
-                document.getElementById('address_name').value = bankInfo.accountName;
-                BankSaved = {
-                    name: bankInfo.accountName,
-                    bankCode: bankInfo.bankName,
-                    number: bankInfo.accountNumber
-                }
-                localStorage.setItem('accountInfo', response);
-                sellContinue.classList.remove('disabled');
-                spinner.classList.add("d-none");
-                return;
-            },
-            error: function (error) {
-                console.log(error);
-                var respError = JSON.parse(error.responseText);
-                toastr_error(respError.description, "");
-                spinner.classList.add("d-none");
-                return;
-            }
-        })
-    }
-
-    sellContinue.classList.add('disabled');
-
-    user_address.addEventListener('input', function () {
-        sellContinue.classList.add('disabled');
-        document.getElementById('address_name').value = "";
-        return;
-    });
-
-    user_address.addEventListener('blur', function () {
-        if (this.value.length <= 6) {
-            toastr_error("Số tài khoản chưa hợp lệ");
-            sellContinue.classList.add('disabled');
-            return;
+    var retrievedFullData = JSON.parse(localStorage.getItem('fullData'));
+    document.getElementById('coin_value_buy').innerHTML = Intl.NumberFormat().format(retrievedFullData.quantity) + ' <%= coin %>';
+    document.getElementById('address_receive').innerHTML = retrievedFullData.receiveAddress;
+    document.getElementById('order_id').innerHTML = retrievedFullData.id;
+    document.getElementById('rate').innerHTML = Intl.NumberFormat().format(retrievedFullData.rate);
+    document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);
+    document.getElementById('agency_number_receive').innerHTML = retrievedFullData.receiveBank.number;
+    document.getElementById('agency_name_receive').innerHTML = retrievedFullData.receiveBank.name;
+    //set countdown    
+    var timer = Math.floor((retrievedFullData.expiryTime - new Date().getTime())/1000);   
+    function myTimer() {
+        var minus = Math.floor(timer/60);        
+        var second = timer - (minus * 60); 
+        document.getElementById('expireTime').innerHTML = minus + ' phút ' + second + ' giây';
+        timer = timer-1;       
+        if (timer<0) {
+            clearInterval(myVar);            
         }
-        var accountNumber = this.value;
-        postData = {
-            bankName: codeBank,
-            accountNumber: accountNumber,
-        }
-        localStorage.setItem('postData', JSON.stringify(postData));
-        BankSaved.number = accountNumber;
-        BankSaved.bank = ""
-        getAccount();
-        return;
-    });
-    
-    var e = document.getElementById("select_bank");
-    var codeBank = e.value;
-    var BankSaved = {}
+    }    
+    var myVar = setInterval(myTimer, 1000);
 
-    e.addEventListener('change', function () {
-        codeBank = this.value;
-        document.getElementById('address_name').value = "";
-        let bankName = listBank.find(value => {
-            return value.code == codeBank;
-        })
+    let bankName = listBank.find(value => {
+        return value.code == retrievedFullData.receiveBank.bankCode
+    })
 
-        BankSaved.bankCode = codeBank;
-        BankSaved.bank = bankName.name;
-
-        localStorage.setItem('bankData', JSON.stringify(BankSaved));
-        sellContinue.classList.add('disabled');
-        user_address.value = "";
-        return;
-    });
+    document.getElementById('bank_name_receive').innerHTML = bankName.name;
 </script>
-<style>
-    /*Hide arow input number*/
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Firefox */
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-</style>

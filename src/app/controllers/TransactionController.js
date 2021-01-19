@@ -61,21 +61,21 @@ class TransactionController {
                 listBank: func.listBank,
             })
         } else if (req.query.step == 4) {
-            res.render('buy/buy4', {
-                title: 'Mua bước 4',
-                link: 'buy4',
-                agency: data_store.agency,
+            res.render('buy/buy4', { 
+                title: 'Mua bước 4', 
+                link: 'buy4' ,
+                agency: data_store.agency, 
                 coin: coin.toUpperCase(),
                 rate: data.rates['ask_' + coin.toLowerCase()],
                 listBank: func.listBank,
             })
-        }else if (req.query.step == 5) {
-            res.render('buy/buy5', {
-                title: 'Mua bước 5',
-                link: 'buy5',
-                agency: data_store.agency,
+        } else if (req.query.step == 5) {
+            res.render('buy/buy5', { 
+                title: 'Mua bước 5', 
+                link: 'buy5' , 
+                agency: data_store.agency, 
                 coin: coin.toUpperCase(),
-                rate: data.rates['ask_' + coin.toLowerCase()],
+                rate : data.rates['ask_'+coin.toLowerCase()],          
                 listBank: func.listBank,
             })
         }
@@ -140,6 +140,17 @@ class TransactionController {
                 listBank: func.listBank,
                 coin: coin.toUpperCase(),
                 rate: data.rates['bid_' + coin.toLowerCase()],
+            })
+        }  else if (req.query.step == 5) {
+            res.render('sell/sell5', { 
+                title: 'Bán bước 5', 
+                link: 'sell5',
+                agency: data_store.agency, 
+                coin: req.query.coin,
+                rates: data.rates,
+                listBank: func.listBank,
+                coin: coin.toUpperCase(),
+                rate : data.rates['bid_'+coin.toLowerCase()],
             })
         }
 
