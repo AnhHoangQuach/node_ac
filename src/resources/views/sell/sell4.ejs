@@ -13,7 +13,8 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Mua <%= coin %> từ đại lý <%= agency.name %>
+                                                <h3 class="fs-150 mb-0 text-white">Mua <%= coin %> từ đại lý <%=
+                                                            agency.name %>
                                                 </h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
@@ -80,7 +81,8 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input is-member" id="customCheck" onchange="valueChanged()">
+                                        <input type="checkbox" class="custom-control-input is-member" id="customCheck"
+                                            onchange="valueChanged()">
                                         <label class="custom-control-label" for="customCheck">
                                             Là thành viên trên ACWallet
                                         </label>
@@ -90,30 +92,32 @@
                                         <small class="form-text text-muted">Nhập UID tài khoản ACWallet</small>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            <div class="col-12 col-lg-6 col-md-6">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label for="" class="font-weight-500 d-block">
-                                        Họ và Tên:
+                                        Họ và Tên:*
                                     </label>
-                                    <input type="text" class="form-control" value="" placeholder="Nguyễn Văn A" id="buyerName">
+                                    <input type="text" class="form-control" value="" placeholder="Nguyễn Văn A"
+                                        id="buyerName">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label for="" class="font-weight-500 d-block">
-                                        Email
+                                        Email *
                                     </label>
-                                    <input type="email" class="form-control" value="" placeholder="biso.vn@gmail.com" id="email">
+                                    <input type="email" class="form-control" value="" placeholder="biso.vn@gmail.com"
+                                        id="email">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
                                 <div class="form-group mini-col">
                                     <label for="" class="font-weight-500 d-block">
-                                        Số điện thoại
+                                        Số điện thoại *
                                     </label>
-                                    <input type="number" class="form-control" id="phone">
+                                    <input type="text" class="form-control" id="phone">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -129,7 +133,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Telegram
                                     </label>
-                                    <input type="number" class="form-control" id="telegram">
+                                    <input type="text" class="form-control" id="telegram">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -137,7 +141,7 @@
                                     <label for="" class="font-weight-500 d-block" id="skype">
                                         Skype
                                     </label>
-                                    <input type="number" class="form-control">
+                                    <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -145,7 +149,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Viber
                                     </label>
-                                    <input type="number" class="form-control" id="viber">
+                                    <input type="text" class="form-control" id="viber">
                                 </div>
                             </div>
                         </div>
@@ -164,7 +168,8 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell" id="orderSoft">
+                        <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#MdlSell"
+                            id="orderSoft">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -221,9 +226,11 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                             <i class="las la-times-circle"></i>
                                             Bỏ qua
-                                        </button>                                 
+                                        </button>
                                         <button id="create_sell_order" class="btn btn-primary">
-                                            <div id="confirm-spinner" class="spinner-border text-secondary spinner-border-sm d-none" role="status">
+                                            <div id="confirm-spinner"
+                                                class="spinner-border text-secondary spinner-border-sm d-none"
+                                                role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                             <i class="las la-check-circle"></i>
@@ -243,22 +250,22 @@
 </section>
 <script>
     async function createOrder() {
-        $("#MdlBuy button").attr('disabled',true);
+        $("#MdlBuy button").attr('disabled', true);
         document.querySelector('#confirm-spinner').classList.remove('d-none');
 
         fetch('https://login.acwallet.io/api/v1/create-order', {
             method: 'POST',
-            body:    JSON.stringify(retrievedObjectData),
+            body: JSON.stringify(retrievedObjectData),
             headers: { 'Content-Type': 'application/json' },
         })
-        .then(response =>  {
-            console.log(response);
-            return response.json();
-        }).then(data => {
-            localStorage.setItem('fullData', JSON.stringify(data));
-            window.location.href = '/transaction/buy?step=5&coin=<%= coin %>';
-            return;
-        });
+            .then(response => {
+                console.log(response);
+                return response.json();
+            }).then(data => {
+                localStorage.setItem('fullData', JSON.stringify(data));
+                window.location.href = '/transaction/buy?step=5&coin=<%= coin %>';
+                return;
+            });
     }
 
     // // set information for order
@@ -291,15 +298,15 @@
     //     accId: "",
     // }
 
-    var failedEmail = true
-    var failedPhone = true
+    var failedEmail = true;
+    var failedPhone = true;
+    var failedName = true;
 
     function checkError() {
-        if(failedEmail || failedPhone) {
+        if (failedEmail || failedPhone || failedName) {
             document.querySelector("#orderSoft").classList.add('disabled');
         } else {
             document.querySelector("#orderSoft").classList.remove('disabled');
-            toastr.success("Dữ liệu hợp lệ", "");
             return;
         }
     }
@@ -308,19 +315,27 @@
 
     function isEmail(email) {
         var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if(!regex.test(email)) {
-           return false;
+        if (!regex.test(email)) {
+            return false;
         } else {
-           return true;
+            return true;
         }
     }
 
-    buyerNameInput.addEventListener('change', function() {
+    buyerNameInput.addEventListener('change', function () {
+        document.querySelector("#orderSoft").classList.add('disabled');
+        if (this.value == undefined || this.value == "") {
+            toastr_error('Vui lòng nhập họ tên', '');
+            return;
+        }
+        failedName = false;
         retrievedObjectData.buyerName = this.value;
+        checkError();
     });
 
-    email.addEventListener('change', function() {
-        if(!isEmail(this.value)) {
+    email.addEventListener('change', function () {
+        document.querySelector("#orderSoft").classList.add('disabled');
+        if (!isEmail(this.value)) {
             toastr_error('Email không hợp lệ', '');
             return;
         } else {
@@ -330,8 +345,9 @@
         checkError()
     });
 
-    phone.addEventListener('change', function() {
-        if(this.value.length != 10) {
+    phone.addEventListener('change', function () {
+        document.querySelector("#orderSoft").classList.add('disabled');
+        if (this.value.length != 10) {
             toastr.error('Số điện thoại không đúng', '')
             return;
         } else {
@@ -341,19 +357,19 @@
         checkError()
     });
 
-    zalo.addEventListener('change', function() {
+    zalo.addEventListener('change', function () {
         contact.zalo = this.value;
     });
 
-    telegram.addEventListener('change', function() {
+    telegram.addEventListener('change', function () {
         contact.telegram = this.value;
     });
-    
-    sky.addEventListener('change', function() {
+
+    sky.addEventListener('change', function () {
         contact.sky = this.value;
     });
 
-    viber.addEventListener('change', function() {
+    viber.addEventListener('change', function () {
         contact.viber = this.value;
     });
 
@@ -365,7 +381,7 @@
         if ($('.is-member').is(":checked")) {
             $(".uid-member").show();
             retrievedObjectData.memberAc = true;
-            accountId.addEventListener('change', function() {
+            accountId.addEventListener('change', function () {
                 retrievedObjectData.accId = this.value;
             });
         } else {
@@ -375,7 +391,7 @@
         }
     }
 
-    document.querySelector("#orderSoft").addEventListener("click", function(e) {
+    document.querySelector("#orderSoft").addEventListener("click", function (e) {
         retrievedObjectData.contact = JSON.stringify(contact);
         console.log(retrievedObjectData)
     }, false)
@@ -408,6 +424,8 @@
         trx: 11,
         vndt: 12,
         usdf: 14,
+        xeng: 15,
+        cent: 16
     }
 
     var typeCoin;
@@ -418,17 +436,19 @@
 
     async function createSellOrder() {
 
-        $("#MdlSell button").attr('disabled',true);
+        $("#MdlSell button").attr('disabled', true);
         // document.querySelector('#create_sell_order').classList.add('disabled');
-        document.querySelector('#confirm-spinner').classList.remove('d-none');        
+        document.querySelector('#confirm-spinner').classList.remove('d-none');
         var data = {
             orderType: type,
             currencyCode: typeCoin,
             quantity: coin_want_sell.quantity,
-            receiveBank: BankSaved,     
+            receiveBank: BankSaved,
             agentId: coin_want_sell.agentId,
+            contact: JSON.stringify(contact),
+            buyerName: retrievedObjectData.buyerName
         }
-        console.log(data);      
+        console.log(data);
 
 
         fetch('https://login.acwallet.io/api/v1/create-order', {
@@ -466,7 +486,7 @@
         if ($('.is-member').is(":checked")) {
             $(".uid-member").show();
             retrievedObjectData.memberAc = true;
-            accountId.addEventListener('change', function() {
+            accountId.addEventListener('change', function () {
                 retrievedObjectData.accId = this.value;
             });
         } else {

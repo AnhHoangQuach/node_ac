@@ -92,10 +92,10 @@
                                 </div>
                                 
                             </div>
-                            <div class="col-12 col-lg-6 col-md-6">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label for="" class="font-weight-500 d-block">
-                                        Họ và Tên:
+                                        Họ và Tên: *
                                     </label>
                                     <input type="text" class="form-control" value="" placeholder="Nguyễn Văn A" id="buyerName">
                                 </div>
@@ -103,7 +103,7 @@
                             <div class="col-12 col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label for="" class="font-weight-500 d-block">
-                                        Email
+                                        Email *
                                     </label>
                                     <input type="email" class="form-control" value="" placeholder="biso.vn@gmail.com" id="email">
                                 </div>
@@ -152,14 +152,7 @@
                     </div>
 
                     <div class="card-footer border-0">
-                        <!--<button class="btn btn-secondary">
-                            <i class="las la-arrow-left"></i>
-                            Quay lại
-                        </button>
-                        <button class="btn btn-primary float-right">
-                             <i class="las la-arrow-right"></i>
-                            Tiếp tục
-                        </button>-->
+                      
                         <a href="/transaction/buy?step=3&coin=<%=coin%>" class="btn btn-secondary">
                             <i class="las la-arrow-left"></i>
                             Quay lại
@@ -288,8 +281,7 @@
         if(failedEmail || failedPhone) {
             document.querySelector("#orderSoft").classList.add('disabled');
         } else {
-            document.querySelector("#orderSoft").classList.remove('disabled');
-            toastr.success("Dữ liệu hợp lệ", "");
+            document.querySelector("#orderSoft").classList.remove('disabled');          
             return;
         }
     }
@@ -310,6 +302,7 @@
     }
 
     email.addEventListener('change', function() {
+        document.querySelector("#orderSoft").classList.add('disabled');
         if(!isEmail(this.value)) {
             toastr_error('Email không hợp lệ', '');
             return;
@@ -321,6 +314,7 @@
     });
 
     phone.addEventListener('change', function() {
+        document.querySelector("#orderSoft").classList.add('disabled');
         if(this.value.length != 10) {
             toastr.error('Số điện thoại không đúng', '')
             return;

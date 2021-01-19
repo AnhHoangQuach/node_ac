@@ -71,7 +71,7 @@
                 <div class="card shadow-sm mb-5 border-0">
                     <div class="card-header border-0 py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="m-0 font-weight-bold text-primary">
-                            4. Chuyển khoản cho đại lý
+                            5. Chuyển khoản cho đại lý
                         </h5>
                     </div>
 
@@ -121,6 +121,22 @@
                                             <span class="bank-title">Tên chủ tài khoản:</span>
                                             <span class="font-weight-bold" id="agency_name_receive"></span>
                                         </div>
+                                    </div>
+
+                                    <div class=" mb-3 d-inline-block">
+                                        <!-- <div>Thông tin liên hệ</div>      -->
+                                        <div class="align-items-center mb-1">
+                                            <span class="bank-title">Thông tin liên hệ:</span>
+                                            <span class="font-weight-bold" id="buyer_name"></span>
+                                        </div>                                  
+                                        <div class="align-items-center mb-1">
+                                            <span class="bank-title">Số điện thoại:</span>
+                                            <span class="font-weight-bold" id="phone"></span>
+                                        </div>
+                                        <div class="align-items-center mb-1">
+                                            <span class="bank-title">Email:</span>
+                                            <span class="font-weight-bold" id="email"></span>
+                                        </div>                                      
                                     </div>
 
                                     <div class="fs-090 mb-3 text-center">
@@ -214,6 +230,9 @@
     document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);
     document.getElementById('agency_number_receive').innerHTML = retrievedFullData.receiveBank.number;
     document.getElementById('agency_name_receive').innerHTML = retrievedFullData.receiveBank.name;
+    document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
+    document.getElementById('email').innerHTML = JSON.parse(retrievedFullData.contact).email;
+    document.getElementById('buyer_name').innerHTML = retrievedFullData.buyerName;
     //set countdown    
     var timer = Math.floor((retrievedFullData.expiryTime - new Date().getTime())/1000);   
     function myTimer() {

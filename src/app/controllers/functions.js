@@ -57,6 +57,8 @@ var listCoin = {
     trx: 11,
     vndt: 12,
     usdf: 14,
+    xeng: 15,
+    cent: 16
 }
 
 function checkZero(data) {

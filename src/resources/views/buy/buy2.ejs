@@ -112,7 +112,7 @@
                             <div class="col-12">
                                 <div class="form-group mini-col mb-2">
                                     <label for="" class="font-weight-500">Địa chỉ ví của bạn</label>
-                                    <input type="text" class="form-control" id="address_wallet" >
+                                    <input type="text" class="form-control" id="address_wallet">
                                 </div>
                                 <span id="error"></span>
                             </div>
@@ -161,6 +161,8 @@
         trx: 11,
         vndt: 12,
         usdf: 14,
+        xeng: 15,
+        cent: 16
     }
 
     var coinCode = document.getElementById('coin_value').innerText;
@@ -191,10 +193,10 @@
     function checkError() {
         if (quantityInvalid || addressInvalid) {
             buyContinue.classList.add('disabled');
-        }else{
+        } else {
             buyContinue.classList.remove('disabled');
         }
-        return;  
+        return;
     }
 
     // set info for html
@@ -202,13 +204,13 @@
     buyContinue.classList.add('disabled');
     var quantityInvalid = true;
     var addressInvalid = true;
-    address_val.addEventListener('input', function () {        
+    address_val.addEventListener('input', function () {
         var coinPrice = parseFloat('<%=rate%>');
         quantityInvalid = true;
         buyContinue.classList.add('disabled');
         var quantity = address_val.value;
         if (quantity == undefined || quantity == "") {
-            toastr_error('Vui lòng nhập số lượng mua','');
+            toastr_error('Vui lòng nhập số lượng mua', '');
             return;
         }
         if (parseFloat(quantity) < 0) {
@@ -221,7 +223,7 @@
         checkError();
     })
 
-    address_wallet.addEventListener('blur', function () {      
+    address_wallet.addEventListener('blur', function () {
         addressInvalid = true;
         buyContinue.classList.add('disabled');
         if (this.value == undefined || this.value == "") {

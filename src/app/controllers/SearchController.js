@@ -27,6 +27,7 @@ class SearchController {
             data_order.type = func.getType(data_order.orderType);
             data_order.receiveBank.bank = func.getBankName(data_order.receiveBank.bankCode);
             data_order.createdText = func.formatDateTime(data_order.createdDate);
+            data_order.contact = JSON.parse(data_order.contact);
         }
 
         res.render('search', {
