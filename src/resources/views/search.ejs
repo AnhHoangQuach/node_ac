@@ -30,6 +30,14 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-xl-6 col-lg-7 ">
+                <div class="card d-none" id="list_checked_order"> 
+                    <div class="card-header">
+                        <h5 class="mb-0">Các mã đơn hàng gần đây
+                        </h5>
+                        <div class="mt-4" id="list_order">                           
+                        </div>
+                    </div>                   
+                </div>
                 <% if (error_desc !='' ){ %>
                     <div class="card">
                         <div class="card-header">
@@ -39,7 +47,7 @@
                                 <%= error_desc %>
                             </div>
                         </div>
-                    </div>
+                    </div>                  
                     <% } %>
                         <div class="card <%= order_exist %>">
                             <div class="card-header">
@@ -98,7 +106,7 @@
                                     <p class="mb-2">
                                         <span>Email </span>
                                         <span class="float-right font-weight-bold" id="coin_person_sell">
-                                            <%= order.contact != null ? order.contact.email : '' %>
+                                            <%= order.contact !=null ? order.contact.email : '' %>
                                         </span>
                                     </p>
                                     <p class="mb-2">
@@ -161,6 +169,7 @@
                         </div>
             </div>
         </div>
+      
 
     </div>
 </section>
@@ -196,20 +205,52 @@
         window.location.href = ("/search?id=" + order_id_value.value);
     }
 
+    function showLastCheckedOrder() {
+        var path = window.location.search;
+        console.log(path);
+        if (path.indexOf("id") < 0) {
+            console.log("show list checked Order");
+            var listOrderChecked = JSON.parse(localStorage.getItem('listOrderChecked'));
+            console.log(listOrderChecked);
+            if (listOrderChecked != null) {
+                var listHtml = '';
+                for (let i = 0; i < listOrderChecked.length; i++) {
+                    listHtml = listHtml + '<a class="d-block font-weight-bold" href="/search?id=' + listOrderChecked[i] + '">'+listOrderChecked[i]+'</a>';
+                }
+                console.log(listHtml);
+                document.getElementById("list_checked_order").classList.remove("d-none");
+                document.getElementById("list_order").innerHTML = listHtml;
+            }
+        } else {
+            var order_exist = '<%= order_exist%>';
+            console.log(order_exist);
+            if (order_exist == '') {
+                console.log("save order id");
+                var listOrderChecked = JSON.parse(localStorage.getItem('listOrderChecked'));
+                if (listOrderChecked== null) {
+                    listOrderChecked = [];
+                }
+                var idExist=false;
+
+                for (let i = 0; i < listOrderChecked.length; i++) {
+                    if (listOrderChecked[i]== '<%= order.id %>') {
+                        idExist = true;
+                    }                    
+                }
+                console.log(idExist);
+                if (!idExist) {
+                    console.log("push to list");
+                    listOrderChecked.push('<%= order.id %>');
+                    localStorage.setItem("listOrderChecked", JSON.stringify(listOrderChecked));
+                }
+
+            } else {
+                console.log("order not found");
+            }
+        }
+    }
+    showLastCheckedOrder();
+
+
 
 </script>
-
-<style>
-    /*Hide arow input number*/
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Firefox */
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-</style>

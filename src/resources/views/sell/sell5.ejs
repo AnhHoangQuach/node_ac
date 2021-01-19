@@ -13,30 +13,37 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%= agency.name %></h3>
+                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%=
+                                                            agency.name %>
+                                                </h3>
                                             </div>
                                             <div class="kt-wizard-v3 mb-5 mt-4 pt-2">
                                                 <div class="kt-wizard-v3__nav">
                                                     <div class="kt-wizard-v3__nav-line"></div>
                                                     <div class="kt-wizard-v3__nav-items">
 
-                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivChecking" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>1</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>2</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>3</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>4</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
-                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item" data-ktwizard-state="done">
+                                                        <div id="ctl11_DivPending" class="kt-wizard-v3__nav-item"
+                                                            data-ktwizard-state="done">
                                                             <span>5</span>
                                                             <i class="fa fa-check"></i>
                                                         </div>
@@ -89,7 +96,8 @@
                                 </span>
                             </div>
                             <div class="text-center fs-110 font-weight-bold mb-4">
-                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success" id="sumPriceSell"></span>
+                                Số tiền bạn sẽ nhận: <span class="font-weight-bold text-success"
+                                    id="sumPriceSell"></span>
                             </div>
                             <div class=" d-inline-block mb-4">
                                 <div class="align-items-center mb-1">
@@ -103,7 +111,7 @@
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Tên chủ tài khoản:</span>
                                     <span class="font-weight-bold" id="address_receive_name"></span>
-                                </div>                               
+                                </div>
                             </div>
 
                             <div class=" mb-3 d-inline-block">
@@ -111,7 +119,7 @@
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Thông tin liên hệ:</span>
                                     <span class="font-weight-bold" id="buyer_name"></span>
-                                </div>                                  
+                                </div>
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Số điện thoại:</span>
                                     <span class="font-weight-bold" id="phone"></span>
@@ -119,7 +127,7 @@
                                 <div class="align-items-center mb-1">
                                     <span class="bank-title">Email:</span>
                                     <span class="font-weight-bold" id="email"></span>
-                                </div>                                      
+                                </div>
                             </div>
 
                             <hr />
@@ -127,7 +135,8 @@
                                 <div class="col-12">
                                     <div class="address-box">
                                         <div class="form-group mini-col text-center">
-                                            <label for="" class="font-weight-bold">Bạn hãy gửi số <%= coin %> cần bán vào ví của đại lý <%= agency.name %></label>
+                                            <label for="" class="font-weight-bold">Bạn hãy gửi số <%= coin %> cần bán
+                                                    vào ví của đại lý <%= agency.name %></label>
                                             <div class="text-center" id="qr-code">
                                                 <img src="" width="200">
                                             </div>
@@ -135,10 +144,12 @@
 
                                         <div class="form-group mini-col">
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" readonly="readonly" id="agency-address" value="" aria-describedby="basic-addon2">
+                                                <input type="text" class="form-control" readonly="readonly"
+                                                    id="agency-address" value="" aria-describedby="basic-addon2">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-light border" id="basic-addon2" onclick="copyCode(this)">
-                                                        <i class="las la-copy mr-1"></i>                                                        
+                                                    <button class="btn btn-light border" id="basic-addon2"
+                                                        onclick="copyCode(this)">
+                                                        <i class="las la-copy mr-1"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -155,12 +166,15 @@
                             <div class="fs-080 mb-2 text-center">
                                 <span class="text-danger">
                                     <strong>Chú ý!</strong>
-                                    Bạn sẽ nhận được tiền vào tài khoản ngân hàng ngay sau khi chúng tôi kiểm tra lệnh bán là hợp lệ. Liên hệ với chúng tôi theo số điện thoại bên dưới để được tư vấn.
+                                    Bạn sẽ nhận được tiền vào tài khoản ngân hàng ngay sau khi chúng tôi kiểm tra lệnh
+                                    bán là hợp lệ. Liên hệ với chúng tôi theo số điện thoại bên dưới để được tư vấn.
                                 </span>
                             </div>
-                            <div class="fs-080 mb-2 text-center">                              
+                            <div class="fs-080 mb-2 text-center">
                                 <span class="font-weight-bold">
-                                    Nếu bạn là thành viên của ACWallet. <a target="_blank" href="https://login.acwallet.io/">Click vào đây</a> để đăng nhập.<br>Nếu không quay trở về <a target="_blank" href="/">trang chủ</a>
+                                    Nếu bạn là thành viên của ACWallet. <a target="_blank"
+                                        href="https://login.acwallet.io/">Click vào đây</a> để đăng nhập.<br>Nếu không
+                                    quay trở về <a target="_blank" href="/">trang chủ</a>
                                 </span>
                             </div>
                         </div>
@@ -182,7 +196,7 @@
     document.getElementById('rate').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData.rate));
     document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveAddress;
     document.getElementById('agency-address').value = retrievedFullData.receiveAddress;
-    document.getElementById('qr-code').innerHTML = '<img src="https://chart.googleapis.com/chart?chs=360x360&cht=qr&chl='+retrievedFullData.receiveAddress+'&choe=UTF-8" width="200">';
+    document.getElementById('qr-code').innerHTML = '<img src="https://chart.googleapis.com/chart?chs=360x360&cht=qr&chl=' + retrievedFullData.receiveAddress + '&choe=UTF-8" width="200">';
     document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
     document.getElementById('email').innerHTML = JSON.parse(retrievedFullData.contact).email;
     document.getElementById('buyer_name').innerHTML = retrievedFullData.buyerName;
@@ -240,5 +254,26 @@
     document.getElementById('bank_receive').innerHTML = retrievedFullData.receiveBank.bank;
     document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveBank.number;
     document.getElementById('address_receive_name').innerHTML = retrievedFullData.receiveBank.name;
+
+    function addOrderIDToCache() {
+        var listOrderChecked = JSON.parse(localStorage.getItem('listOrderChecked'));
+        if (listOrderChecked == null) {
+            listOrderChecked = [];
+        }
+        var idExist = false;
+
+        for (let i = 0; i < listOrderChecked.length; i++) {
+            if (listOrderChecked[i] == retrievedFullData.id) {
+                idExist = true;
+            }
+        }
+        console.log(idExist);
+        if (!idExist) {
+            console.log("push to list");
+            listOrderChecked.push(retrievedFullData.id);
+            localStorage.setItem("listOrderChecked", JSON.stringify(listOrderChecked));
+        }
+    }
+    addOrderIDToCache();
 
 </script>

@@ -251,4 +251,26 @@
     })
 
     document.getElementById('bank_name_receive').innerHTML = bankName.name;
+
+    function addOrderIDToCache() {
+        var listOrderChecked = JSON.parse(localStorage.getItem('listOrderChecked'));
+        if (listOrderChecked == null) {
+            listOrderChecked = [];
+        }
+        var idExist = false;
+
+        for (let i = 0; i < listOrderChecked.length; i++) {
+            if (listOrderChecked[i] == retrievedFullData.id) {
+                idExist = true;
+            }
+        }
+        console.log(idExist);
+        if (!idExist) {
+            console.log("push to list");
+            listOrderChecked.push(retrievedFullData.id);
+            localStorage.setItem("listOrderChecked", JSON.stringify(listOrderChecked));
+        }
+    }
+    addOrderIDToCache();
+
 </script>
