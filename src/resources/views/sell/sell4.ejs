@@ -13,7 +13,7 @@
                                     <div class="col-12 col-xl-6 col-lg-8 col-md-10">
                                         <div class="user-profile text-center text-white mt-5">
                                             <div class="user-info">
-                                                <h3 class="fs-150 mb-0 text-white">Mua <%= coin %> từ đại lý <%=
+                                                <h3 class="fs-150 mb-0 text-white">Bán <%= coin %> cho đại lý <%=
                                                             agency.name %>
                                                 </h3>
                                             </div>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
 
-                    <div class="card-footer border-0">                    
+                    <div class="card-footer border-0">
                         <a href="/transaction/sell?step=3&coin=<%=coin%>" class="btn btn-secondary">
                             <i class="las la-arrow-left"></i>
                             Quay lại
@@ -371,7 +371,7 @@
     } else if (queryString.includes('sell')) {
         type = 1
     }
-    
+
     var listCoin = {
         btc: 1,
         eth: 3,
