@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label for="" class="font-weight-500">Số lượng mua</label>
                                     <div class="input-group mb-0">
-                                        <input type="number" class="form-control" value="" id="address_value">
+                                        <input type="number" class="form-control" value="" id="quantity">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="coin_value">
                                                 <%= coin %>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="text-center fs-110 font-weight-bold mb-2 mt-2">
-                                    Số tiền bạn trả: <span class="font-weight-bold text-success" id="sumPrice">
+                                    Số tiền bạn trả: <span class="font-weight-bold text-success" id="sumPrice">0
                                     </span>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/buy?step=3&coin=<%=coin%>" class="btn btn-primary float-right"
+                        <a href="#" class="btn btn-primary float-right"
                             id="buy_continue">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
@@ -165,15 +165,12 @@
         cent: 16
     }
 
-    var coinCode = document.getElementById('coin_value').innerText;
-    var agencyId = document.getElementById('agentId').innerText;
-    var typeCoin;
-    if (listCoin.hasOwnProperty(coinCode.toLowerCase())) {
-        typeCoin = listCoin[coinCode.toLowerCase()];
-    }
+    // set info for html
+    var agencyId = '<%= agency.agencyId %>';
+    typeCoin = listCoin['<%=coin%>'.toLowerCase()];
 
     const queryString = window.location.href;
-    var type, walletCode, user
+    var type, user;
     if (queryString.includes('buy')) {
         type = 2
     } else if (queryString.includes('sell')) {
@@ -182,80 +179,71 @@
 
     // element for html
     address_wallet = document.getElementById('address_wallet');
-    address_val = document.getElementById('address_value');
 
     sumPriceEle = document.getElementById('sumPrice');
-    errorEle = document.getElementById('error');
+    buyContinue = document.getElementById('buy_continue');
 
-    buyContinue = document.getElementById('buy_continue')
-
-    // check Error
-    function checkError() {
-        if (quantityInvalid || addressInvalid) {
-            buyContinue.classList.add('disabled');
-        } else {
-            buyContinue.classList.remove('disabled');
-        }
-        return;
-    }
-
-    // set info for html
-    sumPriceEle.innerHTML = 0
-    buyContinue.classList.add('disabled');
-    var quantityInvalid = true;
-    var addressInvalid = true;
-    address_val.addEventListener('input', function () {
+    document.getElementById("quantity").addEventListener('input', function () {
         var coinPrice = parseFloat('<%=rate%>');
-        quantityInvalid = true;
-        buyContinue.classList.add('disabled');
-        var quantity = address_val.value;
-        if (quantity == undefined || quantity == "") {
-            toastr_error('Vui lòng nhập số lượng mua', '');
-            return;
-        }
-        if (parseFloat(quantity) < 0) {
-            toastr_error('Số lượng không hợp lệ', '');
-            return;
+        var quantity = document.getElementById('quantity').value;
+        if (quantity == undefined || quantity == '') {
+            quantity =0;
         }
         sumPrice = parseFloat(quantity) * parseFloat(coinPrice);
         sumPriceEle.innerHTML = Intl.NumberFormat().format(sumPrice);
-        quantityInvalid = false;
-        checkError();
     })
 
-    address_wallet.addEventListener('blur', function () {
-        addressInvalid = true;
-        buyContinue.classList.add('disabled');
-        if (this.value == undefined || this.value == "") {
+    function checkQuantityValid() {  
+        var quantity = document.getElementById('quantity').value;
+        if (quantity == undefined || quantity == "") {
+            toastr_error('Vui lòng nhập số lượng mua', '');
+            return false;
+        }
+        if (parseFloat(quantity) <= 0) {
+            toastr_error('Số lượng không hợp lệ', '');
+            return false;
+        }      
+        return true;
+    }
+
+    function checkAddressValid() {
+        var address = document.getElementById("address_wallet").value;
+        if (address == undefined || address == "") {
             toastr_error('Vui lòng nhập địa chỉ nhận coin', '');
-            return;
+            return false;
         }
         var cur = '<%= coin %>';
-        if ("BTC TRX USDF XENG VNDT XRP".indexOf(cur.toUpperCase()) > -1 && this.value.length != 34) {
+        if ("BTC TRX USDF XENG VNDT XRP".indexOf(cur.toUpperCase()) > -1 && address.length != 34) {
             toastr_error('Địa chỉ nhận không hợp lệ', '');
-            return;
+            return false;
         }
-        if ("ETH USDT".indexOf(cur.toUpperCase()) > -1 && this.value.length != 42) {
+        if ("ETH USDT".indexOf(cur.toUpperCase()) > -1 && address.length != 42) {
             toastr_error('Địa chỉ nhận không hợp lệ', '');
-            return;
+            return false;
         }
-        if ("XLM".indexOf(cur.toUpperCase()) > -1 && this.value.length != 56) {
+        if ("XLM".indexOf(cur.toUpperCase()) > -1 && address.length != 56) {
             toastr_error('Địa chỉ nhận không hợp lệ', '');
-            return;
+            return false;
         }
+        return true;
+    }
 
+    document.getElementById('buy_continue').addEventListener('click', function () {
+        if (!checkQuantityValid() || !checkAddressValid()) {         
+            return false;
+        }   
         user = {
             currencyCode: typeCoin,
             orderType: type,
             agentId: agencyId,
-            receiveAddress: this.value,
-            quantity: address_val.value,
-            sumPrice: parseFloat(address_val.value) * parseFloat('<%=rate%>'),
-            amountValue: '<%=rate%>',
+            receiveAddress: document.getElementById("address_wallet").value,
+            quantity: document.getElementById("quantity").value,
+            sumPrice: parseFloat(document.getElementById("quantity").value) * parseFloat('<%=rate%>'),
+            rate: '<%=rate%>',
         }
-        // save to localStorage
         localStorage.setItem('user', JSON.stringify(user));
-        addressInvalid = false;
-        checkError();
-    });
+        window.location.replace("/transaction/buy?step=3&coin=<%=coin%>");
+    })
+
+
 </script>

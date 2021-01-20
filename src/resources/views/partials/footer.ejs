@@ -7,7 +7,14 @@
                     <div class="text">
                         <p class="mb-2">
                             <strong class="text-uppercase">
-                                Đại lý Supper Admin - <%= agency.name %>
+                                <% if(agency.name.indexOf('SA')>-1){ %>
+                                    Supper Admin
+                                <% }else if(agency.name.indexOf('MA')>-1){ %>
+                                    Master Agent
+                                <% }else { %>
+                                    Agent
+                                <%  } %>                      
+                                - <%= agency.name %>
                             </strong>
                         </p>
                         <p class="mb-2">

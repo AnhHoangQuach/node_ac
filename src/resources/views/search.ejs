@@ -30,13 +30,13 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-xl-6 col-lg-7 ">
-                <div class="card d-none" id="list_checked_order"> 
+                <div class="card d-none" id="list_checked_order">
                     <div class="card-header">
                         <h5 class="mb-0">Các mã đơn hàng gần đây
                         </h5>
-                        <div class="mt-4" id="list_order">                           
+                        <div class="mt-4" id="list_order">
                         </div>
-                    </div>                   
+                    </div>
                 </div>
                 <% if (error_desc !='' ){ %>
                     <div class="card">
@@ -47,7 +47,7 @@
                                 <%= error_desc %>
                             </div>
                         </div>
-                    </div>                  
+                    </div>
                     <% } %>
                         <div class="card <%= order_exist %>">
                             <div class="card-header">
@@ -169,7 +169,7 @@
                         </div>
             </div>
         </div>
-      
+
 
     </div>
 </section>
@@ -214,8 +214,8 @@
             console.log(listOrderChecked);
             if (listOrderChecked != null) {
                 var listHtml = '';
-                for (let i = 0; i < listOrderChecked.length; i++) {
-                    listHtml = listHtml + '<a class="d-block font-weight-bold" href="/search?id=' + listOrderChecked[i] + '">'+listOrderChecked[i]+'</a>';
+                for (let i = listOrderChecked.length - 1; i >= 0; i--) {
+                    listHtml = listHtml + '<a class="d-block font-weight-bold" href="/search?id=' + listOrderChecked[i] + '">' + listOrderChecked[i] + '</a>';
                 }
                 console.log(listHtml);
                 document.getElementById("list_checked_order").classList.remove("d-none");
@@ -227,15 +227,15 @@
             if (order_exist == '') {
                 console.log("save order id");
                 var listOrderChecked = JSON.parse(localStorage.getItem('listOrderChecked'));
-                if (listOrderChecked== null) {
+                if (listOrderChecked == null) {
                     listOrderChecked = [];
                 }
-                var idExist=false;
+                var idExist = false;
 
                 for (let i = 0; i < listOrderChecked.length; i++) {
-                    if (listOrderChecked[i]== '<%= order.id %>') {
+                    if (listOrderChecked[i] == '<%= order.id %>') {
                         idExist = true;
-                    }                    
+                    }
                 }
                 console.log(idExist);
                 if (!idExist) {
