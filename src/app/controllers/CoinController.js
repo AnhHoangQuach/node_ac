@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA8888`
+const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA6666`
 class CoinController {
     async index(req, res) {
         const fetch_store = await fetch(api_store_url)

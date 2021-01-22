@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const api_url = `https://login.acwallet.io/api/v1/rates`
-const api_store_url = `https://login.acwallet.io/api/v1/agency-detail?name=MA8888`
+const api_store_url = `https://login.acwallet.io/api/v1/agency-detail?name=MA6666`
 var func = require("./functions.js");
 class SiteController {
     async index(req, res, next) {
