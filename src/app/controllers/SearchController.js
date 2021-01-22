@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA6666`
+const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=MA9999`
 
 const api_get_order_info = 'https://login.acwallet.io/api/v1/order-details?id=';
 var func = require("./functions.js");
