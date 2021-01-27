@@ -77,6 +77,7 @@ class TransactionController {
                 coin: coin.toUpperCase(),
                 rate : data.rates['ask_'+coin.toLowerCase()],          
                 listBank: func.listBank,
+                typeMethod: 2,
             })
         }
 
