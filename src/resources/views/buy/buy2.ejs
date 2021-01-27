@@ -105,14 +105,31 @@
                             </div>
                             <div class="col-12">
                                 <div class="text-center fs-110 font-weight-bold mb-2 mt-2">
-                                    Số tiền bạn trả: <span class="font-weight-bold text-success" id="sumPrice">0
+                                    Số tiền bạn trả: <span class="font-weight-bold text-success"><span
+                                            id="sumPrice">0</span> VND
                                     </span>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group mini-col mb-2">
                                     <label for="" class="font-weight-500">Địa chỉ ví của bạn</label>
+                                    <div class="custom-control custom-checkbox f-14 mb-2">
+                                        <input type="checkbox" class="custom-control-input is-member" id="customCheck"
+                                            onchange="valueChanged()">
+                                        <label class="custom-control-label" for="customCheck">
+                                            Là thành viên trên ACWallet
+                                        </label>
+                                    </div>
+                                    <div class="form-group mini-col mt-2 uid-member" style="display: none;">
+                                        <input type="text" class="form-control" value="U12345678">
+                                        <small class="form-text text-muted">Nhập UID hoặc Email tài khoản
+                                            ACWallet</small>
+                                    </div>
                                     <input type="text" class="form-control" id="address_wallet">
+                                    <small class="form-text text-muted">
+                                        Nếu chưa có địa chỉ ví VNDT thì <a href="https://login.acwallet.io/register"
+                                            target="_blank">Đăng ký ở đây</a>
+                                    </small>
                                 </div>
                                 <span id="error"></span>
                             </div>
@@ -133,8 +150,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="#" class="btn btn-primary float-right"
-                            id="buy_continue">
+                        <a href="#" class="btn btn-primary float-right" id="buy_continue">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -187,13 +203,14 @@
         var coinPrice = parseFloat('<%=rate%>');
         var quantity = document.getElementById('quantity').value;
         if (quantity == undefined || quantity == '') {
-            quantity =0;
+            quantity = 0;
         }
         sumPrice = parseFloat(quantity) * parseFloat(coinPrice);
         sumPriceEle.innerHTML = Intl.NumberFormat().format(sumPrice);
     })
 
-    function checkQuantityValid() {  
+
+    function checkQuantityValid() {
         var quantity = document.getElementById('quantity').value;
         if (quantity == undefined || quantity == "") {
             toastr_error('Vui lòng nhập số lượng mua', '');
@@ -202,7 +219,7 @@
         if (parseFloat(quantity) <= 0) {
             toastr_error('Số lượng không hợp lệ', '');
             return false;
-        }      
+        }
         return true;
     }
 
@@ -229,9 +246,9 @@
     }
 
     document.getElementById('buy_continue').addEventListener('click', function () {
-        if (!checkQuantityValid() || !checkAddressValid()) {         
+        if (!checkQuantityValid() || !checkAddressValid()) {
             return false;
-        }   
+        }
         user = {
             currencyCode: typeCoin,
             orderType: type,
@@ -244,6 +261,11 @@
         localStorage.setItem('user', JSON.stringify(user));
         window.location.replace("/transaction/buy?step=3&coin=<%=coin%>");
     })
-
+    function valueChanged() {
+        if ($('.is-member').is(":checked"))
+            $(".uid-member").show();
+        else
+            $(".uid-member").hide();
+    }
 
 </script>

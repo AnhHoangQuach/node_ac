@@ -99,8 +99,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Họ và Tên: *
                                     </label>
-                                    <input type="text" class="form-control" value="" placeholder="Nguyễn Văn A"
-                                        id="buyerName">
+                                    <input type="text" class="form-control" value="" id="buyerName">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -108,8 +107,7 @@
                                     <label for="" class="font-weight-500 d-block">
                                         Email *
                                     </label>
-                                    <input type="email" class="form-control" value="" placeholder="example@gmail.io"
-                                        id="email">
+                                    <input type="email" class="form-control" value="" id="email">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 col-md-6">
@@ -258,7 +256,7 @@
     document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity) * parseFloat('<%= rate %>'));
     document.querySelector('#address_receive').innerHTML = retrievedObject.receiveAddress;
 
-    
+
 
     function checkEmailValid() {
         var email = document.getElementById('email').value;
@@ -308,7 +306,7 @@
         if (acWalletId == undefined || acWalletId == "") {
             toastr.error('vui lòng nhập id của bạn trên hệ thống Acwallet', '')
             return false;
-        }        
+        }
         getACInfo(acWalletId);
     }
 
@@ -351,14 +349,14 @@
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })
-            .then(response => {           
+            .then(response => {
                 return response.json();
-            }).then(data => {              
+            }).then(data => {
                 if (data.length > 0) {
-                    var fisrt = data[0];            
+                    var fisrt = data[0];
                     $("#email").val(fisrt.email);
                     ACAccountValid = true;
-                }else{
+                } else {
                     ACAccountValid = false;
                     toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
                 }
