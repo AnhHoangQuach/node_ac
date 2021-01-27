@@ -92,7 +92,7 @@
                             </div>
                             <div class="col-12 fs-075 text-secondary mb-4">
                                 <span class="ml-1 mr-1">
-                                    Giá bán: <span class="font-weight-bold text-danger" id="rate"></span>
+                                    Tỉ giá <%- coin %>/VNDT: <span class="font-weight-bold text-danger" id="rate"></span>
                                 </span>
                             </div>
                             <div class="text-center fs-110 font-weight-bold mb-4">
@@ -112,12 +112,17 @@
                                     <span class="bank-title">Tên chủ tài khoản:</span>
                                     <span class="font-weight-bold" id="address_receive_name"></span>
                                 </div>
+                                <div class="align-items-center mb-1">
+                                    <span class="bank-title">Nội dung chuyển khoản:</span>
+                                    <span class="font-weight-bold" id="address_message"></span>
+                                </div>
                             </div>
+                            <hr>
 
                             <div class=" mb-3 d-inline-block">
                                 <!-- <div>Thông tin liên hệ</div>      -->
                                 <div class="align-items-center mb-1">
-                                    <span class="bank-title">Thông tin liên hệ:</span>
+                                    <span class="bank-title">Người <%- typeMethod == 1 ? 'bán' : 'mua' %>:</span>
                                     <span class="font-weight-bold" id="buyer_name"></span>
                                 </div>
                                 <div class="align-items-center mb-1">
@@ -158,11 +163,28 @@
                                 </div>
 
                             </div>
+                            <hr>
                             <div class="fs-090 mb-3 text-center">
                                 <span>
-                                    Trạng thái: <span class="badge badge-pill badge-warning wf-85">Đang chờ</span>
+                                    Trạng thái: <span class="badge badge-pill badge-warning wf-85">Đang xử lý</span>
                                 </span>
                             </div>
+                            <p class="font-weight-bold">
+                                Bạn hãy lưu lại mã đơn hàng này để kiểm tra trạng thái đơn hàng của bạn hoặc tìm lại mã đơn hàng của bạn trong Email bạn đã đăng ký
+                            </p>
+                            <div class="text-center mb-3">
+                                <div class="card d-inline-block border-0">
+                                    <div class="card-body bg-danger border-0 text-white font-weight-bold fs-125 pt-3 pb-3">
+                                        <span id="order_check_id"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fs-080 mb-4 text-center">
+                                <span>
+                                    Hãy nhấp chuột vào đây để <a href="" id="order_link" class="text-primary font-weight-500">kiểm tra trạng thái đơn hàng</a> của bạn
+                                </span>
+                            </div>
+                            <hr>
                             <div class="fs-080 mb-2 text-center">
                                 <span class="text-danger">
                                     <strong>Chú ý!</strong>
@@ -176,6 +198,12 @@
                                         href="https://login.acwallet.io/">Click vào đây</a> để đăng nhập.<br>Nếu không
                                     quay trở về <a target="_blank" href="/">trang chủ</a>
                                 </span>
+                            </div>
+                            <div class="text-center mb-2 font-weight-bold">
+                                <a href="javascript:;" onclick="window.print();">
+                                    <i class="las la-print"></i>
+                                    In đơn hàng này
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -192,6 +220,9 @@
 
     document.getElementById('coin_value_sell').innerHTML = Intl.NumberFormat().format(retrievedFullData.quantity) + ' <%= coin %>';
     document.getElementById('order_id').innerHTML = retrievedFullData.id;
+    document.getElementById('address_message').innerHTML = retrievedFullData.id;
+    document.getElementById('order_link').href = '/search?id=' + retrievedFullData.id;
+    document.getElementById('order_check_id').innerHTML = retrievedFullData.id;
     document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);
     document.getElementById('rate').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData.rate));
     document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveAddress;

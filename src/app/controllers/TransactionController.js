@@ -141,17 +141,7 @@ class TransactionController {
                 listBank: func.listBank,
                 coin: coin.toUpperCase(),
                 rate: data.rates['bid_' + coin.toLowerCase()],
-            })
-        }  else if (req.query.step == 5) {
-            res.render('sell/sell5', { 
-                title: 'Bán bước 5', 
-                link: 'sell5',
-                agency: data_store.agency, 
-                coin: req.query.coin,
-                rates: data.rates,
-                listBank: func.listBank,
-                coin: coin.toUpperCase(),
-                rate : data.rates['bid_'+coin.toLowerCase()],
+                typeMethod: 1,
             })
         }
 
