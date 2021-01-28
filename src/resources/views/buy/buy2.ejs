@@ -226,6 +226,14 @@
         return true;
     }
 
+    function checkMemberId(uid) {
+        if(uid == "") {
+            toastr_error("Vui lòng nhập UserID", "");
+            return false;
+        }
+        return uid.trim();
+    }
+
     function checkAddressValid() {
         var address = document.getElementById("address_wallet").value;
         if (address == undefined || address == "") {
@@ -252,6 +260,12 @@
         if (!checkQuantityValid() || !checkAddressValid()) {
             return false;
         }
+        if($('.uid-member').css('display') != 'none') {
+            if(checkMemberId($('#member_uid').val()) == "") {
+                return false;
+            }
+        }
+
         user = {
             currencyCode: typeCoin,
             orderType: type,
@@ -302,7 +316,7 @@
     }
 
     document.getElementById('member_uid').addEventListener('blur', () => {
-        var uid = $('#member_uid').val();
-        getACInfo(uid);
+        var uidTemp = $('#member_uid').val();
+        getACInfo(uidTemp);
     })
 </script>
