@@ -81,7 +81,7 @@
                                     <span class="d-inline-block font-weight-500 fs-080">
                                         <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                        <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %></span>
+                                        <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %>%</span>
                                     </span>
                                     </span>
                                 </div>
