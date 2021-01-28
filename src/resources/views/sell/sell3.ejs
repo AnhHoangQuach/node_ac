@@ -198,8 +198,7 @@
     var postData;
 
     async function getAccount() {
-        // var dataPost = JSON.parse(localStorage.getItem('postData'));
-        var dataPost = JSON.parse(localStorage.getItem('orderSellData'))[0];
+        var dataPost = JSON.parse(localStorage.getItem('postData'));
         spinner.classList.remove("d-none");
         $.ajax({
             url: `https://login.acwallet.io/api/v1/getBankAccount?accountNumber=${dataPost.accountNumber}&bankName=${dataPost.bankName}`,
@@ -207,6 +206,7 @@
             // mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             success: function (response) {
+                console.log(response);
                 var bankInfo = JSON.parse(response);
                 document.getElementById('address_name').value = bankInfo.accountName;
                 BankSaved = {
@@ -215,6 +215,7 @@
                     number: bankInfo.accountNumber
                 }
                 // localStorage.setItem('accountInfo', response);
+                var orderSellData = JSON.parse(localStorage.getItem('orderSellData'));
                 orderSellData.push(JSON.parse(response));
                 localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
                 sellContinue.classList.remove('disabled');
@@ -250,9 +251,7 @@
             bankName: codeBank,
             accountNumber: accountNumber,
         }
-        // localStorage.setItem('postData', JSON.stringify(postData));
-        orderSellData.push(postData);
-        localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
+        localStorage.setItem('postData', JSON.stringify(postData));
         BankSaved.number = accountNumber;
         BankSaved.bank = ""
         getAccount();

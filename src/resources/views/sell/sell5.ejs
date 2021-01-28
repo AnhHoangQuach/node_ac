@@ -216,7 +216,7 @@
 
 <script>
     // var retrievedFullData = JSON.parse(localStorage.getItem('fullData'));
-    var retrievedFullData = JSON.parse(localStorage.getItem('orderSellData'))[2];
+    var retrievedFullData = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
     document.getElementById('coin_value_sell').innerHTML = Intl.NumberFormat().format(retrievedFullData.quantity) + ' <%= coin %>';
     document.getElementById('order_id').innerHTML = retrievedFullData.id;

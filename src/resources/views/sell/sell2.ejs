@@ -156,6 +156,7 @@
         return;     
     }
 
+    var orderSellData = Object.keys(JSON.parse(localStorage.getItem('orderSellData')));
     sumPriceSell.innerHTML = 0
     sellContinue.classList.add('disabled');
     var quantityInvalid = true;

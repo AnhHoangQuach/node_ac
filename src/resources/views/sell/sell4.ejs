@@ -435,8 +435,7 @@
         createSellOrder();
     }, false);
 
-    // var retrievedObjectData = JSON.parse(localStorage.getItem('accountInfo'));
-    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[1];
+    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[0];
 
     bankData = JSON.parse(localStorage.getItem('bankData'))
     var BankSaved = {
