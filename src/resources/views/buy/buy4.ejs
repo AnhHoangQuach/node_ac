@@ -231,7 +231,8 @@
 </div>
 
 <script>
-    var retrievedObject = JSON.parse(localStorage.getItem('user'));
+    // var retrievedObject = JSON.parse(localStorage.getItem('user'));
+    var retrievedObject = JSON.parse(localStorage.getItem('orderFullData'))[0];
 
     async function createOrder() {
         $("#MdlBuy button").attr('disabled', true);
@@ -245,7 +246,10 @@
                 console.log(response);
                 return response.json();
             }).then(data => {
-                localStorage.setItem('fullData', JSON.stringify(data));
+                var orderFullData = JSON.parse(localStorage.getItem('orderFullData'));
+                orderFullData.push(data);
+                // localStorage.setItem('fullData', JSON.stringify(data));
+                localStorage.setItem('orderFullData', JSON.stringify(orderFullData));
                 window.location.href = '/transaction/buy?step=5&coin=<%= coin %>';
                 return;
             });
@@ -293,22 +297,22 @@
         return true;
     }
 
-    document.getElementById("accountId").addEventListener('blur', function () {
-        checkAcwalletId();
-    })
+    // document.getElementById("accountId").addEventListener('blur', function () {
+    //     checkAcwalletId();
+    // })
 
     var ACAccountValid = false;
-    function checkAcwalletId() {
-        if (!retrievedObjectData.memberAc) {
-            return true;
-        }
-        var acWalletId = $("#accountId").val();
-        if (acWalletId == undefined || acWalletId == "") {
-            toastr.error('vui lòng nhập id của bạn trên hệ thống Acwallet', '')
-            return false;
-        }
-        getACInfo(acWalletId);
-    }
+    // function checkAcwalletId() {
+    //     if (!retrievedObjectData.memberAc) {
+    //         return true;
+    //     }
+    //     var acWalletId = $("#accountId").val();
+    //     if (acWalletId == undefined || acWalletId == "") {
+    //         toastr.error('vui lòng nhập id của bạn trên hệ thống Acwallet', '')
+    //         return false;
+    //     }
+    //     getACInfo(acWalletId);
+    // }
 
     document.getElementById("orderSoft").addEventListener('click', function () {
         if (retrievedObjectData.memberAc && !ACAccountValid) {
@@ -332,7 +336,8 @@
         $("#MdlBuy").modal("show");
     })
 
-    var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
+    // var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
+    var retrievedObjectData = JSON.parse(localStorage.getItem('orderFullData'))[1];
 
     function valueChanged() {
         if ($('.is-member').is(":checked")) {
@@ -344,25 +349,25 @@
         }
     }
 
-    function getACInfo(id) {
-        fetch('https://login.acwallet.io/api/v1/get-info-by-acc-id?id=' + id, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                if (data.length > 0) {
-                    var fisrt = data[0];
-                    $("#email").val(fisrt.email);
-                    ACAccountValid = true;
-                } else {
-                    ACAccountValid = false;
-                    toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
-                }
-                return;
-            });
-    }
+    // function getACInfo(id) {
+    //     fetch('https://login.acwallet.io/api/v1/get-info-by-acc-id?id=' + id, {
+    //         method: 'GET',
+    //         headers: { 'Content-Type': 'application/json' },
+    //     })
+    //         .then(response => {
+    //             return response.json();
+    //         }).then(data => {
+    //             if (data.length > 0) {
+    //                 var fisrt = data[0];
+    //                 $("#email").val(fisrt.email);
+    //                 ACAccountValid = true;
+    //             } else {
+    //                 ACAccountValid = false;
+    //                 toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
+    //             }
+    //             return;
+    //         });
+    // }
 
     document.querySelector('#create_order').addEventListener('click', function (e) {
         createOrder();

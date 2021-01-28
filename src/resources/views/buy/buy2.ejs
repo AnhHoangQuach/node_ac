@@ -121,7 +121,7 @@
                                         </label>
                                     </div>
                                     <div class="form-group mini-col mt-2 uid-member" style="display: none;">
-                                        <input type="text" class="form-control" value="U12345678">
+                                        <input type="text" class="form-control" value="U12345678" id="member_uid">
                                         <small class="form-text text-muted">Nhập UID hoặc Email tài khoản
                                             ACWallet</small>
                                     </div>
@@ -166,6 +166,7 @@
     </span>
 </section>
 <script>
+    localStorage.setItem("orderFullData", JSON.stringify([]));
     var listCoin = {
         btc: 1,
         eth: 3,
@@ -193,6 +194,9 @@
         type = 1
     }
 
+    var orderFullData = Object.keys(JSON.parse(localStorage.getItem('orderFullData')));
+    console.log(orderFullData);
+
     // element for html
     address_wallet = document.getElementById('address_wallet');
 
@@ -208,7 +212,6 @@
         sumPrice = parseFloat(quantity) * parseFloat(coinPrice);
         sumPriceEle.innerHTML = Intl.NumberFormat().format(sumPrice);
     })
-
 
     function checkQuantityValid() {
         var quantity = document.getElementById('quantity').value;
@@ -256,16 +259,50 @@
             receiveAddress: document.getElementById("address_wallet").value,
             quantity: document.getElementById("quantity").value,
             sumPrice: parseFloat(document.getElementById("quantity").value) * parseFloat('<%=rate%>'),
-            rate: '<%=rate%>',
+            rate: '<%=rate%>', 
         }
-        localStorage.setItem('user', JSON.stringify(user));
+        orderFullData.push(user);
+        // localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('orderFullData', JSON.stringify(orderFullData));
         window.location.replace("/transaction/buy?step=3&coin=<%=coin%>");
     })
     function valueChanged() {
-        if ($('.is-member').is(":checked"))
+        if ($('.is-member').is(":checked")) {
             $(".uid-member").show();
-        else
+        } else {
             $(".uid-member").hide();
+        }
     }
 
+    function getACInfo(uid) {
+        var id = uid.split('U')[1];
+        var coin;
+        if(typeCoin == 3 || typeCoin == 6) {
+            coin = 'ETH';
+        } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
+            coin = 'TRX';
+        }
+        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${id}&c=${coin}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                if (data.length > 0) {
+                    var fisrt = data[0];
+                    $("#address_wallet").val(fisrt.address);
+                    ACAccountValid = true;
+                } else {
+                    ACAccountValid = false;
+                    toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
+                }
+                return;
+            });
+    }
+
+    document.getElementById('member_uid').addEventListener('blur', () => {
+        var uid = $('#member_uid').val();
+        getACInfo(uid);
+    })
 </script>

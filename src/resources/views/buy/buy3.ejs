@@ -141,7 +141,6 @@
     </div>
 </section>
 <script>
-
     // list bank
     var listBank = [
         { "code" :"970454", "name" : "Ngân hàng TMCP Bản Việt (VIETCAPITAL)"},
@@ -189,7 +188,8 @@
         { "code" :"970457", "name" : "Ngân hàng Wooribank (WOORIBANK)"}
     ];
 
-    var retrievedObject = JSON.parse(localStorage.getItem('user'));
+    // var retrievedObject = JSON.parse(localStorage.getItem('user'));
+    var retrievedObject = JSON.parse(localStorage.getItem('orderFullData'))[0];
     var e = document.getElementById("select_bank");
 
     document.getElementById('bank_name').innerHTML = e.options[0].text;
@@ -213,7 +213,10 @@
         currencyCode: retrievedObject.currencyCode,
         agentId: parseInt(retrievedObject.agentId),
     }
-
+    var orderFullData = JSON.parse(localStorage.getItem('orderFullData'));
+    orderFullData.push(data);
+    console.log(orderFullData);
     // save to localStorage
-    localStorage.setItem('data', JSON.stringify(data));
+    // localStorage.setItem('data', JSON.stringify(data));
+    localStorage.setItem('orderFullData', JSON.stringify(orderFullData));
 </script>

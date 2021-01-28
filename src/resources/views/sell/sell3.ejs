@@ -190,7 +190,7 @@
         { "code": "970457", "name": "Ngân hàng Wooribank (WOORIBANK)" }
     ];
 
-
+    var orderSellData = Object.keys(JSON.parse(localStorage.getItem('orderSellData')));
     
     var user_address = document.getElementById("account_number");
     var sellContinue = document.getElementById("sell_continue")
@@ -198,7 +198,8 @@
     var postData;
 
     async function getAccount() {
-        var dataPost = JSON.parse(localStorage.getItem('postData'));
+        // var dataPost = JSON.parse(localStorage.getItem('postData'));
+        var dataPost = JSON.parse(localStorage.getItem('orderSellData'))[0];
         spinner.classList.remove("d-none");
         $.ajax({
             url: `https://login.acwallet.io/api/v1/getBankAccount?accountNumber=${dataPost.accountNumber}&bankName=${dataPost.bankName}`,
@@ -213,7 +214,9 @@
                     bankCode: bankInfo.bankName,
                     number: bankInfo.accountNumber
                 }
-                localStorage.setItem('accountInfo', response);
+                // localStorage.setItem('accountInfo', response);
+                orderSellData.push(JSON.parse(response));
+                localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
                 sellContinue.classList.remove('disabled');
                 spinner.classList.add("d-none");
                 return;
@@ -247,7 +250,9 @@
             bankName: codeBank,
             accountNumber: accountNumber,
         }
-        localStorage.setItem('postData', JSON.stringify(postData));
+        // localStorage.setItem('postData', JSON.stringify(postData));
+        orderSellData.push(postData);
+        localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
         BankSaved.number = accountNumber;
         BankSaved.bank = ""
         getAccount();

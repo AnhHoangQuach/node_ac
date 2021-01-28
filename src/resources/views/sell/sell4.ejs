@@ -238,7 +238,23 @@
     </div>
 </section>
 <script>
+    //list Coin
+    var listCoin = {
+        btc: 1,
+        eth: 3,
+        bch: 4,
+        ltc: 5,
+        usdt: 6,
+        xrp: 8,
+        xlm: 10,
+        trx: 11,
+        vndt: 12,
+        usdf: 14,
+        xeng: 15,
+        cent: 16
+    }
 
+    var typeCoin = listCoin['<%=coin%>'.toLowerCase()];
     function checkEmailValid() {
         var email = document.getElementById('email').value;
         if (email == undefined || email == '') {
@@ -313,16 +329,25 @@
         $("#MdlSell").modal("show");
     })
 
-    var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
+    // var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
+    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
-    function getACInfo(id) {
-        fetch('https://login.acwallet.io/api/v1/get-info-by-acc-id?id=' + id, {
+    function getACInfo(uid) {
+        var id = uid.split('U')[1];
+        var coin;
+        if(typeCoin == 3 || typeCoin == 6) {
+            coin = 'ETH';
+        } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
+            coin = 'TRX';
+        }
+        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${id}&c=${coin}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })
             .then(response => {
                 return response.json();
             }).then(data => {
+                console.log(data);
                 if (data.length > 0) {
                     var fisrt = data[0];
                     $("#email").val(fisrt.email);
@@ -370,20 +395,7 @@
         type = 1
     }
 
-    var listCoin = {
-        btc: 1,
-        eth: 3,
-        bch: 4,
-        ltc: 5,
-        usdt: 6,
-        xrp: 8,
-        xlm: 10,
-        trx: 11,
-        vndt: 12,
-        usdf: 14,
-        xeng: 15,
-        cent: 16
-    }
+    var orderSellData = Object.keys(JSON.parse(localStorage.getItem('orderSellData')));
 
     async function createSellOrder() {
 
@@ -409,7 +421,10 @@
                 console.log(response);
                 return response.json();
             }).then(data => {
-                localStorage.setItem('fullData', JSON.stringify(data));
+                var orderSellData = JSON.parse(localStorage.getItem('orderSellData'));
+                orderSellData.push(data);
+                // localStorage.setItem('fullData', JSON.stringify(data));
+                localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
                 window.location.href = '/transaction/sell?step=5&coin=<%= coin %>';
                 return;
             });
@@ -420,18 +435,18 @@
         createSellOrder();
     }, false);
 
-    var retrievedObjectData = JSON.parse(localStorage.getItem('accountInfo'));
+    // var retrievedObjectData = JSON.parse(localStorage.getItem('accountInfo'));
+    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
-    accountInfo = JSON.parse(localStorage.getItem('accountInfo'))
     bankData = JSON.parse(localStorage.getItem('bankData'))
     var BankSaved = {
-        number: accountInfo.accountNumber,
-        name: accountInfo.accountName,
+        number: retrievedObjectData.accountNumber,
+        name: retrievedObjectData.accountName,
         bank: bankData.bank,
         bankCode: bankData.bankCode,
     }
     document.getElementById('bank_name_receive').innerHTML = bankData.bank
-    document.getElementById('account_address').innerHTML = accountInfo.accountNumber
-    document.getElementById('account_name').innerHTML = accountInfo.accountName
+    document.getElementById('account_address').innerHTML = retrievedObjectData.accountNumber
+    document.getElementById('account_name').innerHTML = retrievedObjectData.accountName
 
 </script>
