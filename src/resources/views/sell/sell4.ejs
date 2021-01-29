@@ -113,7 +113,7 @@
                             <div class="col-12 col-lg-6 col-md-6">
                                 <div class="form-group mini-col">
                                     <label for="" class="font-weight-500 d-block">
-                                        Số điện thoại *
+                                        Số điện thoại
                                     </label>
                                     <input type="text" class="form-control" id="phone">
                                 </div>
@@ -279,13 +279,15 @@
 
     function checkPhoneValid() {
         var phone = document.getElementById("phone").value;
-        if (phone == undefined || phone == '') {
-            toastr.error('Vui lòng nhập số điện thoại', '')
-            return false;
-        }
-        if (phone.length != 10) {
-            toastr.error('Số điện thoại không đúng', '')
-            return false;
+        // if (phone == undefined || phone == '') {
+        //     toastr.error('Vui lòng nhập số điện thoại', '')
+        //     return false;
+        // }
+        if(phone != '') {
+            if (phone.length != 10) {
+                toastr.error('Số điện thoại không đúng', '')
+                return false;
+            }
         }
         return true;
     }

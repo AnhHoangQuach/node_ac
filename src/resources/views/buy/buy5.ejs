@@ -258,7 +258,7 @@
     document.getElementById('order_link').href = '/search?id=' + retrievedFullData.id;
     document.getElementById('agency_message').innerHTML = retrievedFullData.id;
     document.getElementById('rate').innerHTML = Intl.NumberFormat().format(retrievedFullData.rate);
-    document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount);
+    document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount) + ' VND';
     document.getElementById('agency_number_receive').innerHTML = retrievedFullData.receiveBank.number;
     document.getElementById('agency_name_receive').innerHTML = retrievedFullData.receiveBank.name;
     document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
@@ -291,18 +291,49 @@
         var idExist = false;
 
         for (let i = 0; i < listOrderChecked.length; i++) {
-            if (listOrderChecked[i] == retrievedFullData.id) {
+            if (listOrderChecked[i].id == retrievedFullData.id) {
                 idExist = true;
             }
         }
         console.log(idExist);
         if (!idExist) {
             console.log("push to list");
-            listOrderChecked.push(retrievedFullData.id);
+            var orderSuccessData = {
+                id: retrievedFullData.id,
+                timeCreated: formatDateTime(retrievedFullData.createdDate),
+            }
+            listOrderChecked.push(orderSuccessData);
             localStorage.setItem("listOrderChecked", JSON.stringify(listOrderChecked));
         }
     }
     addOrderIDToCache();
     //clear all localStorage
-    localStorage.clear();
+    // localStorage.clear();
+    function checkZero(data) {
+        if (data.length == 1) {
+            data = "0" + data;
+        }
+        return data;
+    }
+
+
+    function formatDateTime (time) {
+        var today = new Date(time);
+        var day = today.getDate() + "";
+        var month = (today.getMonth() + 1) + "";
+        var year = today.getFullYear() + "";
+        var hour = today.getHours() + "";
+        var minutes = today.getMinutes() + "";
+        var seconds = today.getSeconds() + "";
+
+        day = checkZero(day);
+        month = checkZero(month);
+        year = checkZero(year);
+        hour = checkZero(hour);
+        minutes = checkZero(minutes);
+        seconds = checkZero(seconds);
+
+        var result = (day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
+        return result;
+    }
 </script>

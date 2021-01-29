@@ -316,7 +316,9 @@
     }
 
     document.getElementById('member_uid').addEventListener('blur', () => {
+        $('#address_wallet').val('');
         var uidTemp = $('#member_uid').val();
         getACInfo(uidTemp);
+        localStorage.setItem('uid', uidTemp);
     })
 </script>

@@ -2562,3 +2562,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.item-search-near {
+    color: red;
+}
+
+.item-search-near:hover {
+  color: #0063c3;
+}

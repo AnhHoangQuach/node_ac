@@ -113,7 +113,7 @@
                             <div class="col-12 col-lg-6 col-md-6">
                                 <div class="form-group mini-col">
                                     <label for="" class="font-weight-500 d-block">
-                                        Số điện thoại *
+                                        Số điện thoại
                                     </label>
                                     <input type="number" class="form-control" id="phone">
                                 </div>
@@ -231,8 +231,26 @@
 </div>
 
 <script>
+    var listCoin = {
+        btc: 1,
+        eth: 3,
+        bch: 4,
+        ltc: 5,
+        usdt: 6,
+        xrp: 8,
+        xlm: 10,
+        trx: 11,
+        vndt: 12,
+        usdf: 14,
+        xeng: 15,
+        cent: 16
+    }
+    typeCoin = listCoin['<%=coin%>'.toLowerCase()];
+    
     // var retrievedObject = JSON.parse(localStorage.getItem('user'));
     var retrievedObject = JSON.parse(localStorage.getItem('orderFullData'))[0];
+    var uid = localStorage.getItem('uid');
+    getACInfo(uid);
 
     async function createOrder() {
         $("#MdlBuy button").attr('disabled', true);
@@ -286,13 +304,15 @@
 
     function checkPhoneValid() {
         var phone = document.getElementById("phone").value;
-        if (phone == undefined || phone == '') {
-            toastr.error('Vui lòng nhập số điện thoại', '')
-            return false;
-        }
-        if (phone.length != 10) {
-            toastr.error('Số điện thoại không đúng', '')
-            return false;
+        // if (phone == undefined || phone == '') {
+        //     toastr.error('Vui lòng nhập số điện thoại', '')
+        //     return false;
+        // }
+        if (phone != "") {
+            if(phone.length != 10) {
+                toastr.error('Số điện thoại không đúng', '')
+                return false;
+            }
         }
         return true;
     }
@@ -380,6 +400,33 @@
         } else {
             return true;
         }
+    }
+
+    function getACInfo(uid) {
+        var id = uid.split('U')[1];
+        var coin;
+        if(typeCoin == 3 || typeCoin == 6) {
+            coin = 'ETH';
+        } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
+            coin = 'TRX';
+        }
+        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${id}&c=${coin}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                if (data.length > 0) {
+                    var fisrt = data[0];
+                    $("#email").val(fisrt.email);
+                    ACAccountValid = true;
+                } else {
+                    ACAccountValid = false;
+                    toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
+                }
+                return;
+            });
     }
 
 </script>
