@@ -36,9 +36,9 @@
                         </h5>
                         <div class="mt-4">
                             <div class="row d-flex justify-content-between">
-                                <div class="col-md-3 text-center">Id</div>
-                                <div class="col-md-3 text-center">Ngày tạo</div>
-                                <div class="col-md-3 text-center">Xóa</div>
+                                <div class="col-md-4 text-center">Id</div>
+                                <div class="col-md-4 text-center">Ngày tạo</div>
+                                <div class="col-md-4 text-center">Xóa</div>
                             </div>
                             <div id="list_order">
                                 
@@ -224,9 +224,9 @@
                 var listHtml = '';
                 for (let i = listOrderChecked.length - 1; i >= 0; i--) {
                     listHtml = listHtml + 
-                    '<div class="row d-flex justify-content-between"><div class="col-md-3 text-center"><a class="font-weight-bold" href="/search?id=' + listOrderChecked[i].id + '">' + listOrderChecked[i].id + '</a></div>' + 
-                    '<div class="col-md-3 text-center">' + listOrderChecked[i].timeCreated + '</div>' +
-                    `<div class="col-md-3 text-center"><a href="" class="item-search-near" onclick="deleteItem(${listOrderChecked[i].id})">X</a></div></div></div>`;
+                    '<div class="row d-flex justify-content-between"><div class="col-md-4 text-center"><a class="font-weight-bold" href="/search?id=' + listOrderChecked[i].id + '">' + listOrderChecked[i].id + '</a></div>' + 
+                    '<div class="col-md-4 text-center">' + listOrderChecked[i].timeCreated + '</div>' +
+                    `<div class="col-md-4 text-center"><a href="" class="item-search-near" onclick="deleteItem(${listOrderChecked[i].id})">X</a></div></div></div>`;
                 }
                 console.log(listHtml);
                 document.getElementById("list_checked_order").classList.remove("d-none");
