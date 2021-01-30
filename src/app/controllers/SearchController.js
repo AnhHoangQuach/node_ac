@@ -1,8 +1,8 @@
 const fetch = require('node-fetch')
-const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=AG686868`
+const func = require('./functions')
+const api_store_url = `http://login.acwallet.io/api/v1/agency-detail?name=${GLOBAL_AGENCYID}`
 
 const api_get_order_info = 'https://login.acwallet.io/api/v1/order-details?id=';
-var func = require("./functions.js");
 
 class SearchController {
     async index(req, res) {

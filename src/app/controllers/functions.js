@@ -1,6 +1,8 @@
 const e = require("express");
 const url = require('url')
 const fetch  = require('node-fetch')
+global.GLOBAL_AGENCYID = 'AG686868'
+
 var listBank = [
     { "code": "970454", "name": "NH TMCP Bản Việt (VIETCAPITAL)" },
     { "code": "970452", "name": "NH TMCP Kiên Long (KIENLONGBANK)" },
