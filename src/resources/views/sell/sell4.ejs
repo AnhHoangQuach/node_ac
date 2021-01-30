@@ -88,8 +88,13 @@
                                         </label>
                                     </div>
                                     <div class="form-group mini-col mt-2 uid-member" style="display:none;">
-                                        <input type="text" class="form-control" value="" id="accountId">
-                                        <small class="form-text text-muted">Nhập UID tài khoản ACWallet</small>
+                                        <div class="find-box">
+                                            <input type="text" class="form-control" value="" id="accountId">
+                                            <small class="form-text text-muted">Nhập UID tài khoản ACWallet</small>
+                                            <div id="spinner" class="spinner-border text-secondary spinner-border-sm d-none" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -253,7 +258,7 @@
         xeng: 15,
         cent: 16
     }
-
+    var spinner = document.getElementById("spinner");
     var typeCoin = listCoin['<%=coin%>'.toLowerCase()];
     function checkEmailValid() {
         var email = document.getElementById('email').value;
@@ -301,7 +306,8 @@
         if (!retrievedObjectData.memberAc) {
             return true;
         }
-        var acWalletId = $("#accountId").val();
+        var acWalletId = $("#accountId").val().trim();
+        console.log(acWalletId);
         if (acWalletId == undefined || acWalletId == "") {
             toastr.error('vui lòng nhập id của bạn trên hệ thống Acwallet', '')
             return false;
@@ -337,6 +343,7 @@
     function getACInfo(uid) {
         var id = uid.split('U')[1];
         var coin;
+        spinner.classList.remove("d-none");
         if(typeCoin == 3 || typeCoin == 6) {
             coin = 'ETH';
         } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
@@ -346,20 +353,21 @@
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                console.log(data);
-                if (data.length > 0) {
-                    var fisrt = data[0];
-                    $("#email").val(fisrt.email);
-                    ACAccountValid = true;
-                } else {
-                    ACAccountValid = false;
-                    toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
-                }
-                return;
-            });
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            console.log(data);
+            if (data.length > 0) {
+                var fisrt = data[0];
+                $("#email").val(fisrt.email);
+                ACAccountValid = true;
+            } else {
+                ACAccountValid = false;
+                toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
+            }
+            spinner.classList.add("d-none");
+            return;
+        });
     }
 
     function isEmail(email) {

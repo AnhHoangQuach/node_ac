@@ -134,7 +134,7 @@
                                             <span class="bank-title">Người <%- typeMethod == 2 ? 'mua' : 'bán' %>:</span>
                                             <span class="font-weight-bold" id="buyer_name"></span>
                                         </div>                                  
-                                        <div class="align-items-center mb-1">
+                                        <div class="align-items-center mb-1" id="phone_input">
                                             <span class="bank-title">Số điện thoại:</span>
                                             <span class="font-weight-bold" id="phone"></span>
                                         </div>
@@ -261,7 +261,11 @@
     document.getElementById('pay_value').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount) + ' VND';
     document.getElementById('agency_number_receive').innerHTML = retrievedFullData.receiveBank.number;
     document.getElementById('agency_name_receive').innerHTML = retrievedFullData.receiveBank.name;
-    document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
+    if(JSON.parse(retrievedFullData.contact).phone == "") {
+        document.getElementById('phone_input').classList.add('d-none');
+    } else {
+        document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
+    }
     document.getElementById('email').innerHTML = JSON.parse(retrievedFullData.contact).email;
     document.getElementById('buyer_name').innerHTML = retrievedFullData.buyerName;
     //set countdown    

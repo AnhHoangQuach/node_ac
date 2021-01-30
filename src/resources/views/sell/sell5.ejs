@@ -125,7 +125,7 @@
                                     <span class="bank-title">Người <%- typeMethod == 1 ? 'bán' : 'mua' %>:</span>
                                     <span class="font-weight-bold" id="buyer_name"></span>
                                 </div>
-                                <div class="align-items-center mb-1">
+                                <div class="align-items-center mb-1" id="phone_input">
                                     <span class="bank-title">Số điện thoại:</span>
                                     <span class="font-weight-bold" id="phone"></span>
                                 </div>
@@ -228,7 +228,11 @@
     document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveAddress;
     document.getElementById('agency-address').value = retrievedFullData.receiveAddress;
     document.getElementById('qr-code').innerHTML = '<img src="https://chart.googleapis.com/chart?chs=360x360&cht=qr&chl=' + retrievedFullData.receiveAddress + '&choe=UTF-8" width="200">';
-    document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
+    if(JSON.parse(retrievedFullData.contact).phone == "") {
+        document.getElementById('phone_input').classList.add('d-none');
+    } else {
+        document.getElementById('phone').innerHTML = JSON.parse(retrievedFullData.contact).phone;
+    }
     document.getElementById('email').innerHTML = JSON.parse(retrievedFullData.contact).email;
     document.getElementById('buyer_name').innerHTML = retrievedFullData.buyerName;
     //list bank
