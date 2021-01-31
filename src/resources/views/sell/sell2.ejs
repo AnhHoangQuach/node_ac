@@ -122,7 +122,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/sell?step=3&coin=<%=coin%>" class="btn btn-primary float-right" id="sell_continue">
+                        <a href="/transaction/sell?step=3&coin=<%=coin%>" onclick="saveData()" class="btn btn-primary float-right" id="sell_continue">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -156,7 +156,14 @@
         return;     
     }
 
+    function saveData() {
+        var orderSellData = JSON.parse(localStorage.getItem('orderSellData'));
+        orderSellData.push(info);
+        localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
+    }
+
     var orderSellData = Object.keys(JSON.parse(localStorage.getItem('orderSellData')));
+    var info;
     sumPriceSell.innerHTML = 0
     sellContinue.classList.add('disabled');
     var quantityInvalid = true;
@@ -180,11 +187,11 @@
         console.log('<%= agency.agentId %>')
         checkError();
 
-        var info = {
+        info = {
             quantity: parseFloat(quantity),
             agentId: parseInt(agencyId),
         }
 
-        localStorage.setItem('sellValue', JSON.stringify(info));
+        // localStorage.setItem('sellValue', JSON.stringify(info));
     })
 </script>

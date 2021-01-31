@@ -338,7 +338,7 @@
     })
 
     // var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
-    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[1];
+    // var retrievedObjectOne = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
     function getACInfo(uid) {
         var id = uid.split('U')[1];
@@ -389,7 +389,7 @@
         }
     }
 
-    var coin_want_sell = JSON.parse(localStorage.getItem('sellValue'))
+    var coin_want_sell = JSON.parse(localStorage.getItem('orderSellData'))[0];
 
     document.getElementById("coinSell").innerHTML = coin_want_sell.quantity + ' <%= coin %>'
     document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell.quantity) * parseFloat('<%= rate %>'));
@@ -445,9 +445,9 @@
         createSellOrder();
     }, false);
 
-    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[0];
+    var retrievedObjectData = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
-    bankData = JSON.parse(localStorage.getItem('bankData'))
+    bankData = JSON.parse(localStorage.getItem('orderSellData'))[2]
     var BankSaved = {
         number: retrievedObjectData.accountNumber,
         name: retrievedObjectData.accountName,

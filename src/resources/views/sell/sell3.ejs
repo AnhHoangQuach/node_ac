@@ -132,7 +132,7 @@
                             <i class="las la-arrow-left"></i>
                             Quay lại
                         </a>
-                        <a href="/transaction/sell?step=4&coin=<%=coin%>" id="sell_continue" class="btn btn-primary float-right">
+                        <a href="/transaction/sell?step=4&coin=<%=coin%>" onclick="saveData()" id="sell_continue" class="btn btn-primary float-right">
                             Tiếp tục
                             <i class="las la-arrow-right"></i>
                         </a>
@@ -195,7 +195,7 @@
     var user_address = document.getElementById("account_number");
     var sellContinue = document.getElementById("sell_continue")
     var spinner = document.getElementById("spinner");
-    var postData;
+    var postData, BankSaved = {};
 
     async function getAccount() {
         var dataPost = JSON.parse(localStorage.getItem('postData'));
@@ -257,10 +257,16 @@
         getAccount();
         return;
     });
-    
+   
+    function saveData() {
+        var orderSellData = JSON.parse(localStorage.getItem('orderSellData'));
+        orderSellData.push(BankSavedInfo);
+        localStorage.setItem('orderSellData', JSON.stringify(orderSellData));
+    }
+
     var e = document.getElementById("select_bank");
     var codeBank = e.value;
-    var BankSaved = {}
+    var BankSavedInfo = {}
 
     e.addEventListener('change', function () {
         codeBank = this.value;
@@ -269,10 +275,10 @@
             return value.code == codeBank;
         })
 
-        BankSaved.bankCode = codeBank;
-        BankSaved.bank = bankName.name;
+        BankSavedInfo.bankCode = codeBank;
+        BankSavedInfo.bank = bankName.name;
 
-        localStorage.setItem('bankData', JSON.stringify(BankSaved));
+        // localStorage.setItem('bankData', JSON.stringify(BankSavedInfo));
         sellContinue.classList.add('disabled');
         user_address.value = "";
         return;
