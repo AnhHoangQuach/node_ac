@@ -64,10 +64,6 @@
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('viber') == true && JSON.parse(agency.contact).viber != '') ? '' : 'display:none' %>">
                                                         <img src="img/vb.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 messenger"
-                                                    style="<%= (JSON.parse(agency.contact).hasOwnProperty('message') == true && JSON.parse(agency.contact).message != '') ? '' : 'display:none' %>">
-                                                        <img src="img/messenger.png" width="32">
-                                                    </a>
                                                     <a href="tel:<%= JSON.parse(agency.contact).phone %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 phone"
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('phone') == true && JSON.parse(agency.contact).phone != '') ? '' : 'display:none' %>">
                                                         <img src="img/phone.png" width="32">
