@@ -340,8 +340,7 @@
     // var retrievedObjectData = JSON.parse(localStorage.getItem('data'));
     // var retrievedObjectOne = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
-    function getACInfo(uid) {
-        var id = uid.split('U')[1];
+    function getACInfo(id) {
         var coin;
         spinner.classList.remove("d-none");
         if(typeCoin == 3 || typeCoin == 6) {
