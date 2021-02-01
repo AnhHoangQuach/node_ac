@@ -295,14 +295,13 @@
 
     function getACInfo(uid) {
         spinner.classList.remove("d-none");
-        var id = uid.split('U')[1];
         var coin;
         if(typeCoin == 3 || typeCoin == 6) {
             coin = 'ETH';
         } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
             coin = 'TRX';
         }
-        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${id}&c=${coin}`, {
+        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${uid}&c=${coin}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })
@@ -310,8 +309,9 @@
             return response.json();
         }).then(data => {
             if (data.length > 0) {
-                var fisrt = data[0];
-                $("#address_wallet").val(fisrt.address);
+                var first = data[0];
+                $("#address_wallet").val(first.address);
+                localStorage.setItem('uid_info', JSON.stringify(data[0]));
                 ACAccountValid = true;
             } else {
                 ACAccountValid = false;
@@ -326,6 +326,5 @@
         $('#address_wallet').val('');
         var uidTemp = $('#member_uid').val();
         getACInfo(uidTemp);
-        localStorage.setItem('uid', uidTemp);
     })
 </script>

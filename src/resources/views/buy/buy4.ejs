@@ -250,7 +250,6 @@
     // var retrievedObject = JSON.parse(localStorage.getItem('user'));
     var retrievedObject = JSON.parse(localStorage.getItem('orderFullData'))[0];
     var uid = localStorage.getItem('uid');
-    getACInfo(uid);
 
     async function createOrder() {
         $("#MdlBuy button").attr('disabled', true);
@@ -369,26 +368,6 @@
         }
     }
 
-    // function getACInfo(id) {
-    //     fetch('https://login.acwallet.io/api/v1/get-info-by-acc-id?id=' + id, {
-    //         method: 'GET',
-    //         headers: { 'Content-Type': 'application/json' },
-    //     })
-    //         .then(response => {
-    //             return response.json();
-    //         }).then(data => {
-    //             if (data.length > 0) {
-    //                 var fisrt = data[0];
-    //                 $("#email").val(fisrt.email);
-    //                 ACAccountValid = true;
-    //             } else {
-    //                 ACAccountValid = false;
-    //                 toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
-    //             }
-    //             return;
-    //         });
-    // }
-
     document.querySelector('#create_order').addEventListener('click', function (e) {
         createOrder();
     }, false);
@@ -401,32 +380,6 @@
             return true;
         }
     }
-
-    function getACInfo(uid) {
-        var id = uid.split('U')[1];
-        var coin;
-        if(typeCoin == 3 || typeCoin == 6) {
-            coin = 'ETH';
-        } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
-            coin = 'TRX';
-        }
-        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${id}&c=${coin}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                if (data.length > 0) {
-                    var fisrt = data[0];
-                    $("#email").val(fisrt.email);
-                    ACAccountValid = true;
-                } else {
-                    ACAccountValid = false;
-                    toastr_error("Không tìm thấy Id này trên hệ thống Acwallet. Vui lòng kiểm tra lại")
-                }
-                return;
-            });
-    }
-
+    var uid_info = JSON.parse(localStorage.getItem('uid_info'));
+    document.getElementById("email").value = uid_info.email;
 </script>

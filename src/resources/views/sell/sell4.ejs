@@ -341,7 +341,6 @@
     // var retrievedObjectOne = JSON.parse(localStorage.getItem('orderSellData'))[1];
 
     function getACInfo(uid) {
-        var id = uid.split('U')[1];
         var coin;
         spinner.classList.remove("d-none");
         if(typeCoin == 3 || typeCoin == 6) {
@@ -349,7 +348,7 @@
         } else if(typeCoin == 15 || typeCoin == 11 || typeCoin == 14 || typeCoin == 12) {
             coin = 'TRX';
         }
-        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${id}&c=${coin}`, {
+        fetch(`https://login.acwallet.io/api/v1/get-info-by-acc-id?id=${uid}&c=${coin}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })
