@@ -309,8 +309,9 @@
             return response.json();
         }).then(data => {
             if (data.length > 0) {
-                var fisrt = data[0];
-                $("#address_wallet").val(fisrt.address);
+                var first = data[0];
+                $("#address_wallet").val(first.address);
+                localStorage.setItem('uid_info', JSON.stringify(data[0]));
                 ACAccountValid = true;
             } else {
                 ACAccountValid = false;
@@ -326,6 +327,5 @@
         var uidTemp = $('#member_uid').val();
         console.log(uidTemp);
         getACInfo(uidTemp);
-        localStorage.setItem('uid', uidTemp);
     })
 </script>

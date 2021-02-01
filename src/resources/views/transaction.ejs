@@ -41,7 +41,7 @@
                                             <strong>USD Forex</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
-                                                USDF/VNDT
+                                                USDF/VND
                                             </span>
                                         </span>
                                     </div>
@@ -97,7 +97,7 @@
                                 <strong>Xeng Coin</strong>
                                 <br>
                                 <span class="fs-090 text-secondary">
-                                    XENG/VNDT
+                                    XENG/VND
                                 </span>
                                         </span>
                                     </div>
@@ -153,7 +153,7 @@
                                 <strong>Tether USD</strong>
                                 <br>
                                 <span class="fs-090 text-secondary">
-                                    USDT/VNDT
+                                    USDT/VND
                                 </span>
                                         </span>
                                     </div>
@@ -209,7 +209,7 @@
                                             <strong>Bitcoin</strong>
                                             <br>
                                             <span class="fs-090 text-secondary">
-                                                BTC/VNDT
+                                                BTC/VND
                                             </span>
                                         </span>
                                     </div>
@@ -265,7 +265,7 @@
                                 <strong>Etherium</strong>
                                 <br>
                                 <span class="fs-090 text-secondary">
-                                    ETH/VNDT
+                                    ETH/VND
                                 </span>
                                         </span>
                                     </div>
@@ -315,21 +315,21 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <span class="fs-220 lh-1 mr-3">
-                                <i class="cc TRX" title="TRX"></i>
-                            </span>
+                                            <i class="cc TRX" title="TRX"></i>
+                                        </span>
                                         <span>
-                                <strong>Tron</strong>
-                                <br>
-                                <span class="fs-090 text-secondary">
-                                    TRX/VNDT
-                                </span>
+                                            <strong>Tron</strong>
+                                            <br>
+                                            <span class="fs-090 text-secondary">
+                                                TRX/VND
+                                            </span>
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                            <span class="text-<%- rates['per_trx'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                <i class="las la-caret-<%- rates['per_trx'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                <span><%= Math.abs(rates['per_trx'].toLocaleString() / 100) %>%</span>
-                                    </span>
+                                        <span class="text-<%- rates['per_trx'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_trx'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                            <span><%= Math.abs(rates['per_trx'].toLocaleString() / 100) %>%</span>
+                                        </span>
                                     </span>
                                 </div>
                             </div>
@@ -384,7 +384,7 @@
                                     <span class="d-inline-block font-weight-500 fs-090">
                                         <span class="text-<%- rates['per_xrp'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
                                             <i class="las la-caret-<%- rates['per_xrp'] > 0 ? 'up' : 'down' %> mr-1"></i>
-                                            <span><%= Math.abs(rates['per_xrp'].toLocaleString() / 100) %>%</span>
+                                            <span><%= Math.abs(rates['per_xrp'] / 100) %>%</span>
                                         </span>
                                     </span>
                                 </div>
