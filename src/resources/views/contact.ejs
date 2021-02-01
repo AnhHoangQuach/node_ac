@@ -38,19 +38,19 @@
                                         <p>
                                             <span class="d-block">
                                                 <span class="col-12 col-lg-8 col-md-8 text-left">
-                                                    <a href="<%= JSON.parse(agency.contact).facebook %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
+                                                    <a href="http://facebook.com/<%= JSON.parse(agency.contact).facebook %>" target="_blank" class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('facebook') == true && JSON.parse(agency.contact).facebook != '')  ? '' : 'display:none' %>">
                                                         <img src="img/fb.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 zl"
+                                                    <a href="https://zalo.me/<%= JSON.parse(agency.contact).zalo %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 zl"
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('zalo') == true && JSON.parse(agency.contact).zalo != '') ? '' : 'display:none' %>">
                                                         <img src="img/zl.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 tl"
+                                                    <a href="https://t.me/<%= JSON.parse(agency.contact).telegram %>" target="_blank" class="w-25 text-decoration-none text-secondary mr-2 ml-2 tl"
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('telegram') == true && JSON.parse(agency.contact).telegram != '') ? '' : 'display:none' %>">
                                                         <img src="img/tl.png" width="32">
                                                     </a>
-                                                    <a href="#" class="w-25 text-decoration-none text-secondary mr-2 ml-2 vb"
+                                                    <a href="viber://chat?​number=<%= JSON.parse(agency.contact).viber %>" target="_blank" class="w-25 text-decoration-none text-secondary mr-2 ml-2 vb"
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('viber') == true && JSON.parse(agency.contact).viber != '') ? '' : 'display:none' %>">
                                                         <img src="img/vb.png" width="32">
                                                     </a>
