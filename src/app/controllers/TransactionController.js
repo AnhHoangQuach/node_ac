@@ -97,7 +97,6 @@ class TransactionController {
                 title: 'Bán bước 1',
                 link: 'sell1', agency:
                     data_store.agency,
-                rates: data.rates,
             })
         } else if (req.query.step == 2) {
             res.render('sell/sell2', {
@@ -105,8 +104,6 @@ class TransactionController {
                 link: 'sell2',
                 agency: data_store.agency,
                 listBank: func.listBank,
-                coin: req.query.coin,
-                rates: data.rates,
                 coin: coin.toUpperCase(),
                 rate: data.rates['bid_' + coin.toLowerCase()],
             })
@@ -116,17 +113,14 @@ class TransactionController {
                 link: 'sell3',
                 agency: data_store.agency,
                 listBank: func.listBank,
-                rates: data.rates,
                 coin: coin.toUpperCase(),
-                rate: data.rates['ask_' + coin.toLowerCase()],
+                rate: data.rates['bid_' + coin.toLowerCase()],
             })
         } else if (req.query.step == 4) {
             res.render('sell/sell4', {
                 title: 'Bán bước 4',
                 link: 'sell4',
                 agency: data_store.agency,
-                coin: req.query.coin,
-                rates: data.rates,
                 listBank: func.listBank,
                 coin: coin.toUpperCase(),
                 rate: data.rates['bid_' + coin.toLowerCase()],
@@ -136,8 +130,6 @@ class TransactionController {
                 title: 'Bán bước 5',
                 link: 'sell5',
                 agency: data_store.agency,
-                coin: req.query.coin,
-                rates: data.rates,
                 listBank: func.listBank,
                 coin: coin.toUpperCase(),
                 rate: data.rates['bid_' + coin.toLowerCase()],

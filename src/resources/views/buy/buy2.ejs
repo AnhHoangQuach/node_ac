@@ -277,7 +277,7 @@
             agentId: agencyId,
             receiveAddress: document.getElementById("address_wallet").value,
             quantity: document.getElementById("quantity").value,
-            sumPrice: parseFloat(document.getElementById("quantity").value) * parseFloat('<%=rate%>'),
+            sumPrice: Math.floor(parseFloat(document.getElementById("quantity").value) * parseFloat('<%=rate%>')),
             rate: '<%=rate%>', 
         }
         orderFullData.push(user);

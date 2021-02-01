@@ -391,7 +391,7 @@
     var coin_want_sell = JSON.parse(localStorage.getItem('orderSellData'))[0];
 
     document.getElementById("coinSell").innerHTML = coin_want_sell.quantity + ' <%= coin %>'
-    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(parseFloat(coin_want_sell.quantity) * parseFloat('<%= rate %>'));
+    document.getElementById('receive_amount').innerHTML = Intl.NumberFormat().format(Math.floor(parseFloat(coin_want_sell.quantity) * parseFloat('<%= rate %>')));
 
     // create order
 

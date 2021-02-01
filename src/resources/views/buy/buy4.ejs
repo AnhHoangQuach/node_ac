@@ -274,7 +274,7 @@
 
     // set information for order
     document.querySelector('#order_value_coin').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity)) + ' <%= coin %>';
-    document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedObject.quantity) * parseFloat('<%= rate %>'));
+    document.querySelector('#sum_price_value').innerHTML = Intl.NumberFormat().format(Math.floor(parseFloat(retrievedObject.quantity) * parseFloat('<%= rate %>')));
     document.querySelector('#address_receive').innerHTML = retrievedObject.receiveAddress;
 
 

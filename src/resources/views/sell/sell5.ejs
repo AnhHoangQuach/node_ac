@@ -223,8 +223,10 @@
     document.getElementById('address_message').innerHTML = retrievedFullData.id;
     document.getElementById('order_link').href = '/search?id=' + retrievedFullData.id;
     document.getElementById('order_check_id').innerHTML = retrievedFullData.id;
-    document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount) + ' VND';
-    document.getElementById('rate').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData.rate));
+    // document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(retrievedFullData.amount) + ' VND';
+    document.getElementById('sumPriceSell').innerHTML = Intl.NumberFormat().format(Math.floor(retrievedFullData.quantity * <%= rate %>)) + ' VND';
+    // document.getElementById('rate').innerHTML = Intl.NumberFormat().format(parseFloat(retrievedFullData.rate));
+    document.getElementById('rate').innerHTML = Intl.NumberFormat().format(<%= rate %>);
     document.getElementById('address_receive_number').innerHTML = retrievedFullData.receiveAddress;
     document.getElementById('agency-address').value = retrievedFullData.receiveAddress;
     document.getElementById('qr-code').innerHTML = '<img src="https://chart.googleapis.com/chart?chs=360x360&cht=qr&chl=' + retrievedFullData.receiveAddress + '&choe=UTF-8" width="200">';
