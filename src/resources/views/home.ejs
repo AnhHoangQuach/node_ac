@@ -79,8 +79,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_usdf'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdf'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                         <span><%= Math.abs(rates['per_usdf'].toLocaleString()) %>%</span>
                                     </span>
                                     </span>
@@ -135,8 +135,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_xeng'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_xeng'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_xeng'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_xeng'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_xeng'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
@@ -191,8 +191,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_usdt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_usdt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_usdt'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdt'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_usdt'].toLocaleString()) %>%</span>
                                         </span>
                                     </span>
@@ -247,8 +247,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_vndt'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_vndt'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
                                     </span>
                                     </span>

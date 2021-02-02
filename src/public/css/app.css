@@ -503,7 +503,9 @@ h1, h2, h3, h4, h5, h6 {
   #intro.intro-short .carousel-item {
     height: 50vh; }
   #intro.intro-short .carousel-item .user-avatar img {
-    width: 80px; }
+    width: 80px;
+    height: 80px;
+  }
   #intro.intro-short .carousel-item .user-profile {
     padding-top: 2rem; }
   #intro.intro-short .carousel-item .user-info h3 {

@@ -46,8 +46,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_usdf'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_usdf'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_usdf'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdf'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_usdf'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
@@ -102,8 +102,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_xeng'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_xeng'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_xeng'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_xeng'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_xeng'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
@@ -158,8 +158,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-080">
-                                        <span class="text-<%- rates['per_usdt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_usdt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_usdt'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_usdt'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_usdt'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
@@ -214,8 +214,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_btc'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_btc'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_btc'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_btc'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_btc'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
@@ -270,8 +270,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                            <span class="text-<%- rates['per_eth'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                <i class="las la-caret-<%- rates['per_eth'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                            <span class="text-<%- rates['per_eth'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                <i class="las la-caret-<%- rates['per_eth'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                 <span><%= Math.abs(rates['per_eth'].toLocaleString() / 100) %>%</span>
                                     </span>
                                     </span>
@@ -326,8 +326,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_trx'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_trx'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_trx'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_trx'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_trx'].toLocaleString() / 100) %>%</span>
                                         </span>
                                     </span>
@@ -382,8 +382,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_xrp'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_xrp'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_xrp'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_xrp'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_xrp'] / 100) %>%</span>
                                         </span>
                                     </span>
@@ -438,8 +438,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_xlm'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_xlm'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_xlm'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_xlm'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_xlm'] / 100) %>%</span>
                                         </span>
                                     </span>
@@ -494,8 +494,8 @@
                                         </span>
                                     </div>
                                     <span class="d-inline-block font-weight-500 fs-090">
-                                        <span class="text-<%- rates['per_vndt'] > 0 ? 'success' : 'danger' %> d-flex align-items-center">
-                                            <i class="las la-caret-<%- rates['per_vndt'] > 0 ? 'up' : 'down' %> mr-1"></i>
+                                        <span class="text-<%- rates['per_vndt'] >= 0 ? 'success' : 'danger' %> d-flex align-items-center">
+                                            <i class="las la-caret-<%- rates['per_vndt'] >= 0 ? 'up' : 'down' %> mr-1"></i>
                                             <span><%= Math.abs(rates['per_vndt'].toLocaleString()) %>%</span>
                                         </span>
                                     </span>
