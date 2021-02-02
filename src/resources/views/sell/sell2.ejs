@@ -180,7 +180,7 @@
             toastr_error('Số lượng không hợp lệ', '');
             return;
         }
-        sumPrice = parseFloat(quantity) * parseFloat(coinPrice);
+        sumPrice = Math.floor(parseFloat(quantity) * parseFloat(coinPrice));
         sumPriceSell.innerHTML = Intl.NumberFormat().format(sumPrice);
         quantityInvalid = false;
 
