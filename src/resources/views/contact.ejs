@@ -38,7 +38,7 @@
                                         <p>
                                             <span class="d-block">
                                                 <span class="col-12 col-lg-8 col-md-8 text-left">
-                                                    <a href="<%= JSON.parse(agency.contact).facebook %>" class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
+                                                    <a href="https://www.facebook.com/<%= JSON.parse(agency.contact).facebook %>" target="_blank" class="w-25 text-decoration-none text-secondary mr-2 ml-2 fb"
                                                     style="<%= (JSON.parse(agency.contact).hasOwnProperty('facebook') == true && JSON.parse(agency.contact).facebook != '')  ? '' : 'display:none' %>">
                                                         <img src="img/fb.png" width="32">
                                                     </a>
